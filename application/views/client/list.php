@@ -56,10 +56,10 @@ require_once(DATAGRID_DIR.'datagrid.class.php');
 // includes database connection parameters
 //include_once('lib/base.inc.php');
 
-$DB_HOST = 'localhost';
-$DB_NAME = 'crm_promptbis';
-$DB_USER = "root";
-$DB_PASS =  "";
+$DB_HOST = $this->db->hostname;
+$DB_NAME = $this->db->database;
+$DB_USER = $this->db->username;
+$DB_PASS = $this->db->password;
 
 ob_start();
 ##  *** set needed options
@@ -260,4 +260,5 @@ $dgrid->SetAutoColumnsInEditMode(true);
 ##  *** set debug mode & messaging options
 $dgrid->Bind();
 ob_end_flush();
+
 $this->load->view('footer');
