@@ -16,17 +16,17 @@ class Client extends CI_Controller
     public function clientList()
     {
 
-        $this->load->view('client-list');
+        $this->load->view('client/list');
     }
     public function clientNew()
     {
 
-        $this->load->view('client-new');
+        $this->load->view('client/new');
     }
     public function clientEdit()
     {
 
-        $this->load->view('client-edit');
+        $this->load->view('client/edit');
     }
 
 }
