@@ -7,6 +7,10 @@
  * To change this template use File | Settings | File Templates.
  */
 ?>
-
+<div id="footer">
+    <br>
+    <hr style="height:2px;">
+   Footer
+</div>
 </body>
 </html>
