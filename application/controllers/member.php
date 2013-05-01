@@ -67,6 +67,7 @@ class Member extends CI_Controller
                   );
             ";
             $result = $this->db->query($sql);
+            $id = $this->db->insert_id();
             if ($result) {
                 echo "add success";
             } else {

@@ -25,7 +25,9 @@ $baseUrl = base_url();
         //       alert(333);
         //    });
     </script>
-    <form id="form1" name="form1" method="post" action="">
+    <form id="form1" name="form1" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+        <input type="hidden" name="company_type_id" value="1"/>
+        <input type="hidden" name="key_account_manager_id" value="1"/>
         <table cellspacing="0" cellpadding="0">
             <tr>
                 <td>
@@ -65,7 +67,7 @@ $baseUrl = base_url();
 
                     <p>
                         <label>รายละเอียดสินค้าและบริการภาษาไทย
-                            <textarea name="description_th" id="description_th"></textarea>
+                            <textarea name="main_product_th" id="main_product_th"></textarea>
                         </label>
                     </p>
                 </td>
@@ -97,7 +99,7 @@ $baseUrl = base_url();
 
                     <p>
                         <label>รายละเอียดบริษัทภาษาอังกฤษ
-                            <textarea name="textarea4"></textarea>
+                            <textarea name="description_en" id="description_en"></textarea>
                         </label>
                     </p>
 
@@ -120,7 +122,7 @@ $baseUrl = base_url();
                     </p>
 
                     <p>
-                        <label>รายละเอียดสินค้าและบริการภาษาอังกฤษ<textarea name="textarea6"></textarea>
+                        <label>รายละเอียดสินค้าและบริการภาษาอังกฤษ<textarea name="main_product_en" id="main_product_en"></textarea>
                         </label>
                     </p>
 
