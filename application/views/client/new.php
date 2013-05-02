@@ -10,6 +10,8 @@
 
 $this->load->view('header');
 $baseUrl = base_url();
+echo __FILE__ ;
+echo "<p>$message</p>";
 ?>
 
     <link rel="stylesheet" type="text/css"
@@ -18,12 +20,91 @@ $baseUrl = base_url();
     <script type="text/javascript"
             src="<?php echo $baseUrl; ?>web/js/uploadify/jquery.uploadify-3.1.min.js"></script>
     <script>
-        var swfPath = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.swf')}}";
-        var pathUploadify = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.php')}}";
-        var pathImgUpload = "<?php echo $baseUrl;?>/web/images/";
-        //    $(document).ready(function(){
-        //       alert(333);
-        //    });
+        var swfPath = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.swf";
+        var pathUploadify = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.php";
+        var pathImgUpload = "<?php echo $baseUrl;?>web/images/upload/client";
+        var pathImgUploadTmp = "<?php echo $baseUrl;?>web/images/upload/tmp";
+
+        $(function() {
+            genUpload("#logo_image");
+        });
+
+        function genUpload(btnUpload){
+            $(btnUpload).uploadify({
+                'formData'      : {
+                    'path_temp' : pathImgUploadTmp
+                },
+                'swf'      : swfPath,
+                'uploader' : pathUploadify,
+                'fileSizeLimit' : '120KB',
+                'fileTypeExts' : '*.gif; *.jpg; *.png',
+                'onFallback' : function() {
+                    alert('Flash was not detected.');// detect flash compatible
+                },'onUploadSuccess' : function(file, data, response) {
+                    alert(data);
+//                    var imgName = data.split('_');
+//                    postData(typeImage, idImage, imgName[0], arrayId);
+//                    reloadImgae(idReload , imgName[0]);
+                }
+            });
+        }
+
+        function reloadImgae(id, img){
+            var path = pathImgUpload + $("#building_site_id").val()+"/" + img;
+            var idImg = id.split('_');
+            $(id).fadeOut().html(getTypeImage(path, idImg[1])).fadeIn("slow");
+        }
+
+        function postData(typePost, idImage, nameImage, arrayId)
+        {
+            var desc = '';
+            var sequence = 0;
+            if (typePost == 'gallery'){
+                var i = arrayId + 1;
+                desc = $("#galleryDesc_" + i).val();
+            }
+            $.post(
+                url,
+                {
+                    typePost : typePost,
+                    idImage  : idImage,
+                    nameImage: nameImage,
+                    building_site_id : $("#building_site_id").val(),
+                    description : desc,
+                    sequence : arrayId
+                },
+                function(data) {
+                    var id = data.split('_');
+                    if (id.length > 1){
+                        id = id[1];
+                    }
+                    var str = data;
+                    if (str.search('finish') > -1) {
+                        switch (typePost){
+                            case "head":
+                                idImageHead = id;
+                                genUpload("#headImgInput", '#headImgInner', 'head', idImageHead);
+                                break;
+                            case "map":
+                                idImageMap = id;
+                                genUpload("#mapImgInput", '#mapImgInner', 'map', idImageMap);
+                                break;
+                            case "recommend":
+                                idImageRecommend = id;
+                                genUpload('#recommendImgInput', "#recommendImgInner", 'recommend', idImageRecommend);
+                                break;
+                            case "room": break;
+                            case "gallery": break;
+                        }
+                        showAutoSave();
+                        readDataGallery();
+                    }else{
+                        alert(data);
+
+                    }
+                }
+            );
+        }
     </script>
     <form id="form1" name="form1" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
         <input type="hidden" name="company_type_id" value="1"/>
@@ -35,15 +116,12 @@ $baseUrl = base_url();
 
                     <p><img src="#" width="263" height="192" alt=""/></p>
                     <label>
-                        <input name="logo_image" type="text" id="logo_image"/>
-                    </label>
-                    <label>
-                        <input type="button" id="selectImg" value="select"/>
+                        <input name="logo_image" type="file" id="logo_image"/>
                     </label>
 
                     <p>
                         <label>รายละเอียดบริษัทภาษาไทย
-                            <textarea id="description_th"name="description_th"></textarea>
+                            <textarea id="description_th" name="description_th"></textarea>
                         </label>
                     </p>
 
@@ -91,8 +169,16 @@ $baseUrl = base_url();
                     </p>
 
                     <p>
+
+
                         <label>ประเภทบริษัท
                             <select name="company_type_id" id="company_type_id">
+                                <?php
+                                foreach ($company_type as $value) {
+                                    echo "<option value='$value->id'>$value->name</option>";
+                                }
+
+                                ?>
                             </select>
                         </label>
                     </p>
@@ -122,7 +208,8 @@ $baseUrl = base_url();
                     </p>
 
                     <p>
-                        <label>รายละเอียดสินค้าและบริการภาษาอังกฤษ<textarea name="main_product_en" id="main_product_en"></textarea>
+                        <label>รายละเอียดสินค้าและบริการภาษาอังกฤษ<textarea name="main_product_en"
+                                                                            id="main_product_en"></textarea>
                         </label>
                     </p>
 

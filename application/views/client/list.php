@@ -38,8 +38,6 @@ $this->load->view('header');
             <input type="button" value="search" />
         </p>
     </form>
-
-
 <?php
 $this->load->view('footer');
 ?>

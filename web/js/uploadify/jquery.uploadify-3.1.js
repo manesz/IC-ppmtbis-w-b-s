@@ -60,7 +60,7 @@ if(Z){if(/\?/.test(Z)){Z=Z.split("?")[1];}if(aa==null){return L(Z);}var Y=Z.spli
 /*
 SWFUpload: http://www.swfupload.org, http://swfupload.googlecode.com
 
-mmSWFUpload 1.0: Flash upload dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
+mmSWFUpload 1.0: Flash uploads dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
 
 SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilzén and Mammon Media and is released under the MIT License:
 http://www.opensource.org/licenses/mit-license.php
@@ -97,10 +97,10 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					// Required Settings
 					id       : $this.attr('id'), // The ID of the DOM object
 					swf      : 'uploadify.swf',  // The path to the uploadify SWF file
-					uploader : 'uploadify.php',  // The path to the server-side upload script
+					uploader : 'uploadify.php',  // The path to the server-side uploads script
 					
 					// Options
-					auto            : true,               // Automatically upload files when added to the queue
+					auto            : true,               // Automatically uploads files when added to the queue
 					buttonClass     : '',                 // A class name to add to the browse button DOM object
 					buttonCursor    : 'hand',             // The cursor to use with the browse button
 					buttonImage     : null,               // (String or null) The path to an image to use for the Flash browse button if not using CSS to style the button
@@ -112,18 +112,18 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					fileTypeDesc    : 'All Files',        // The description for file types in the browse dialog
 					fileTypeExts    : '*.*',              // Allowed extensions in the browse dialog (server-side validation should also be used)
 					height          : 30,                 // The height of the browse button
-					method          : 'post',             // The method to use when sending files to the server-side upload script
+					method          : 'post',             // The method to use when sending files to the server-side uploads script
 					multi           : true,               // Allow multiple file selection in the browse dialog
-					formData        : {},                 // An object with additional data to send to the server-side upload script with every file upload
+					formData        : {},                 // An object with additional data to send to the server-side uploads script with every file uploads
 					preventCaching  : true,               // Adds a random value to the Flash URL to prevent caching of it (conflicts with existing parameters)
-					progressData    : 'percentage',       // ('percentage' or 'speed') Data to show in the queue item during a file upload
+					progressData    : 'percentage',       // ('percentage' or 'speed') Data to show in the queue item during a file uploads
 					queueID         : false,              // The ID of the DOM object to use as a file queue (without the #)
 					queueSizeLimit  : 999,                // The maximum number of files that can be in the queue at one time
 					removeCompleted : true,               // Remove queue items from the queue when they are done uploading
 					removeTimeout   : 3,                  // The delay in seconds before removing a queue item if removeCompleted is set to true
-					requeueErrors   : false,              // Keep errored files in the queue and keep trying to upload them
+					requeueErrors   : false,              // Keep errored files in the queue and keep trying to uploads them
 					successTimeout  : 30,                 // The number of seconds to wait for Flash to detect the server's response after the file has finished uploading
-					uploadLimit     : 0,                  // The maximum number of files you can upload
+					uploadLimit     : 0,                  // The maximum number of files you can uploads
 					width           : 120,                // The width of the browse button
 					
 					// Events
@@ -142,11 +142,11 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					onSelectError    // Triggered when an error occurs while selecting a file (file size, queue size limit, etc.)
 					onSelect         // Triggered for each file that is selected
 					onSWFReady       // Triggered when the SWF button is loaded
-					onUploadComplete // Triggered when a file upload completes (success or error)
-					onUploadError    // Triggered when a file upload returns an error
+					onUploadComplete // Triggered when a file uploads completes (success or error)
+					onUploadError    // Triggered when a file uploads returns an error
 					onUploadSuccess  // Triggered when a file is uploaded successfully
 					onUploadProgress // Triggered every time a file progress is updated
-					onUploadStart    // Triggered immediately before a file upload starts
+					onUploadStart    // Triggered immediately before a file uploads starts
 					*/
 				}, options);
 
@@ -271,12 +271,12 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 						filesCancelled     : 0, // The number of files that were cancelled instead of replaced
 						filesErrored       : 0, // The number of files that caused error in the last select operation
 						uploadsSuccessful  : 0, // The number of files that were successfully uploaded
-						uploadsErrored     : 0, // The number of files that returned errors during upload
+						uploadsErrored     : 0, // The number of files that returned errors during uploads
 						averageSpeed       : 0, // The average speed of the uploads in KB
 						queueLength        : 0, // The number of files in the queue
 						queueSize          : 0, // The size in bytes of the entire queue
-						uploadSize         : 0, // The size in bytes of the upload queue
-						queueBytesUploaded : 0, // The size in bytes that have been uploaded for the current upload queue
+						uploadSize         : 0, // The size in bytes of the uploads queue
+						queueBytesUploaded : 0, // The size in bytes that have been uploaded for the current uploads queue
 						uploadQueue        : [], // The files currently to be uploaded
 						errorMsg           : 'Some files were not added to the queue:'
 					};
@@ -300,7 +300,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 		},
 
-		// Stop a file upload and remove it from the queue 
+		// Stop a file uploads and remove it from the queue
 		cancel : function(fileID, supressEvent) {
 
 			var args = arguments;
@@ -598,7 +598,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			if (settings.onDialogClose) settings.onDialogClose.call(this, this.queueData);
 
 			// Upload the files if auto is true
-			if (settings.auto) $('#' + settings.id).uploadify('upload', '*');
+			if (settings.auto) $('#' + settings.id).uploadify('uploads', '*');
 		},
 
 		// Triggered once for each file added to the queue
@@ -677,7 +677,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 				switch(errorCode) {
 					case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
 						if (settings.queueSizeLimit > errorMsg) {
-							this.queueData.errorMsg += '\nThe number of files selected exceeds the remaining upload limit (' + errorMsg + ').';
+							this.queueData.errorMsg += '\nThe number of files selected exceeds the remaining uploads limit (' + errorMsg + ').';
 						} else {
 							this.queueData.errorMsg += '\nThe number of files selected exceeds the queue size limit (' + settings.queueSizeLimit + ').';
 						}
@@ -706,7 +706,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			if (this.settings.onQueueComplete) this.settings.onQueueComplete.call(this, this.settings.queueData);
 		},
 
-		// Triggered when a file upload successfully completes
+		// Triggered when a file uploads successfully completes
 		onUploadComplete : function(file) {
 			// Load the swfupload settings
 			var settings     = this.settings,
@@ -775,7 +775,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			if (settings.onUploadComplete) settings.onUploadComplete.call(this, file);
 		},
 
-		// Triggered when a file upload returns an error
+		// Triggered when a file uploads returns an error
 		onUploadError : function(file, errorCode, errorMsg) {
 			// Load the swfupload settings
 			var settings = this.settings;
@@ -796,7 +796,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					errorString = 'Security Error';
 					break;
 				case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
-					alert('The upload limit has been reached (' + errorMsg + ').');
+					alert('The uploads limit has been reached (' + errorMsg + ').');
 					errorString = 'Exceeds Upload Limit';
 					break;
 				case SWFUpload.UPLOAD_ERROR.UPLOAD_FAILED:
@@ -846,7 +846,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			if (settings.onUploadError) settings.onUploadError.call(this, file, errorCode, errorMsg, errorString);
 		},
 
-		// Triggered periodically during a file upload
+		// Triggered periodically during a file uploads
 		onUploadProgress : function(file, fileBytesLoaded, fileTotalBytes) {
 			// Load the swfupload settings
 			var settings = this.settings;
@@ -933,7 +933,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 			if (settings.onUploadStart) settings.onUploadStart.call(this, file); 
 		},
 
-		// Triggered when a file upload returns a successful code
+		// Triggered when a file uploads returns a successful code
 		onUploadSuccess : function(file, data, response) {
 			// Load the swfupload settings
 			var settings = this.settings;

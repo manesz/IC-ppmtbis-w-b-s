@@ -12,14 +12,21 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Client extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->helper(array('form', 'url'));
+    }
 
     public function clientList()
     {
-
+        
         $this->load->view('client/list');
     }
     public function clientNew()
     {
+        $data = null;
+        $data['message'] = "";
         $post = $this->input->post();
         if ($post) {
             extract($post);
@@ -75,14 +82,27 @@ class Client extends CI_Controller
             $result = $this->db->query($sql);
             $id = $this->db->insert_id();
             if ($result) {
-                echo "add success";
+                $data['message'] = "Add success";
             } else {
-                echo "add fail";
+                $data['message'] = "Add fail";
             }
         }
-
-        $this->load->view('client/new');
+        $sql = "
+            SELECT
+              *
+            FROM
+              `company_type`
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            $data['company_type'] = $result;
+        } else {
+            $data['message'] = "load company fail";
+        }
+        $this->load->view('client/new', $data);
     }
+
     public function clientEdit()
     {
 
