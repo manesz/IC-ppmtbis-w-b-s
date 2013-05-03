@@ -41,7 +41,8 @@ $baseUrl = base_url();
             </label>
         </p>
         <p>
-            <input type="button" value="search" />
+            <input type="button" value="search"
+                   style="cursor: pointer;"/>
         </p>
     </form>
     <table width="950">

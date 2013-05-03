@@ -10,7 +10,7 @@
 
 <?php
 $this->load->view('header');
-
+$baseUrl = base_url();
 ?>
     <p><?php echo $message != "" ? $message : ""; ?></p>
     <p>
@@ -175,7 +175,11 @@ $this->load->view('header');
 
         <p>
             <label>
-                <input name="save" type="submit" id="save" value="Save"/>
+                <input type="button" id="cancel" value="Cancel"
+                       onclick="window.location = '<?php echo $baseUrl . 'index.php/client/clientList';?>'"
+                    style="cursor: pointer;"/>
+                <input name="save" type="submit" id="save" value="Save"
+                       style="cursor: pointer;"/>
             </label>
         </p>
     </form>

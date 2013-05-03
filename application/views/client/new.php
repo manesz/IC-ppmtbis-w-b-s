@@ -16,8 +16,9 @@ echo "<p>$message</p>";
     <link rel="stylesheet" type="text/css"
           href="<?php echo $baseUrl . "web/js/uploadify/uploadify.css"; ?>">
     <script src="<?php echo $baseUrl . 'web/js/jquery-1.9.1.js'; ?>"></script>
+<!--    <script src="--><?php //echo $baseUrl . 'web/js/uploadify/jquery.uploadify-3.1.js'; ?><!--"></script>-->
     <script type="text/javascript"
-            src="<?php echo $baseUrl; ?>web/js/uploadify/jquery.uploadify-3.1.min.js"></script>
+            src="<?php echo $baseUrl; ?>web/js/uploadify/jquery.uploadify-3.2.min.js"></script>
     <script>
         var swfPath = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.swf";
         var pathUploadify = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.php";
@@ -29,7 +30,7 @@ echo "<p>$message</p>";
         });
 
         function genUpload(btnUpload){
-            $("#logo_image_path").uploadify({
+            $(btnUpload).uploadify({
                 'formData'      : {
                     'path_temp' : pathImgUploadTmp
                 },
