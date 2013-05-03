@@ -26,8 +26,10 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
-
+//$config['index_page'] = '';
+$config['index_page'] = $_SERVER['HTTP_HOST'] == 'localhost'
+    ? 'index.php'
+    : '';
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
