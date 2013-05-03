@@ -9,13 +9,13 @@ class Upload extends CI_Controller
         $this->load->helper(array('form', 'url'));
     }
 
-//    function index()
-//    {
-//        //echo APPPATH;
-////        print_r($_SERVER['SCRIPT_FILENAME']);
-////        var_dump(is_dir('/upload/'));
-//        $this->load->view('upload_form', array('error' => ' '));
-//    }
+    function index()
+    {
+        //echo APPPATH;
+//        print_r($_SERVER['SCRIPT_FILENAME']);
+//        var_dump(is_dir('/upload/'));
+        $this->load->view('upload_form', array('error' => ' '));
+    }
 
     function do_upload()
     {

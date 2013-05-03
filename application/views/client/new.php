@@ -7,103 +7,56 @@
  * To change this template use File | Settings | File Templates.
  */
 
-
+//var_dump($_REQUEST['folder']);
 $this->load->view('header');
-$baseUrl = base_url();
+$baseUrl = base_url() ;//. $_SERVER['HTTP_HOST'] == 'localhost' ? 'index.php/' : '';
 echo "<p>$message</p>";
 ?>
 
     <link rel="stylesheet" type="text/css"
           href="<?php echo $baseUrl . "web/js/uploadify/uploadify.css"; ?>">
     <script src="<?php echo $baseUrl . 'web/js/jquery-1.9.1.js'; ?>"></script>
-<!--    <script src="--><?php //echo $baseUrl . 'web/js/uploadify/jquery.uploadify-3.1.js'; ?><!--"></script>-->
+    <!--    <script src="--><?php //echo $baseUrl . 'web/js/uploadify/jquery.uploadify-3.1.js'; ?><!--"></script>-->
     <script type="text/javascript"
             src="<?php echo $baseUrl; ?>web/js/uploadify/jquery.uploadify-3.2.min.js"></script>
     <script>
         var swfPath = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.swf";
-        var pathUploadify = "<?php echo $baseUrl;?>web/js/uploadify/uploadify.php";
-        var pathImgUpload = "<?php echo $baseUrl;?>web/images/upload/client";
-        var pathImgUploadTmp = "<?php echo $baseUrl;?>web/images/upload/tmp";
+        //var pathImgUpload = "<?php echo $baseUrl;?>web/images/upload/client";
+        var pathImgUploadTmp = "<?php echo $baseUrl . "web/images/uploads/tmp";?>";
+        //var pathUploadify = "<?php echo $baseUrl;?>web/js/uploadify.php";
+        var pathUploadify = "<?php echo $baseUrl; ?>index.php/upload/do_upload";
 
-        $(function() {
-            genUpload("#logo_image_path");
+        $(function () {
+            genUpload("#logo_image_path", "#image_show", "#logo_image");
         });
 
-        function genUpload(btnUpload){
+        function genUpload(btnUpload, idReload, idSave) {
             $(btnUpload).uploadify({
-                'formData'      : {
-                    'path_temp' : pathImgUploadTmp
+                'userfile': {
+                    'path': pathImgUploadTmp
                 },
-                'swf'      : swfPath,
-                'uploader' : pathUploadify,
-                'fileSizeLimit' : '120KB',
-                'fileTypeExts' : '*.gif; *.jpg; *.png',
-                'onFallback' : function() {
+                'swf': swfPath,
+                'uploader': pathUploadify,
+                'fileSizeLimit': '120KB',
+                'fileTypeExts': '*.gif; *.jpg; *.png',
+                'enctype': "multipart/form-data",
+                'fileObjName':'userfile',
+                'onFallback': function () {
                     alert('Flash was not detected.');// detect flash compatible
-                },'onUploadSuccess' : function(file, data, response) {
-                    alert(data);
-//                    var imgName = data.split('_');
-//                    postData(typeImage, idImage, imgName[0], arrayId);
-//                    reloadImgae(idReload , imgName[0]);
+                }, 'onUploadSuccess': function (file, data, response) {
+                    reloadImgae(idReload , data, idSave);
                 }
             });
         }
 
-        function reloadImgae(id, img){
-            var path = pathImgUpload + $("#building_site_id").val()+"/" + img;
-            var idImg = id.split('_');
-            $(id).fadeOut().html(getTypeImage(path, idImg[1])).fadeIn("slow");
+        function reloadImgae(id, img, idSave) {
+            var path = pathImgUploadTmp + "/" + img;
+            $(idSave).val(img);
+            $(id).fadeOut().html(getTypeImage(path, "")).fadeIn("slow");
         }
 
-        function postData(typePost, idImage, nameImage, arrayId)
-        {
-            var desc = '';
-            var sequence = 0;
-            if (typePost == 'gallery'){
-                var i = arrayId + 1;
-                desc = $("#galleryDesc_" + i).val();
-            }
-            $.post(
-                url,
-                {
-                    typePost : typePost,
-                    idImage  : idImage,
-                    nameImage: nameImage,
-                    building_site_id : $("#building_site_id").val(),
-                    description : desc,
-                    sequence : arrayId
-                },
-                function(data) {
-                    var id = data.split('_');
-                    if (id.length > 1){
-                        id = id[1];
-                    }
-                    var str = data;
-                    if (str.search('finish') > -1) {
-                        switch (typePost){
-                            case "head":
-                                idImageHead = id;
-                                genUpload("#headImgInput", '#headImgInner', 'head', idImageHead);
-                                break;
-                            case "map":
-                                idImageMap = id;
-                                genUpload("#mapImgInput", '#mapImgInner', 'map', idImageMap);
-                                break;
-                            case "recommend":
-                                idImageRecommend = id;
-                                genUpload('#recommendImgInput', "#recommendImgInner", 'recommend', idImageRecommend);
-                                break;
-                            case "room": break;
-                            case "gallery": break;
-                        }
-                        showAutoSave();
-                        readDataGallery();
-                    }else{
-                        alert(data);
-
-                    }
-                }
-            );
+        function getTypeImage(src, id){
+            return '<img src="' + src + '" style="width: 250px; height: 190px;" class="nopad thumb"/>';
         }
     </script>
     <form id="form1" name="form1" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
@@ -113,10 +66,10 @@ echo "<p>$message</p>";
                 <td>
                     <p>รูปบริษัท</p>
 
-                    <p><img src="" width="263" height="192" alt=""/></p>
+                    <p id="image_show"><img src="" width="263" height="192" alt="" /></p>
                     <label>
-                        <input name="logo_image_path" type="file" id="logo_image_path"/>
-                        <input name="logo_image" type="text" id="logo_image" value=""/>
+                        <input name="userfile" type="file" id="logo_image_path"/>
+                        <input name="logo_image" type="hidden" id="logo_image" value=""/>
                     </label>
 
                     <p>
