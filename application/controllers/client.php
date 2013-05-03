@@ -98,6 +98,24 @@ class Client extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
+            $company_type_id = trim($company_type_id);
+            $key_account_manager_id = trim($key_account_manager_id);
+            $name_th = trim($name_th);
+            $name_en = trim($name_en);
+            $name_short = trim($name_short);
+            $description_th = trim($description_th);
+            $description_en = trim($description_en);
+            $address_th = trim($address_th);
+            $address_en = trim($address_en);
+            $main_product_th = trim($main_product_th);
+            $main_product_en = trim($main_product_en);
+            $office_number = trim($office_number);
+            $fax_number = trim($fax_number);
+            $email_office = trim($email_office);
+            $website_link = trim($website_link);
+            $recruitment_fee = trim($recruitment_fee);
+            $payment_term = trim($payment_term);
+            $remark = trim($remark);
             $sql = "
                 insert into `company` (
                   `company_type_id`,
@@ -177,6 +195,24 @@ class Client extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
+            $company_type_id = trim($company_type_id);
+            $key_account_manager_id = trim($key_account_manager_id);
+            $name_th = trim($name_th);
+            $name_en = trim($name_en);
+            $name_short = trim($name_short);
+            $description_th = trim($description_th);
+            $description_en = trim($description_en);
+            $address_th = trim($address_th);
+            $address_en = trim($address_en);
+            $main_product_th = trim($main_product_th);
+            $main_product_en = trim($main_product_en);
+            $office_number = trim($office_number);
+            $fax_number = trim($fax_number);
+            $email_office = trim($email_office);
+            $website_link = trim($website_link);
+            $recruitment_fee = trim($recruitment_fee);
+            $payment_term = trim($payment_term);
+            $remark = trim($remark);
             $sql = "
                 UPDATE
                   `company`
