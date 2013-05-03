@@ -10,7 +10,6 @@
 
 $this->load->view('header');
 $baseUrl = base_url();
-echo __FILE__ ;
 echo "<p>$message</p>";
 ?>
 
@@ -26,11 +25,11 @@ echo "<p>$message</p>";
         var pathImgUploadTmp = "<?php echo $baseUrl;?>web/images/upload/tmp";
 
         $(function() {
-            genUpload("#logo_image");
+            genUpload("#logo_image_path");
         });
 
         function genUpload(btnUpload){
-            $(btnUpload).uploadify({
+            $("#logo_image_path").uploadify({
                 'formData'      : {
                     'path_temp' : pathImgUploadTmp
                 },
@@ -107,16 +106,16 @@ echo "<p>$message</p>";
         }
     </script>
     <form id="form1" name="form1" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
-        <input type="hidden" name="company_type_id" value="1"/>
         <input type="hidden" name="key_account_manager_id" value="1"/>
         <table cellspacing="0" cellpadding="0">
             <tr>
                 <td>
                     <p>รูปบริษัท</p>
 
-                    <p><img src="#" width="263" height="192" alt=""/></p>
+                    <p><img src="" width="263" height="192" alt=""/></p>
                     <label>
-                        <input name="logo_image" type="file" id="logo_image"/>
+                        <input name="logo_image_path" type="file" id="logo_image_path"/>
+                        <input name="logo_image" type="text" id="logo_image" value=""/>
                     </label>
 
                     <p>
