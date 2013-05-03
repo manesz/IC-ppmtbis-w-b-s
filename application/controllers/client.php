@@ -18,11 +18,79 @@ class Client extends CI_Controller
         $this->load->helper(array('form', 'url'));
     }
 
+    public function index()
+    {
+
+        $this->load->view('client/new', array("message" => ""));
+    }
+
     public function clientList()
     {
-        
-        $this->load->view('client/list');
+        $arrClientList = $this->getListClient();
+        $data = array(
+            'arrClientList' => $arrClientList,
+            'company_type' => $this->getListCompanyType(),
+            'message' => ""
+        );
+        $this->load->view('client/list', $data);
     }
+
+    /**
+     * @param string $id
+     * @return object
+     */
+    public function getListClient($id = "")
+    {
+        $strAnd = $id != "" ? "AND a.id = $id" : "";
+        $sql = "
+            SELECT
+              a.*,
+              b.`name` AS company_type_name
+            FROM
+              `company` a
+              INNER JOIN `company_type` b
+                ON (a.`company_type_id` = b.`id`)
+            WHERE 1
+              AND b.`publish` = 1
+              AND a.publish = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+        } else {
+            $result = (object)array();
+        }
+        return $result;
+    }
+
+    /**
+     * get รายชื่อประเภทบริษัท
+     *
+     * @param $id
+     * @return object
+     */
+    public function getListCompanyType($id = "")
+    {
+        $strAnd = $id != "" ? "AND id = $id" : "";
+        $sql = "
+            SELECT
+              *
+            FROM
+              `company_type`
+            WHERE 1
+              AND publish = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+        } else {
+            $result = (object)array();
+        }
+        return $result;
+    }
+
     public function clientNew()
     {
         $data = null;
@@ -87,26 +155,68 @@ class Client extends CI_Controller
                 $data['message'] = "Add fail";
             }
         }
-        $sql = "
-            SELECT
-              *
-            FROM
-              `company_type`
-        ";
-        $query = $this->db->query($sql);
-        if ($query->num_rows()) {
-            $result = $query->result();
-            $data['company_type'] = $result;
-        } else {
-            $data['message'] = "load company fail";
-        }
+
+        $data['company_type'] = $this->getListCompanyType();
+
         $this->load->view('client/new', $data);
     }
 
-    public function clientEdit()
+    /**
+     * @param $nameTH
+     * @param $nameEn
+     * @return bool
+     */
+    public function checkAddClient($nameTH, $nameEn)
     {
+        return true;
+    }
 
-        $this->load->view('client/edit');
+    public function clientEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $sql = "
+                UPDATE
+                  `company`
+                SET
+                  `company_type_id` = '$company_type_id',
+                  `key_account_manager_id` = '$key_account_manager_id',
+                  `name_th` = '$name_th',
+                  `name_en` = '$name_en',
+                  `name_short` = '$name_short',
+                  `description_th` = '$description_th',
+                  `description_en` = '$description_en',
+                  `address_th` = '$address_th',
+                  `address_en` = '$address_en',
+                  `main_product_th` = '$main_product_th',
+                  `main_product_en` = '$main_product_en',
+                  `office_number` = '$office_number',
+                  `fax_number` = '$fax_number',
+                  `email_office` = '$email_office',
+                  `website_link` = '$website_link',
+                  `recruitment_fee` = '$recruitment_fee',
+                  `payment_term` = '$payment_term',
+                  `remark` = '$remark',
+                  `logo_image` = '$logo_image',
+                  `update_time` = NOW()
+                WHERE `id` = '$id' ;
+            ";
+            $result = $this->db->query($sql);
+            if ($result) {
+                $message = "Update Finish";
+            } else {
+                $message = "!Update Fail";
+            }
+        }
+        $arrClientList = $this->getListClient($id);
+        $data = array(
+            'dataClient' => $arrClientList[0],
+            'company_type' => $this->getListCompanyType(),
+            'message' => $message
+        );
+        $this->load->view('client/edit', $data);
     }
 
 }
