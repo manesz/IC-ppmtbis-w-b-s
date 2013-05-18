@@ -1,0 +1,16 @@
+Ex. filename_view.php
+-------------------------------------------------------
+cpanel Folder
+- cpanel/dashboard_view.php
+- cpanel/site_config_view.php
+
+crm Folder
+- crm/dashboard_view.php
+- crm/client_list_view.php
+- crm/client_insert_view.php
+
+website Folder
+- website/home_view.php
+- website/our_service_view.php
+- website/page_view.php
+- website/contact_view.php
