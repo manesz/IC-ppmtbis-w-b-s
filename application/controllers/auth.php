@@ -19,7 +19,7 @@ class Auth extends CI_Controller
             $sql = "
                 SELECT
                   *
-                FROM `employee`
+                FROM `crm_employee`
                 WHERE 1
                 AND `username` = '$username'
                 AND `password` = '$password'
@@ -29,7 +29,10 @@ class Auth extends CI_Controller
             if ($query->num_rows()) {
                 $result = $query->result();
                 $this->session->set_userdata((array)$result[0]);
-                redirect(base_url(). "index.php/member/newEmployee");
+                //redirect(base_url(). "index.php/member/newEmployee");
+                redirect(base_url(). "index.php/dashboard");
+                //$this->load->view('dashboard');
+
             } else {
                 echo 'login fail';
             }

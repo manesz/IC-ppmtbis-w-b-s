@@ -47,8 +47,8 @@ class Client extends CI_Controller
               a.*,
               b.`name` AS company_type_name
             FROM
-              `company` a
-              INNER JOIN `company_type` b
+              `crm_company` a
+              INNER JOIN `crm_company_type` b
                 ON (a.`company_type_id` = b.`id`)
             WHERE 1
               AND b.`publish` = 1
@@ -77,7 +77,7 @@ class Client extends CI_Controller
             SELECT
               *
             FROM
-              `company_type`
+              `crm_company_type`
             WHERE 1
               AND publish = 1
               $strAnd
@@ -117,7 +117,7 @@ class Client extends CI_Controller
             $payment_term = trim($payment_term);
             $remark = trim($remark);
             $sql = "
-                insert into `company` (
+                insert into `crm_company` (
                   `company_type_id`,
                   `key_account_manager_id`,
                   `name_th`,
@@ -211,11 +211,11 @@ class Client extends CI_Controller
             $email_office = trim($email_office);
             $website_link = trim($website_link);
             $recruitment_fee = trim($recruitment_fee);
-            $payment_term = trim($payment_term);
+            $payment_term = trim($paymensddt_term);
             $remark = trim($remark);
             $sql = "
                 UPDATE
-                  `company`
+                  `crm_company`
                 SET
                   `company_type_id` = '$company_type_id',
                   `key_account_manager_id` = '$key_account_manager_id',

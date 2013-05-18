@@ -42,7 +42,7 @@ class Member extends CI_Controller
             extract($post);
             $password = md5($password);
             $sql = "
-                INSERT INTO `employee` (
+                INSERT INTO `crm_employee` (
                   `name`,
                   `description`,
                   `employer_type`,
