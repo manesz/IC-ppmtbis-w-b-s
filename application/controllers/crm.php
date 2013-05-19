@@ -33,7 +33,7 @@ class CRM extends CI_Controller
             $this->load->model('Auth_model');
             $resultLogin = $this->Auth_model->signIn($post);
             if ($resultLogin) {
-                redirect($this->baseUrl . "dashboard");
+                redirect($this->baseUrl . "crm/dashboard");
             } else {
                 echo 'login fail';
             }
@@ -41,7 +41,7 @@ class CRM extends CI_Controller
         if (empty($this->session->userdata['username'])) {
             $this->load->view('crm/login_view', array('message' => $message));
         } else {
-            redirect($this->baseUrl . "dashboard");
+            redirect($this->baseUrl . "crm/dashboard");
         }
     }
 
@@ -49,6 +49,12 @@ class CRM extends CI_Controller
     {
         $this->session->sess_destroy();
         redirect($this->baseUrl . 'crm');
+    }
+
+    function dashboard()
+    {
+        $message = "";
+        $this->load->view('crm/dashboard_view', array('message' => $message));
     }
 
 
