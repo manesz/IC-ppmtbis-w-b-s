@@ -38,8 +38,8 @@ class CRM extends CI_Controller
                 echo 'login fail';
             }
         }
-        if (empty($this->session->userdata['user_name'])) {
-            $this->load->view('sign-in', array('message' => $message));
+        if (empty($this->session->userdata['username'])) {
+            $this->load->view('crm/login_view', array('message' => $message));
         } else {
             redirect($this->baseUrl . "dashboard");
         }
