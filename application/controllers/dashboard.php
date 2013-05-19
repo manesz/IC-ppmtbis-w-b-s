@@ -12,6 +12,8 @@ class Dashboard extends CI_Controller
 {
     public function index()
     {
+        $this->load->model('Auth_model');
+        echo $this->Auth_model->test();
         $this->load->view('dashboard');
     }
 
