@@ -28,6 +28,7 @@ $baseUrl = base_url();
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script src="<?php echo $baseUrl; ?>assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="<?php echo $baseUrl; ?>assets/js/jquery-1.9.1.js"></script>
 </head>
 
 <body>
@@ -64,7 +65,7 @@ $baseUrl = base_url();
                         <a href="<?php echo $webUrl; ?>crm/dashboard">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#">Navigator</a>
+                        <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a>
                     </li>
                     <li>
                         <a href="#">Slide</a>
