@@ -11,16 +11,46 @@ $baseUrl = base_url();
 
 $this->load->view("header_backend_view");
 ?>
+
+    <script>
+        var dashboardList = "<?php echo $webUrl; ?>crm/dashboardList";
+        $(document).ready(function(){
+            $(".subMenuClick").click(function(){
+                var nameActive = "subMenuClick active";
+                var nameNotActive = "subMenuClick";
+                $(".subMenuClick").each(function(id2, name2){
+                    name2.className = nameNotActive;
+                });
+                this.className = nameActive;
+                return false;
+            });
+
+            $(".linkSubMenu").click(function(){
+                innerHtml("#content", this.href)
+            });
+
+            innerHtml("#content", dashboardList)
+        });
+
+        var strWait = "<div align='center'><img width='50' height='50' "
+            + "src='<?php echo $baseUrl; ?>assets/img/loading.gif'/></div>"
+        function innerHtml(id, href)
+        {
+            $(id).empty();
+            $(id).html(strWait);
+            $(id).load(href);
+        }
+    </script>
     <div class="row-fluid">
         <div class="span3" id="sidebar">
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                <li class="active">
-                    <a href="<?php echo $webUrl; ?>crm/dashboard"><i class="icon-chevron-right"></i> Dashboard</a>
+                <li class="subMenuClick active">
+                    <a class="linkSubMenu" href="<?php echo $webUrl; ?>crm/dashboardList"><i class="icon-chevron-right"></i> Dashboard</a>
                 </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i> Calendar</a>
+                <li class="subMenuClick">
+                    <a class="linkSubMenu" href="<?php echo $webUrl; ?>crm/clientList"><i class="icon-chevron-right"></i>Client List</a>
                 </li>
-                <li>
+                <li class="subMenuClick">
                     <a href="#"><i class="icon-chevron-right"></i> Statistics</a>
                 </li>
                 <li>
@@ -57,70 +87,7 @@ $this->load->view("header_backend_view");
         </div>
         <!--/span-->
         <div class="span9" id="content">
-            <div class="row-fluid">
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <h4>Success</h4>
-                    The operation completed successfully
-                </div>
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <ul class="breadcrumb">
-                            <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar"
-                                                                         rel='tooltip'>&nbsp;</a></i>
-                            <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#'
-                                                                                                title="Show Sidebar"
-                                                                                                rel='tooltip'>
-                                    &nbsp;</a></i>
-                            <li>
-                                <a href="#">Dashboard</a> <span class="divider">/</span>
-                            </li>
-                            <li>
-                                <a href="#">Settings</a> <span class="divider">/</span>
-                            </li>
-                            <li class="active">Tools</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <!-- block -->
-                <div class="block">
-                    <div class="navbar navbar-inner block-header">
-                        <div class="muted pull-left">Statistics</div>
-                        <div class="pull-right"><span class="badge badge-warning">View More</span>
 
-                        </div>
-                    </div>
-                    <div class="block-content collapse in">
-                        <div class="span3">
-                            <div class="chart" data-percent="73">73%</div>
-                            <div class="chart-bottom-heading"><span class="label label-info">Visitors</span>
-
-                            </div>
-                        </div>
-                        <div class="span3">
-                            <div class="chart" data-percent="53">53%</div>
-                            <div class="chart-bottom-heading"><span class="label label-info">Page Views</span>
-
-                            </div>
-                        </div>
-                        <div class="span3">
-                            <div class="chart" data-percent="83">83%</div>
-                            <div class="chart-bottom-heading"><span class="label label-info">Users</span>
-
-                            </div>
-                        </div>
-                        <div class="span3">
-                            <div class="chart" data-percent="13">13%</div>
-                            <div class="chart-bottom-heading"><span class="label label-info">Orders</span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /block -->
-            </div>
         </div>
     </div>
 
