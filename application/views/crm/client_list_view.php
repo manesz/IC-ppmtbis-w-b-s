@@ -24,7 +24,10 @@ $baseUrl = base_url();
     $(document).ready(function () {
         $('#clientList').dataTable();
 
-
+        $('#clientNew').click(function(){
+            innerHtml("#content", this.href);
+            return false;
+        });
     });
 </script>
 
@@ -51,7 +54,9 @@ $baseUrl = base_url();
     <div class="block">
         <div class="navbar navbar-inner block-header">
             <div class="muted pull-left">Client List</div>
-            <div class="pull-right"><a id="clientNew" href="<?php echo $webUrl; ?>crm/clientNew"><span class="badge badge-info">add</span></a></div>
+            <div class="pull-right"><a id="clientNew" href="<?php echo $webUrl; ?>crm/clientNew"><span
+                        class="badge badge-info">add</span></a></div>
+        </div>
         <div class="block-content collapse in">
             <table cellpadding="0" cellspacing="0" border="0" class="display" id="clientList">
                 <thead>

@@ -88,6 +88,30 @@ class CRM extends CI_Controller
         $this->load->view('crm/client_list_view', $data);
     }
 
+    function clientNew()
+    {
+        $this->load->model('Company_type_model');
+        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+
+        $post = $this->input->post();
+        if ($post) {
+            $this->load->model('Client_model');
+            $result = $this->Client_model->clientNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            'company_type' => $arrCompanyType,
+            "webUrl" => $this->baseUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/client_new_view', $data);
+    }
+
     function clientEdit($id)
     {
         $this->load->model('Client_model');
