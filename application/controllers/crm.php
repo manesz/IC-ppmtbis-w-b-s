@@ -61,5 +61,22 @@ class CRM extends CI_Controller
         $this->load->view('crm/dashboard_view', $data);
     }
 
+    function clientList()
+    {
+        $this->load->model('Client_model');
+        $arrClient = $this->Client_model->getListClient();
+
+        $this->load->model('Company_type_model');
+        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+
+
+        $data = array(
+            'arrClientList' => $arrClient,
+            'company_type' => $arrCompanyType,
+            "webUrl" => $this->baseUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/client_list_view', $data);
+    }
 
 }
