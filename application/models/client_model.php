@@ -124,4 +124,15 @@ class Client_model extends CI_Model
             return false;
         }
     }
+
+    function updatePathImage($id, $path)
+    {
+        $this->logo_image = $path;
+        return $this->db->update('crm_company', $this, array('id' => $id));
+    }
+
+    function updatePathFiles($id, $path)
+    {
+
+    }
 }

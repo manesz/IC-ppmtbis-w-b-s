@@ -94,7 +94,7 @@ class CRM extends CI_Controller
         $arrCompanyType = $this->Company_type_model->getListCompanyType();
 
         $post = $this->input->post();
-        if ($post) {
+        if ($post) {//echo 1;exit();
             $this->load->model('Client_model');
             $result = $this->Client_model->clientNew($post);
             if ($result){

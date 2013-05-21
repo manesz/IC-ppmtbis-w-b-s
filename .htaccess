@@ -2,3 +2,5 @@
 RewriteEngine on
 RewriteCond $1 !^(index\.php|assets|robots\.txt)
 RewriteRule ^(.*)$ /index.php/$1 [L]
+#RewriteCond %{REQUEST_FILENAME} !-f # this means if the requested file name doesnt exist
+#RewriteCond %{REQUEST_FILENAME} !-d # this means if the requested directory doesnt exist
