@@ -6,8 +6,48 @@
  * Time: 11:42 น.
  * To change this template use File | Settings | File Templates.
  */
-
+$baseUrl = base_url();
 ?>
+<style type="text/css" title="currentStyle">
+    @import "<?php echo $baseUrl; ?>assets/plugin/datatables/media/css/jquery-ui-1.10.3.custom.min.css";
+    @import "<?php echo $baseUrl; ?>assets/plugin/datatables/media/css/demo_page.css";
+    @import "<?php echo $baseUrl; ?>assets/plugin/datatables/media/css/demo_table_jui.css";
+</style>
+<!--<script type="text/javascript" charset="utf-8" src="--><?php //echo $baseUrl; ?><!--assets/plugin/datatables/media/js/jquery.js"></script>-->
+<script type="text/javascript" charset="utf-8"
+        src="<?php echo $baseUrl; ?>assets/plugin/datatables/media/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+        src="<?php echo $baseUrl; ?>assets/plugin/datatables/media/js/ZeroClipboard.js"></script>
+<script type="text/javascript" charset="utf-8"
+        src="<?php echo $baseUrl; ?>assets/plugin/datatables/media/js/TableTools.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').dataTable();
+
+        $('#buttonNew, .editData').click(function(){
+            innerHtml("#content", this.href);
+            return false;
+        });
+
+        $('.deleteData').click(function(){
+            if (confirm("คุณต้องการลบข้อมูลใช่หรือไม่")) {
+                $.post(this.href,
+                    function (result) {
+                        if (result == "delete fail") {
+                            alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                        } else {
+                            alert(result)
+                            window.location = "<?php echo $webUrl; ?>website/navigator";
+                        }
+                    }
+                );
+            }
+            return false;
+        });
+
+
+    });
+</script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
     <!--                    <button type="button" class="close" data-dismiss="alert">&times;</button>-->
@@ -30,36 +70,51 @@
 <!-- block -->
 <div class="block">
     <div class="navbar navbar-inner block-header">
-        <div class="muted pull-left">Statistics</div>
-        <div class="pull-right"><span class="badge badge-warning">View More</span>
-
-        </div>
+        <div class="muted pull-left">Navigator List</div>
+        <div class="pull-right"><a id="buttonNew" href="<?php echo $webUrl; ?>website/navigatorNew"><span
+                    class="badge badge-info">add</span></a></div>
     </div>
     <div class="block-content collapse in">
-        <div class="span3">
-            <div class="chart" data-percent="73">73%</div>
-            <div class="chart-bottom-heading"><span class="label label-info">Visitors</span>
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="dataTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Layer</th>
+                <th>Parent</th>
+                <th>Order</th>
+                <th>วันที่สร้าง</th>
+                <th>จัดการข้อมูล</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($arrayData as $key => $value):
+                ?>
 
-            </div>
-        </div>
-        <div class="span3">
-            <div class="chart" data-percent="53">53%</div>
-            <div class="chart-bottom-heading"><span class="label label-info">Page Views</span>
-
-            </div>
-        </div>
-        <div class="span3">
-            <div class="chart" data-percent="83">83%</div>
-            <div class="chart-bottom-heading"><span class="label label-info">Users</span>
-
-            </div>
-        </div>
-        <div class="span3">
-            <div class="chart" data-percent="13">13%</div>
-            <div class="chart-bottom-heading"><span class="label label-info">Orders</span>
-
-            </div>
-        </div>
+                <tr class="<?php echo "odd_gradeX" ? $key % 2 == 0 : "odd_gradeA"; ?>">
+                    <td class="center"><?php echo $value->id; ?></td>
+                    <td><?php echo $value->name; ?></td>
+                    <td><?php echo $value->description; ?></td>
+                    <td><?php echo $value->layer; ?></td>
+                    <td class="center"><?php echo $value->parent; ?></td>
+                    <td class="center"><?php echo $value->order; ?></td>
+                    <td class="center"><?php echo $value->create_time; ?></td>
+                    <td class="center">
+                        <a class="editData"
+                           href="<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $value->id; ?>">
+                            แก้ไข</a> /
+                        <a class="deleteData"
+                           href="<?php echo $webUrl; ?>website/navigatorDelete/<?php echo $value->id; ?>">ลบ</a>
+                        <!--/ <a href="#">ดู</a>-->
+                    </td>
+                </tr>
+            <?php
+            endforeach;
+            ?>
+            </tbody>
+        </table>
     </div>
 </div>
 <!-- /block -->

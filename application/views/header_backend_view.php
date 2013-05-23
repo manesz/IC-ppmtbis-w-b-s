@@ -29,6 +29,16 @@ $baseUrl = base_url();
     <![endif]-->
     <script src="<?php echo $baseUrl; ?>assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="<?php echo $baseUrl; ?>assets/js/jquery-1.9.1.js"></script>
+    <script>
+        var strWait = "<div align='center'><img width='50' height='50' "
+            + "src='<?php echo $baseUrl; ?>assets/img/loading.gif'/></div>"
+        function innerHtml(id, href)
+        {
+            $(id).empty();
+            $(id).html(strWait);
+            $(id).load(href);
+        }
+    </script>
 </head>
 
 <body>
@@ -68,7 +78,7 @@ $baseUrl = base_url();
                         <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a>
                     </li>
                     <li>
-                        <a href="#">Slide</a>
+                        <a href="<?php echo $webUrl; ?>website/slide">Slide</a>
                     </li>
                     <li>
                         <a href="#">Page</a>

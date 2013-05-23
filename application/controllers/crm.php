@@ -10,14 +10,20 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class CRM extends CI_Controller
 {
-    private $baseUrl = "";
+    private $webUrl = "";
 
     function __construct()
     {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
-        $this->baseUrl = base_url();
-        $this->baseUrl .= strstr($_SERVER['HTTP_HOST'], 'localhost') > -1 ? 'index.php/' : base_url();
+//        $this->webUrl = base_url();
+//        $this->webUrl .= strstr($_SERVER['HTTP_HOST'], 'localhost') > -1 ? 'index.php/' : base_url();
+
+        if (strstr($_SERVER['HTTP_HOST'], 'localhost') > -1){
+            $this->webUrl .= base_url(). 'index.php/';
+        } else {
+            $this->webUrl = base_url();
+        }
     }
 
     function index()
@@ -33,7 +39,7 @@ class CRM extends CI_Controller
             $this->load->model('Auth_model');
             $resultLogin = $this->Auth_model->signIn($post);
             if ($resultLogin) {
-                redirect($this->baseUrl . "crm/dashboard");
+                redirect($this->webUrl . "crm/dashboard");
             } else {
                 echo 'login fail';
             }
@@ -41,21 +47,21 @@ class CRM extends CI_Controller
         if (empty($this->session->userdata['username'])) {
             $this->load->view('crm/login_view', array('message' => $message));
         } else {
-            redirect($this->baseUrl . "crm/dashboard");
+            redirect($this->webUrl . "crm/dashboard");
         }
     }
 
     function logout()
     {
         $this->session->sess_destroy();
-        redirect($this->baseUrl . 'crm');
+        redirect($this->webUrl . 'crm');
     }
 
     function dashboard()
     {
         $message = "";
         $data = array(
-            "webUrl" => $this->baseUrl,
+            "webUrl" => $this->webUrl,
             "message" => $message
         );
         $this->load->view('crm/dashboard_view', $data);
@@ -65,7 +71,7 @@ class CRM extends CI_Controller
     {
         $message = "";
         $data = array(
-            "webUrl" => $this->baseUrl,
+            "webUrl" => $this->webUrl,
             "message" => $message
         );
         $this->load->view('crm/dashboard_list_view', $data);
@@ -82,7 +88,7 @@ class CRM extends CI_Controller
         $data = array(
             'arrClientList' => $arrClient,
             'company_type' => $arrCompanyType,
-            "webUrl" => $this->baseUrl,
+            "webUrl" => $this->webUrl,
             'message' => ""
         );
         $this->load->view('crm/client_list_view', $data);
@@ -106,7 +112,7 @@ class CRM extends CI_Controller
         }
         $data = array(
             'company_type' => $arrCompanyType,
-            "webUrl" => $this->baseUrl,
+            "webUrl" => $this->webUrl,
             'message' => ""
         );
         $this->load->view('crm/client_new_view', $data);
@@ -123,7 +129,7 @@ class CRM extends CI_Controller
         $data = array(
             'arrClientList' => $arrClient,
             'company_type' => $arrCompanyType,
-            "webUrl" => $this->baseUrl,
+            "webUrl" => $this->webUrl,
             'message' => ""
         );
         $this->load->view('crm/client_list_view', $data);

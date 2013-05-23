@@ -2,21 +2,24 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 19/5/2556
- * Time: 11:16 น.
+ * Date: 23/5/2556
+ * Time: 16:05 น.
  * To change this template use File | Settings | File Templates.
  */
+
 $baseUrl = base_url();
 ?>
+
 <script>
-    var url_navigator_new = "<?php echo $webUrl; ?>website/navigatorNew";
+    var url_navigator_edit = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $arrData->id; ?>";
     $(document).ready(function(){
         $("#buttonSave").click(function(){
-            $.post(url_navigator_new, $("#formPost").serialize(),
+            $.post(url_navigator_edit, $("#formPost").serialize(),
                 function (result) {
-                    if (result == "add fail") {
+                    if (result == "edit fail") {
                         alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                     } else {
+                        alert(result)
                         window.location = "<?php echo $webUrl; ?>website/navigator";
                     }
                 }
@@ -46,7 +49,7 @@ $baseUrl = base_url();
                 <li>
                     <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a> <span class="divider">/</span>
                 </li>
-                <li class="active">New</li>
+                <li class="active">Edit</li>
             </ul>
         </div>
     </div>
@@ -55,37 +58,37 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Navigator New</div>
-<!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
+            <div class="muted pull-left">Navigator Edit</div>
+            <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Name
-                    <input name="name" type="text" id="name" />
+                    <input name="name" type="text" id="name" value="<?php echo $arrData->name; ?>"/>
                 </label>
                 <p>
                     <label>Description
-                        <textarea name="description" id="description"></textarea>
+                        <textarea name="description" id="description"><?php echo $arrData->description; ?></textarea>
                     </label>
                 </p>
                 <p>
                     <label>Layer
-                        <input name="layer" type="text" id="layer" />
+                        <input name="layer" type="text" id="layer" value="<?php echo $arrData->layer; ?>" />
                     </label>
                 </p>
                 <p>
                     <label>Parent
-                        <input name="parent" type="text" id="parent" />
+                        <input name="parent" type="text" id="parent" value="<?php echo $arrData->parent; ?>"/>
                     </label>
                 </p>
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order" />
+                        <input name="order" type="text" id="order" value="<?php echo $arrData->order; ?>" />
                     </label>
                 </p>
                 <div align="right">
                     <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                <button class="btn btn-primary" id="buttonSave">save</button>
+                    <button class="btn btn-primary" id="buttonSave">save</button>
                 </div>
             </form>
         </div>
