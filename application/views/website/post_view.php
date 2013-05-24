@@ -9,7 +9,7 @@
 
 $baseUrl = base_url();
 $urlListData = $webUrl . "website/postList";
-$this->load->view("header_backend_view");
+$this->load->view("website/header");
 ?>
     <script>
         var url_list_data = "<?php echo $urlListData; ?>";
@@ -86,4 +86,4 @@ $this->load->view("header_backend_view");
 
 
 <?php
-$this->load->view("footer_backend_view");
+$this->load->view("website/footer");

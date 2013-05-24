@@ -9,7 +9,7 @@
 
 $baseUrl = base_url();
 $urlEditData = $webUrl . "website/site_configEdit/1";
-$this->load->view("header_backend_view");
+$this->load->view("website/header");
 ?>
     <script>
         var url_edit_data = "<?php echo $urlEditData; ?>";
@@ -86,4 +86,4 @@ $this->load->view("header_backend_view");
 
 
 <?php
-$this->load->view("footer_backend_view");
+$this->load->view("website/footer");

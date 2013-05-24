@@ -24,6 +24,24 @@ class Website extends CI_Controller
         }
     }
 
+    function index()
+    {
+        redirect($this->webUrl . "website/dashboard");
+    }
+
+    //-----------------------------------Dashboard------------------------------------------//
+    function dashboard()
+    {
+        $message = "";
+        $strSelectBar = 'dashboard';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view('website/dashboard_view', $data);
+    }
+
     //-----------------------------------Slide------------------------------------------//
 
     function navigator()

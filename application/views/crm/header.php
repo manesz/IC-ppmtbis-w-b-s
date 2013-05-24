@@ -2,8 +2,8 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 19/5/2556
- * Time: 10:08 น.
+ * Date: 24/5/2556
+ * Time: 22:05 น.
  * To change this template use File | Settings | File Templates.
  */
 
@@ -73,24 +73,6 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                 <ul class="nav">
                     <li <?php echo $selectBar == "dashboard" ? 'class="active"' : "" ?> >
                         <a href="<?php echo $webUrl; ?>crm/dashboard">Dashboard</a>
-                    </li>
-                    <li <?php echo $selectBar == "navigator" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a>
-                    </li>
-                    <li <?php echo $selectBar == "slide" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>website/slide">Slide</a>
-                    </li>
-                    <li <?php echo $selectBar == "page" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>website/page">Page</a>
-                    </li>
-                    <li <?php echo $selectBar == "post" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>website/post">Post</a>
-                    </li>
-                    <li <?php echo $selectBar == "user" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>website/user">User</a>
-                    </li>
-                    <li <?php echo $selectBar == "site_config" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>website/site_config">Site Config</a>
                     </li>
                     <!--                    <li class="dropdown">-->
                     <!--                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>-->
