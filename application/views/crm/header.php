@@ -74,6 +74,9 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <li <?php echo $selectBar == "dashboard" ? 'class="active"' : "" ?> >
                         <a href="<?php echo $webUrl; ?>crm/dashboard">Dashboard</a>
                     </li>
+                    <li <?php echo $selectBar == "client" ? 'class="active"' : "" ?> >
+                        <a href="<?php echo $webUrl; ?>crm/client">Client</a>
+                    </li>
                     <!--                    <li class="dropdown">-->
                     <!--                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>-->
                     <!---->

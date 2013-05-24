@@ -17,6 +17,8 @@ class Client_model extends CI_Model
         parent::__construct();
     }
 
+    //-----------------------------------Client------------------------------------------//
+
     /**
      * @param string $id
      * @return object
@@ -49,74 +51,31 @@ class Client_model extends CI_Model
     function clientNew($post)
     {
         extract($post);
-        $company_type_id = trim($company_type_id);
-        $key_account_manager_id = trim($key_account_manager_id);
-        $name_th = trim($name_th);
-        $name_en = trim($name_en);
-        $name_short = trim($name_short);
-        $description_th = trim($description_th);
-        $description_en = trim($description_en);
-        $address_th = trim($address_th);
-        $address_en = trim($address_en);
-        $main_product_th = trim($main_product_th);
-        $main_product_en = trim($main_product_en);
-        $office_number = trim($office_number);
-        $fax_number = trim($fax_number);
-        $email_office = trim($email_office);
-        $website_link = trim($website_link);
-        $recruitment_fee = trim($recruitment_fee);
-        $payment_term = trim($payment_term);
-        $remark = trim($remark);
-        $sql = "
-                insert into `crm_company` (
-                  `company_type_id`,
-                  `key_account_manager_id`,
-                  `name_th`,
-                  `name_en`,
-                  `name_short`,
-                  `description_th`,
-                  `description_en`,
-                  `address_th`,
-                  `address_en`,
-                  `main_product_th`,
-                  `main_product_en`,
-                  `office_number`,
-                  `fax_number`,
-                  `email_office`,
-                  `website_link`,
-                  `recruitment_fee`,
-                  `payment_term`,
-                  `remark`,
-                  `logo_image`,
-                  `create_time`,
-                  `update_time`
-                )
-                values
-                  (
-                    '$company_type_id',
-                    '$key_account_manager_id',
-                    '$name_th',
-                    '$name_en',
-                    '$name_short',
-                    '$description_th',
-                    '$description_en',
-                    '$address_th',
-                    '$address_en',
-                    '$main_product_th',
-                    '$main_product_en',
-                    '$office_number',
-                    '$fax_number',
-                    '$email_office',
-                    '$website_link',
-                    '$recruitment_fee',
-                    '$payment_term',
-                    '$remark',
-                    '$logo_image',
-                    NOW(),
-                    '0000-00-00 00:00:00'
-                  ) ;
-            ";
-        $result = $this->db->query($sql);
+        $data = array(
+            "company_type_id" => intval($company_type_id),
+            "key_account_manager_id" => intval($key_account_manager_id),
+            "name_th" => trim($name_th),
+            "name_en" => trim($name_en),
+            "name_short" => trim($name_short),
+            "description_th" => trim($description_th),
+            "description_en" => trim($description_en),
+            "address_th" => trim($address_th),
+            "address_en" => trim($address_en),
+            "main_product_th" => trim($main_product_th),
+            "main_product_en" => trim($main_product_en),
+            "office_number" => trim($office_number),
+            "fax_number" => trim($fax_number),
+            "email_office" => trim($email_office),
+            "website_link" => trim($website_link),
+            "recruitment_fee" => trim($recruitment_fee),
+            "payment_term" => trim($payment_term),
+            "remark" => trim($remark),
+            "logo_image" => $logo_image,
+            "create_time" => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00'
+        );
+        $result = $this->db->insert('crm_company', $data);
+        //$result = $this->db->query($sql);
         $id = $this->db->insert_id();
         if ($result) {
             return $id;
@@ -125,7 +84,35 @@ class Client_model extends CI_Model
         }
     }
 
-    function updatePathImage($id, $path)
+    function clientEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            "company_type_id" => trim($company_type_id),
+            "key_account_manager_id" => trim($key_account_manager_id),
+            "name_th" => trim($name_th),
+            "name_en" => trim($name_en),
+            "name_short" => trim($name_short),
+            "description_th" => trim($description_th),
+            "description_en" => trim($description_en),
+            "address_th" => trim($address_th),
+            "address_en" => trim($address_en),
+            "main_product_th" => trim($main_product_th),
+            "main_product_en" => trim($main_product_en),
+            "office_number" => trim($office_number),
+            "fax_number" => trim($fax_number),
+            "email_office" => trim($email_office),
+            "website_link" => trim($website_link),
+            "recruitment_fee" => trim($recruitment_fee),
+            "payment_term" => trim($payment_term),
+            "remark" => trim($remark),
+            "logo_image" => $logo_image,
+            "update_time" => date("Y-m-d H:i:s"),
+        );
+        return $this->db->update('crm_company', $data, array('id' => $id));
+    }
+
+    function clientUpdatePathImage($id, $path)
     {
         $this->logo_image = $path;
         return $this->db->update('crm_company', $this, array('id' => $id));

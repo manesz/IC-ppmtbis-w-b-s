@@ -42,7 +42,7 @@ class Website extends CI_Controller
         $this->load->view('website/dashboard_view', $data);
     }
 
-    //-----------------------------------Slide------------------------------------------//
+    //-----------------------------------Navigator------------------------------------------//
 
     function navigator()
     {

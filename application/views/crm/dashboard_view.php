@@ -9,7 +9,7 @@
 
 $baseUrl = base_url();
 
-$this->load->view("header_backend_view");
+$this->load->view("crm/header");
 ?>
 
     <script>
@@ -46,9 +46,6 @@ $this->load->view("header_backend_view");
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
                     <a class="linkSubMenu" href="<?php echo $webUrl; ?>crm/dashboardList"><i class="icon-chevron-right"></i> Dashboard</a>
-                </li>
-                <li class="subMenuClick">
-                    <a class="linkSubMenu" href="<?php echo $webUrl; ?>crm/clientList"><i class="icon-chevron-right"></i>Client List</a>
                 </li>
                 <li class="subMenuClick">
                     <a href="#"><i class="icon-chevron-right"></i> Statistics</a>
@@ -93,4 +90,4 @@ $this->load->view("header_backend_view");
 
 
 <?php
-$this->load->view("footer_backend_view");
+$this->load->view("crm/footer");

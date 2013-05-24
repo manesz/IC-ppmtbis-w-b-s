@@ -31,6 +31,8 @@ class CRM extends CI_Controller
         redirect($this->webUrl . "crm/login");
     }
 
+    //-----------------------------------Login-Logout------------------------------------------//
+
     function login()
     {
         $post = $this->input->post();
@@ -57,6 +59,8 @@ class CRM extends CI_Controller
         redirect($this->webUrl . "crm/login");
     }
 
+    //-----------------------------------Dashboard------------------------------------------//
+
     function dashboard()
     {
         $message = "";
@@ -77,6 +81,21 @@ class CRM extends CI_Controller
             "message" => $message
         );
         $this->load->view('crm/dashboard_list_view', $data);
+    }
+
+    //-----------------------------------Client------------------------------------------//
+
+    function client()
+    {
+        $message = "";
+        $strSelectBar = "client";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/client_view", $data);
     }
 
     function clientList()
@@ -122,19 +141,46 @@ class CRM extends CI_Controller
 
     function clientEdit($id)
     {
+        $message = "";
         $this->load->model('Client_model');
-        $arrClient = $this->Client_model->getListClient();
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->Client_model->clientEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrClient = $this->Client_model->getListClient($id);
 
         $this->load->model('Company_type_model');
         $arrCompanyType = $this->Company_type_model->getListCompanyType();
 
         $data = array(
-            'arrClientList' => $arrClient,
+            'arrData' => $arrClient[0],
             'company_type' => $arrCompanyType,
             "webUrl" => $this->webUrl,
-            'message' => ""
+            'message' => $message
         );
-        $this->load->view('crm/client_list_view', $data);
+        $this->load->view('crm/client_edit_view', $data);
+    }
+
+    function clientUpdateImagePath()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $this->load->model('Client_model');
+            $result = $this->Client_model->clientUpdatePathImage($id, $path);
+            if ($result) {
+                echo "update success";
+            } else {
+                echo "update fail";
+            }
+            exit();
+        }
     }
 
 }

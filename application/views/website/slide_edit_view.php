@@ -70,7 +70,6 @@ extract((array)$arrData);
     }
 
     var url_edit_data = "<?php echo $webUrl; ?>website/slideEdit/<?php echo $id; ?>";
-    var url_update_slide = "<?php echo $webUrl; ?>website/slideUpdateImageName";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {

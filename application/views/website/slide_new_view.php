@@ -63,7 +63,6 @@ $baseUrl = base_url();
                         }
                     }
                 );
-
             },
             'queueSizeLimit': 1
         });
