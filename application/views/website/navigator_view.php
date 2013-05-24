@@ -14,15 +14,15 @@ $this->load->view("header_backend_view");
     <script>
         var navigatorList = "<?php echo $webUrl; ?>website/navigatorList";
         $(document).ready(function () {
-            $(".subMenuClick").click(function () {
-                var nameActive = "subMenuClick active";
-                var nameNotActive = "subMenuClick";
-                $(".subMenuClick").each(function (id2, name2) {
-                    name2.className = nameNotActive;
-                });
-                this.className = nameActive;
-                return false;
-            });
+//            $(".subMenuClick").click(function () {
+//                var nameActive = "subMenuClick active";
+//                var nameNotActive = "subMenuClick";
+//                $(".subMenuClick").each(function (id2, name2) {
+//                    name2.className = nameNotActive;
+//                });
+//                this.className = nameActive;
+//                return false;
+//            });
 
 
             $(".navigatorClick").click(function () {
@@ -32,6 +32,36 @@ $this->load->view("header_backend_view");
 
             innerHtml("#content", navigatorList)
         });
+
+        function validateFrom(frm) {
+            if (frm.name.value == "") {
+                alert("กรุณากรอก Name");
+                frm.name.focus();
+                return false;
+            }
+            else if (frm.description.value == "") {
+                alert("กรุณากรอก Description");
+                frm.description.focus();
+                return false;
+            }
+            else if (frm.layer.value == "") {
+                alert("กรุณากรอก Layer");
+                frm.layer.focus();
+                return false;
+            }
+            else if (frm.parent.value == "") {
+                alert("กรุณากรอก Parent");
+                frm.parent.focus();
+                return false;
+            }
+            else if (frm.order.value == "") {
+                alert("กรุณากรอก Order");
+                frm.order.focus();
+                return false;
+            } else {
+                return true;
+            }
+        }
     </script>
     <div class="row-fluid">
         <div class="span3" id="sidebar">
@@ -40,10 +70,11 @@ $this->load->view("header_backend_view");
                     <a class="navigatorClick" href="<?php echo $webUrl; ?>website/navigatorList"><i
                             class="icon-chevron-right"></i> Navigator</a>
                 </li>
-<!--                <li class="subMenuClick">-->
-<!--                    <a class="navigatorClick" href="--><?php //echo $webUrl; ?><!--website/navigatorNew">-->
-<!--                        <i class="icon-chevron-right"></i> New</a>-->
-<!--                </li>-->
+                <!--                <li class="subMenuClick">-->
+                <!--                    <a class="navigatorClick" href="-->
+                <?php //echo $webUrl; ?><!--website/navigatorNew">-->
+                <!--                        <i class="icon-chevron-right"></i> New</a>-->
+                <!--                </li>-->
             </ul>
         </div>
         <!--/span-->

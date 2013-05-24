@@ -12,23 +12,25 @@ $baseUrl = base_url();
 
 <script>
     var url_navigator_edit = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $arrData->id; ?>";
-    $(document).ready(function(){
-        $("#buttonSave").click(function(){
-            $.post(url_navigator_edit, $("#formPost").serialize(),
-                function (result) {
-                    if (result == "edit fail") {
-                        alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
-                    } else {
-                        alert(result)
-                        window.location = "<?php echo $webUrl; ?>website/navigator";
+    $(document).ready(function () {
+        $("#buttonSave").click(function () {
+            if (validateFrom(document.getElementById('formPost'))) {
+                $.post(url_navigator_edit, $("#formPost").serialize(),
+                    function (result) {
+                        if (result == "edit fail") {
+                            alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                        } else {
+                            alert(result)
+                            window.location = "<?php echo $webUrl; ?>website/navigator";
+                        }
                     }
-                }
-            );
+                );
+            }
             return false;
         });
 
-        $("#buttonCancel").click(function(){
-            innerHtml("#content", "<?php echo $webUrl; ?>website/navigator");
+        $("#buttonCancel").click(function () {
+            window.location.reload();
             return false;
         });
     });
@@ -66,26 +68,31 @@ $baseUrl = base_url();
                 <label>Name
                     <input name="name" type="text" id="name" value="<?php echo $arrData->name; ?>"/>
                 </label>
+
                 <p>
                     <label>Description
                         <textarea name="description" id="description"><?php echo $arrData->description; ?></textarea>
                     </label>
                 </p>
+
                 <p>
                     <label>Layer
-                        <input name="layer" type="text" id="layer" value="<?php echo $arrData->layer; ?>" />
+                        <input name="layer" type="text" id="layer" value="<?php echo $arrData->layer; ?>"/>
                     </label>
                 </p>
+
                 <p>
                     <label>Parent
                         <input name="parent" type="text" id="parent" value="<?php echo $arrData->parent; ?>"/>
                     </label>
                 </p>
+
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order" value="<?php echo $arrData->order; ?>" />
+                        <input name="order" type="text" id="order" value="<?php echo $arrData->order; ?>"/>
                     </label>
                 </p>
+
                 <div align="right">
                     <button class="btn btn-warning" id="buttonCancel">cancel</button>
                     <button class="btn btn-primary" id="buttonSave">save</button>

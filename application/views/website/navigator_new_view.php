@@ -10,22 +10,24 @@ $baseUrl = base_url();
 ?>
 <script>
     var url_navigator_new = "<?php echo $webUrl; ?>website/navigatorNew";
-    $(document).ready(function(){
-        $("#buttonSave").click(function(){
-            $.post(url_navigator_new, $("#formPost").serialize(),
-                function (result) {
-                    if (result == "add fail") {
-                        alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
-                    } else {
-                        window.location = "<?php echo $webUrl; ?>website/navigator";
+    $(document).ready(function () {
+        $("#buttonSave").click(function () {
+            if (validateFrom(document.getElementById('formPost'))) {
+                $.post(url_navigator_new, $("#formPost").serialize(),
+                    function (result) {
+                        if (result == "add fail") {
+                            alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                        } else {
+                            window.location.reload();
+                        }
                     }
-                }
-            );
+                );
+            }
             return false;
         });
 
-        $("#buttonCancel").click(function(){
-            innerHtml("#content", "<?php echo $webUrl; ?>website/navigator");
+        $("#buttonCancel").click(function () {
+            window.location = "<?php echo $webUrl; ?>website/navigator";
             return false;
         });
     });
@@ -56,36 +58,41 @@ $baseUrl = base_url();
     <div class="block">
         <div class="navbar navbar-inner block-header">
             <div class="muted pull-left">Navigator New</div>
-<!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
+            <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Name
-                    <input name="name" type="text" id="name" />
+                    <input name="name" type="text" id="name"/>
                 </label>
+
                 <p>
                     <label>Description
                         <textarea name="description" id="description"></textarea>
                     </label>
                 </p>
+
                 <p>
                     <label>Layer
-                        <input name="layer" type="text" id="layer" />
+                        <input name="layer" type="text" id="layer"/>
                     </label>
                 </p>
+
                 <p>
                     <label>Parent
-                        <input name="parent" type="text" id="parent" />
+                        <input name="parent" type="text" id="parent"/>
                     </label>
                 </p>
+
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order" />
+                        <input name="order" type="text" id="order"/>
                     </label>
                 </p>
+
                 <div align="right">
                     <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                <button class="btn btn-primary" id="buttonSave">save</button>
+                    <button class="btn btn-primary" id="buttonSave">save</button>
                 </div>
             </form>
         </div>

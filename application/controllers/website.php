@@ -27,11 +27,12 @@ class Website extends CI_Controller
     function navigator()
     {
         $message = "";
-
+        $strSelectBar = "navigator";
 
         $data = array(
             "webUrl" => $this->webUrl,
-            "message" => $message
+            "message" => $message,
+            "selectBar" => $strSelectBar
         );
         $this->load->view("website/navigator_view", $data);
     }
@@ -112,9 +113,11 @@ class Website extends CI_Controller
     function slide()
     {
         $message = "";
+        $strSelectBar = 'slide';
         $data = array(
             "webUrl" => $this->webUrl,
-            "message" => $message
+            "message" => $message,
+            "selectBar" => $strSelectBar
         );
         $this->load->view("website/slide_view", $data);
     }
