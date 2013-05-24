@@ -2,25 +2,26 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 22/5/2556
- * Time: 21:01 น.
+ * Date: 24/5/2556
+ * Time: 14:07 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
 ?>
+
 <script>
-    var url_new_data = "<?php echo $webUrl; ?>website/slideNew";
+    var url_edit_data = "<?php echo $webUrl; ?>website/slideEdit/<?php echo $arrData->id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_new_data, $("#formPost").serialize(),
+                $.post(url_edit_data, $("#formPost").serialize(),
                     function (result) {
-                        if (result == "add fail") {
+                        if (result == "edit fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
                             alert(result)
-//                            window.location.reload();
+                            window.location = "<?php echo $webUrl; ?>website/slide";
                         }
                     }
                 );
@@ -29,7 +30,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/slide";
+            window.location.reload();
             return false;
         });
     });
@@ -50,7 +51,7 @@ $baseUrl = base_url();
                 <li>
                     <a href="<?php echo $webUrl; ?>website/slide">Slide</a> <span class="divider">/</span>
                 </li>
-                <li class="active">New</li>
+                <li class="active">Edit</li>
             </ul>
         </div>
     </div>
@@ -59,7 +60,7 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Slide New</div>
+            <div class="muted pull-left">Slide Edit</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">

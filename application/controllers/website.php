@@ -24,6 +24,8 @@ class Website extends CI_Controller
         }
     }
 
+    //-----------------------------------Slide------------------------------------------//
+
     function navigator()
     {
         $message = "";
@@ -82,13 +84,12 @@ class Website extends CI_Controller
             "message" => $message
         );
         $this->load->view("website/navigator_edit_view", $data);
-
     }
 
     function navigatorDelete($id)
     {
         $this->load->model('Website_model');
-        $result = $this->Website_model->navigatorDelete($id);
+        $result = $this->Website_model->setPublish($id, 'wb_navigator');
         if ($result) {
             echo "delete success";
         } else {
@@ -110,6 +111,8 @@ class Website extends CI_Controller
         $this->load->view("website/navigator_list_view", $data);
     }
 
+    //-----------------------------------Slide------------------------------------------//
+
     function slide()
     {
         $message = "";
@@ -125,6 +128,18 @@ class Website extends CI_Controller
     function slideNew()
     {
         $message = "";
+
+        $post = $this->input->post();
+        if ($post) {
+            $this->load->model('Website_model');
+            $result = $this->Website_model->slideNew($post);
+            if ($result) {
+                echo $result;
+            } else {
+                echo "add fail";
+            }
+            exit();
+        }
         $data = array(
             "webUrl" => $this->webUrl,
             "message" => $message
@@ -132,11 +147,51 @@ class Website extends CI_Controller
         $this->load->view("website/slide_new_view", $data);
     }
 
+    function slideEdit($id)
+    {
+        $message = "";
+
+        $this->load->model('Website_model');
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->Website_model->slideEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+
+        $arrData = $this->Website_model->slideList($id);
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrData" => $arrData[0],
+            "message" => $message
+        );
+        $this->load->view("website/slide_edit_view", $data);
+    }
+
+    function slideDelete($id)
+    {
+        $this->load->model('Website_model');
+        $result = $this->Website_model->setPublish($id, "wb_slide");
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
     function slideList()
     {
         $message = "";
+        $this->load->model('Website_model');
+        $arrNavigator = $this->Website_model->slideList();
         $data = array(
             "webUrl" => $this->webUrl,
+            "arrayData" => $arrNavigator,
             "message" => $message,
         );
         $this->load->view("website/slide_list_view", $data);

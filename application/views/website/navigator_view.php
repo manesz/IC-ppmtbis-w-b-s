@@ -8,11 +8,11 @@
  */
 
 $baseUrl = base_url();
-
+$urlListData = $webUrl . "website/navigatorList";
 $this->load->view("header_backend_view");
 ?>
     <script>
-        var navigatorList = "<?php echo $webUrl; ?>website/navigatorList";
+        var url_list_data = "<?php echo $urlListData; ?>";
         $(document).ready(function () {
 //            $(".subMenuClick").click(function () {
 //                var nameActive = "subMenuClick active";
@@ -25,12 +25,12 @@ $this->load->view("header_backend_view");
 //            });
 
 
-            $(".navigatorClick").click(function () {
+            $(".page-click").click(function () {
                 innerHtml("#content", this.href);
                 return false;
             });
 
-            innerHtml("#content", navigatorList)
+            innerHtml("#content", url_list_data)
         });
 
         function validateFrom(frm) {
@@ -67,7 +67,7 @@ $this->load->view("header_backend_view");
         <div class="span3" id="sidebar">
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
-                    <a class="navigatorClick" href="<?php echo $webUrl; ?>website/navigatorList"><i
+                    <a class="page-click" href="<?php echo $urlListData; ?>"><i
                             class="icon-chevron-right"></i> Navigator</a>
                 </li>
                 <!--                <li class="subMenuClick">-->

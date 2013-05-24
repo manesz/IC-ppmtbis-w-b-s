@@ -11,11 +11,11 @@ $baseUrl = base_url();
 ?>
 
 <script>
-    var url_navigator_edit = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $arrData->id; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $arrData->id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_navigator_edit, $("#formPost").serialize(),
+                $.post(url_edit_data, $("#formPost").serialize(),
                     function (result) {
                         if (result == "edit fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');

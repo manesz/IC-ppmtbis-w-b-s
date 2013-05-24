@@ -17,6 +17,23 @@ class Website_model extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * set publish = 0
+     *
+     * @param $id
+     * @param $table
+     * @return mixed
+     */
+    function setPublish($id, $table)
+    {
+        $data = array(
+            'publish' => 0
+        );
+        return $this->db->update($table, $data, array('id' => $id));
+    }
+
+    //-----------------------Navigator------------------------------//
+
     function navigatorNew($post)
     {
         extract($post);
@@ -46,14 +63,6 @@ class Website_model extends CI_Model
         return $this->db->update('wb_navigator', $data, array('id' => $id));
     }
 
-    function navigatorDelete($id)
-    {
-        $data = array(
-            'publish' => 0
-        );
-        return $this->db->update('wb_navigator', $data, array('id' => $id));
-    }
-
     /**
      * @param int $id
      * @return object
@@ -66,6 +75,70 @@ class Website_model extends CI_Model
             $arrWhere = array('id' => $id, 'publish' => 1);
         }
         $query = $this->db->get_where('wb_navigator', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------Slide------------------------------//
+
+    /**
+     * add slide
+     *
+     * @param $post
+     * @return mixed
+     */
+    function slideNew($post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'image' => $image,
+            'order' => intval($order),
+            'create_time' => date("Y-m-d H:i:s")
+        );
+        $this->db->insert('wb_slide', $data);
+        return $id = $this->db->insert_id('wb_slide');
+    }
+
+    /**
+     * edit slide
+     *
+     * @param $id
+     * @param $post
+     * @return mixed
+     */
+    function slideEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'image' => $image,
+            'order' => intval($order)
+        );
+
+        return $this->db->update('wb_slide', $data, array('id' => $id));
+    }
+
+    /**
+     * get slide data
+     *
+     * @param int $id
+     * @return object
+     */
+    function slideList($id = 0)
+    {
+        if ($id == 0) {
+            $arrWhere = array('publish' => 1);
+        } else {
+            $arrWhere = array('id' => $id, 'publish' => 1);
+        }
+        $query = $this->db->get_where('wb_slide', $arrWhere);
         if ($query->num_rows()) {
             $result = $query->result();
             return $result;

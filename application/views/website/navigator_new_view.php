@@ -6,14 +6,15 @@
  * Time: 11:16 น.
  * To change this template use File | Settings | File Templates.
  */
+
 $baseUrl = base_url();
 ?>
 <script>
-    var url_navigator_new = "<?php echo $webUrl; ?>website/navigatorNew";
+    var url_new_data = "<?php echo $webUrl; ?>website/navigatorNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_navigator_new, $("#formPost").serialize(),
+                $.post(url_new_data, $("#formPost").serialize(),
                     function (result) {
                         if (result == "add fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');

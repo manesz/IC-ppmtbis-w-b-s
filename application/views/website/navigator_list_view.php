@@ -6,20 +6,10 @@
  * Time: 11:42 น.
  * To change this template use File | Settings | File Templates.
  */
+
 $baseUrl = base_url();
+$this->load->view('header_datatable_view');
 ?>
-<style type="text/css" title="currentStyle">
-    @import "<?php echo $baseUrl; ?>assets/plugin/datatables/media/css/jquery-ui-1.10.3.custom.min.css";
-    @import "<?php echo $baseUrl; ?>assets/plugin/datatables/media/css/demo_page.css";
-    @import "<?php echo $baseUrl; ?>assets/plugin/datatables/media/css/demo_table_jui.css";
-</style>
-<!--<script type="text/javascript" charset="utf-8" src="--><?php //echo $baseUrl; ?><!--assets/plugin/datatables/media/js/jquery.js"></script>-->
-<script type="text/javascript" charset="utf-8"
-        src="<?php echo $baseUrl; ?>assets/plugin/datatables/media/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf-8"
-        src="<?php echo $baseUrl; ?>assets/plugin/datatables/media/js/ZeroClipboard.js"></script>
-<script type="text/javascript" charset="utf-8"
-        src="<?php echo $baseUrl; ?>assets/plugin/datatables/media/js/TableTools.js"></script>
 <script>
     $(document).ready(function () {
         $('#dataTable').dataTable();

@@ -8,38 +8,68 @@
  */
 
 $baseUrl = base_url();
-
+$urlListData = $webUrl . "website/slideList";
 $this->load->view("header_backend_view");
 ?>
     <script>
-        var slideList = "<?php echo $webUrl; ?>website/slideList";
-        $(document).ready(function(){
-            $(".subMenuClick").click(function(){
-                var nameActive = "subMenuClick active";
-                var nameNotActive = "subMenuClick";
-                $(".subMenuClick").each(function(id2, name2){
-                    name2.className = nameNotActive;
-                });
-                this.className = nameActive;
+        var url_list_data = "<?php echo $urlListData; ?>";
+        $(document).ready(function () {
+//            $(".subMenuClick").click(function () {
+//                var nameActive = "subMenuClick active";
+//                var nameNotActive = "subMenuClick";
+//                $(".subMenuClick").each(function (id2, name2) {
+//                    name2.className = nameNotActive;
+//                });
+//                this.className = nameActive;
+//                return false;
+//            });
+
+
+            $(".page-click").click(function () {
+                innerHtml("#content", this.href);
                 return false;
             });
 
-            $(".slideClick").click(function(){
-                innerHtml("#content", this.href)
-            });
-
-            innerHtml("#content", slideList)
+            innerHtml("#content", url_list_data)
         });
+
+        function validateFrom(frm) {
+            return true;
+            if (frm.name.value == "") {
+                alert("กรุณากรอก Name");
+                frm.name.focus();
+                return false;
+            }
+            else if (frm.description.value == "") {
+                alert("กรุณากรอก Description");
+                frm.description.focus();
+                return false;
+            }
+            else if (frm.layer.value == "") {
+                alert("กรุณากรอก Layer");
+                frm.layer.focus();
+                return false;
+            }
+            else if (frm.parent.value == "") {
+                alert("กรุณากรอก Parent");
+                frm.parent.focus();
+                return false;
+            }
+            else if (frm.order.value == "") {
+                alert("กรุณากรอก Order");
+                frm.order.focus();
+                return false;
+            } else {
+                return true;
+            }
+        }
     </script>
     <div class="row-fluid">
         <div class="span3" id="sidebar">
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
-                    <a class="slideClick" href="<?php echo $webUrl; ?>website/slide"><i class="icon-chevron-right"></i> Navigator</a>
-                </li>
-                <li class="subMenuClick" >
-                    <a class="slideClick" href="<?php echo $webUrl; ?>website/slideNew">
-                        <i class="icon-chevron-right"></i> New</a>
+                    <a class="page-click" href="<?php echo $urlListData; ?>"><i
+                            class="icon-chevron-right"></i>Slide</a>
                 </li>
             </ul>
         </div>
