@@ -8,10 +8,11 @@
  */
 
 $baseUrl = base_url();
+extract((array)$arrData);
 ?>
 
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>website/slideEdit/<?php echo $arrData->id; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>website/slideEdit/<?php echo $id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -66,22 +67,22 @@ $baseUrl = base_url();
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Title
-                    <input name="title" type="text" id="title" />
+                    <input name="title" type="text" id="title" value="<?php echo $title; ?>" />
                 </label>
                 <p>
                     <label>Description
-                        <textarea name="description" id="description"></textarea>
+                        <textarea name="description" id="description"><?php echo $descritpion; ?></textarea>
                     </label>
                 </p>
                 <p>
                     <label>Image
+                        <input name="image" type="text" id="image" value="<?php echo $image; ?>" />
                         <input type="file" id="image_select" />
-                        <input name="image" type="hidden" id="image" />
                     </label>
                 </p>
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order" />
+                        <input name="order" type="text" id="order" value="<?php echo $order; ?>"/>
                     </label>
                 </p>
 

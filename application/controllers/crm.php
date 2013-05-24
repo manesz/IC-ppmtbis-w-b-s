@@ -28,7 +28,7 @@ class CRM extends CI_Controller
 
     function index()
     {
-        $this->login();
+        redirect($this->webUrl . "crm/login");
     }
 
     function login()
@@ -54,7 +54,7 @@ class CRM extends CI_Controller
     function logout()
     {
         $this->session->sess_destroy();
-        redirect($this->webUrl . 'crm');
+        redirect($this->webUrl . "crm/login");
     }
 
     function dashboard()

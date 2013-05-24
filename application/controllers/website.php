@@ -196,4 +196,90 @@ class Website extends CI_Controller
         );
         $this->load->view("website/slide_list_view", $data);
     }
+
+    //-----------------------------------Page------------------------------------------//
+
+    function page()
+    {
+        $message = "";
+        $strSelectBar = 'page';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/page_view", $data);
+    }
+
+    function pageNew()
+    {
+        $message = "";
+
+        $post = $this->input->post();
+        if ($post) {
+            $this->load->model('Website_model');
+            $result = $this->Website_model->pageNew($post);
+            if ($result) {
+                echo $result;
+            } else {
+                echo "add fail";
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message
+        );
+        $this->load->view("website/page_new_view", $data);
+    }
+
+    function pageEdit($id)
+    {
+        $message = "";
+
+        $this->load->model('Website_model');
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->Website_model->pageEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+
+        $arrData = $this->Website_model->pageList($id);
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrData" => $arrData[0],
+            "message" => $message
+        );
+        $this->load->view("website/page_edit_view", $data);
+    }
+
+    function pageDelete($id)
+    {
+        $this->load->model('Website_model');
+        $result = $this->Website_model->setPublish($id, "wb_page");
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    function pageList()
+    {
+        $message = "";
+        $this->load->model('Website_model');
+        $arrNavigator = $this->Website_model->pageList();
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrayData" => $arrNavigator,
+            "message" => $message,
+        );
+        $this->load->view("website/page_list_view", $data);
+    }
 }

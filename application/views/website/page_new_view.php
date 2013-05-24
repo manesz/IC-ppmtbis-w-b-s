@@ -2,15 +2,15 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 22/5/2556
- * Time: 21:01 น.
+ * Date: 24/5/2556
+ * Time: 14:57 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
 ?>
 <script>
-    var url_new_data = "<?php echo $webUrl; ?>website/slideNew";
+    var url_new_data = "<?php echo $webUrl; ?>website/pageNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -19,8 +19,7 @@ $baseUrl = base_url();
                         if (result == "add fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            alert(result)
-//                            window.location.reload();
+                            window.location.reload();
                         }
                     }
                 );
@@ -29,7 +28,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/slide";
+            window.location = "<?php echo $webUrl; ?>website/page";
             return false;
         });
     });
@@ -48,7 +47,7 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/slide">Slide</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>website/page">Page</a> <span class="divider">/</span>
                 </li>
                 <li class="active">New</li>
             </ul>
@@ -59,7 +58,7 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Slide New</div>
+            <div class="muted pull-left">Page New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
@@ -73,9 +72,9 @@ $baseUrl = base_url();
                     </label>
                 </p>
                 <p>
-                    <label>Image
-                        <input name="image" type="text" id="image" />
-                        <input type="file" id="image_select" />
+                    <label>Type
+                        <select name="type" id="type">
+                        </select>
                     </label>
                 </p>
                 <p>

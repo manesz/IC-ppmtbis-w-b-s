@@ -81,16 +81,16 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                         <a href="<?php echo $webUrl; ?>website/slide">Slide</a>
                     </li>
                     <li <?php echo $selectBar == "page" ? 'class="active"' : "" ?> >
-                        <a href="#">Page</a>
+                        <a href="<?php echo $webUrl; ?>website/page">Page</a>
                     </li>
                     <li <?php echo $selectBar == "post" ? 'class="active"' : "" ?> >
-                        <a href="#">Post</a>
+                        <a href="<?php echo $webUrl; ?>website/post">Post</a>
                     </li>
                     <li <?php echo $selectBar == "user" ? 'class="active"' : "" ?> >
-                        <a href="#">User</a>
+                        <a href="<?php echo $webUrl; ?>website/user">User</a>
                     </li>
                     <li <?php echo $selectBar == "site_config" ? 'class="active"' : "" ?> >
-                        <a href="#">Site Config</a>
+                        <a href="<?php echo $webUrl; ?>website/site_config">Site Config</a>
                     </li>
                     <!--                    <li class="dropdown">-->
                     <!--                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>-->

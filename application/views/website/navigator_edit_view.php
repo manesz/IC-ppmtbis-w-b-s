@@ -8,10 +8,11 @@
  */
 
 $baseUrl = base_url();
+extract((array)$arrData);
 ?>
 
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $arrData->id; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -66,30 +67,30 @@ $baseUrl = base_url();
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Name
-                    <input name="name" type="text" id="name" value="<?php echo $arrData->name; ?>"/>
+                    <input name="name" type="text" id="name" value="<?php echo $name; ?>"/>
                 </label>
 
                 <p>
                     <label>Description
-                        <textarea name="description" id="description"><?php echo $arrData->description; ?></textarea>
+                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
                     </label>
                 </p>
 
                 <p>
                     <label>Layer
-                        <input name="layer" type="text" id="layer" value="<?php echo $arrData->layer; ?>"/>
+                        <input name="layer" type="text" id="layer" value="<?php echo $layer; ?>"/>
                     </label>
                 </p>
 
                 <p>
                     <label>Parent
-                        <input name="parent" type="text" id="parent" value="<?php echo $arrData->parent; ?>"/>
+                        <input name="parent" type="text" id="parent" value="<?php echo $parent; ?>"/>
                     </label>
                 </p>
 
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order" value="<?php echo $arrData->order; ?>"/>
+                        <input name="order" type="text" id="order" value="<?php echo $order; ?>"/>
                     </label>
                 </p>
 

@@ -146,4 +146,68 @@ class Website_model extends CI_Model
             return (object)array();
         }
     }
+
+    //-----------------------Page------------------------------//
+
+    /**
+     * add page
+     *
+     * @param $post
+     * @return mixed
+     */
+    function pageNew($post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'type' => $type,
+            'order' => intval($order),
+            'create_time' => date("Y-m-d H:i:s")
+        );
+        $this->db->insert('wb_page', $data);
+        return $id = $this->db->insert_id('wb_page');
+    }
+
+    /**
+     * edit page
+     *
+     * @param $id
+     * @param $post
+     * @return mixed
+     */
+    function pageEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'type' => $type,
+            'order' => intval($order)
+        );
+
+        return $this->db->update('wb_page', $data, array('id' => $id));
+    }
+
+    /**
+     * get page data
+     *
+     * @param int $id
+     * @return object
+     */
+    function pageList($id = 0)
+    {
+        if ($id == 0) {
+            $arrWhere = array('publish' => 1);
+        } else {
+            $arrWhere = array('id' => $id, 'publish' => 1);
+        }
+        $query = $this->db->get_where('wb_page', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
 }
