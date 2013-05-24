@@ -60,9 +60,11 @@ class CRM extends CI_Controller
     function dashboard()
     {
         $message = "";
+        $strSelectBar = 'dashboard';
         $data = array(
             "webUrl" => $this->webUrl,
-            "message" => $message
+            "message" => $message,
+            "selectBar" => $strSelectBar
         );
         $this->load->view('crm/dashboard_view', $data);
     }

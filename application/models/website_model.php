@@ -210,4 +210,76 @@ class Website_model extends CI_Model
             return (object)array();
         }
     }
+
+    //-----------------------Post------------------------------//
+
+    /**
+     * add post
+     *
+     * @param $post
+     * @return mixed
+     */
+    function postNew($post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'type' => $type,
+            'salary' => trim($salary),
+            'workplace' => trim($workplace),
+            'responsibilities' => trim($responsibilities),
+            'qualification' => trim($qualification),
+            'tags' => trim($tags),
+            'create_time' => date("Y-m-d H:i:s")
+        );
+        $this->db->insert('wb_post', $data);
+        return $id = $this->db->insert_id('wb_post');
+    }
+
+    /**
+     * edit post
+     *
+     * @param $id
+     * @param $post
+     * @return mixed
+     */
+    function postEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'type' => $type,
+            'salary' => trim($salary),
+            'workplace' => trim($workplace),
+            'responsibilities' => trim($responsibilities),
+            'qualification' => trim($qualification),
+            'tags' => trim($tags),
+        );
+
+        return $this->db->update('wb_post', $data, array('id' => $id));
+    }
+
+    /**
+     * get post data
+     *
+     * @param int $id
+     * @return object
+     */
+    function postList($id = 0)
+    {
+        if ($id == 0) {
+            $arrWhere = array('publish' => 1);
+        } else {
+            $arrWhere = array('id' => $id, 'publish' => 1);
+        }
+        $query = $this->db->get_where('wb_post', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
 }

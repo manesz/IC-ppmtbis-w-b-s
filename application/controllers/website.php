@@ -282,4 +282,90 @@ class Website extends CI_Controller
         );
         $this->load->view("website/page_list_view", $data);
     }
+
+    //-----------------------------------Post------------------------------------------//
+
+    function post()
+    {
+        $message = "";
+        $strSelectBar = 'post';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/post_view", $data);
+    }
+
+    function postNew()
+    {
+        $message = "";
+
+        $post = $this->input->post();
+        if ($post) {
+            $this->load->model('Website_model');
+            $result = $this->Website_model->postNew($post);
+            if ($result) {
+                echo $result;
+            } else {
+                echo "add fail";
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message
+        );
+        $this->load->view("website/post_new_view", $data);
+    }
+
+    function postEdit($id)
+    {
+        $message = "";
+
+        $this->load->model('Website_model');
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->Website_model->postEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+
+        $arrData = $this->Website_model->postList($id);
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrData" => $arrData[0],
+            "message" => $message
+        );
+        $this->load->view("website/post_edit_view", $data);
+    }
+
+    function postDelete($id)
+    {
+        $this->load->model('Website_model');
+        $result = $this->Website_model->setPublish($id, "wb_post");
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    function postList()
+    {
+        $message = "";
+        $this->load->model('Website_model');
+        $arrNavigator = $this->Website_model->postList();
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrayData" => $arrNavigator,
+            "message" => $message,
+        );
+        $this->load->view("website/post_list_view", $data);
+    }
 }
