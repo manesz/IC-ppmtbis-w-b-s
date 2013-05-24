@@ -197,6 +197,22 @@ class Website extends CI_Controller
         $this->load->view("website/slide_list_view", $data);
     }
 
+    function slideUpdateImageName()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $this->load->model('Website_model');
+            $result = $this->Website_model->updateImageName($id, $path, "wb_slide");
+            if ($result) {
+                echo "update success";
+            } else {
+                echo "update fail";
+            }
+            exit();
+        }
+    }
+
     //-----------------------------------Page------------------------------------------//
 
     function page()

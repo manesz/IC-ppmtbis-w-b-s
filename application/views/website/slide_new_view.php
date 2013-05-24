@@ -9,8 +9,68 @@
 
 $baseUrl = base_url();
 ?>
+
+<link rel="stylesheet" type="text/css"
+      href="<?php echo $baseUrl . "assets/plugin/uploadify/uploadify.css"; ?>">
+<!--    <script src="--><?php //echo $baseUrl . 'web/js/uploadify/jquery.uploadify-3.1.js'; ?><!--"></script>-->
+<script type="text/javascript"
+        src="<?php echo $baseUrl; ?>assets/plugin/uploadify/jquery.uploadify-3.2.min.js"></script>
 <script>
+    var swfPath = "<?php echo $baseUrl;?>assets/plugin/uploadify/uploadify.swf";
+    var pathUploadify = "<?php echo $webUrl; ?>upload/do_upload";
+    var pathImageUpload = "upload/images/slide/";
+    var folderID = 0;
+
+    $(function () {
+        genUploadImage("#image_select", "#image_show", "#image");
+    });
+    function genUploadImage(btnUpload, idReload, idSave) {
+        $(btnUpload).uploadify({
+            'multi'    : false,
+            'auto': false,
+            'formData'      : {
+                'folder_id' : "noSet",
+                'file_type' : "2",//image
+                'path_upload': pathImageUpload
+            },
+            'onUploadStart' : function(file)
+            {
+                $(btnUpload).uploadify('settings', 'formData',{
+                    'folder_id' : folderID,
+                    'file_type' : "2",
+                    'path_upload' : pathImageUpload
+                });
+            },
+            'swf': swfPath,
+            'uploader': pathUploadify,
+            'fileSizeLimit': '500KB',
+            'fileTypeExts': '*.gif; *.jpg; *.png',
+            'enctype': "multipart/form-data",
+            'fileObjName': 'userfile',
+            'onFallback': function () {
+                alert('Flash was not detected.');// detect flash compatible
+            }, 'onUploadSuccess': function (file, data, response) {
+                $.post(url_update_slide, {
+                        "id":folderID,
+                        "path":data
+                    },
+                    function (result) {
+                        if (result == "update fail") {
+                            alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                        } else {
+                            //alert(result);
+                            window.location.reload();
+                        }
+                    }
+                );
+
+            },
+            'queueSizeLimit': 1
+        });
+    }
+
     var url_new_data = "<?php echo $webUrl; ?>website/slideNew";
+    var url_update_slide = "<?php echo $webUrl; ?>website/slideUpdateImageName";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -19,8 +79,10 @@ $baseUrl = base_url();
                         if (result == "add fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            alert(result)
-//                            window.location.reload();
+                            //alert(result)
+                            folderID = result;
+                            $('#image_select').uploadify('upload', '*');
+                            //window.location.reload();
                         }
                     }
                 );
@@ -74,7 +136,7 @@ $baseUrl = base_url();
                 </p>
                 <p>
                     <label>Image
-                        <input name="image" type="text" id="image" />
+                        <input name="image" type="hidden" id="image" value="" />
                         <input type="file" id="image_select" />
                     </label>
                 </p>

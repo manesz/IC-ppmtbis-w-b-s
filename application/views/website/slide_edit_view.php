@@ -11,8 +11,66 @@ $baseUrl = base_url();
 extract((array)$arrData);
 ?>
 
+<link rel="stylesheet" type="text/css"
+      href="<?php echo $baseUrl . "assets/plugin/uploadify/uploadify.css"; ?>">
+<!--    <script src="--><?php //echo $baseUrl . 'web/js/uploadify/jquery.uploadify-3.1.js'; ?><!--"></script>-->
+<script type="text/javascript"
+        src="<?php echo $baseUrl; ?>assets/plugin/uploadify/jquery.uploadify-3.2.min.js"></script>
+
 <script>
+    var swfPath = "<?php echo $baseUrl;?>assets/plugin/uploadify/uploadify.swf";
+    var pathUploadify = "<?php echo $webUrl; ?>upload/do_upload";
+    var pathImageUpload = "upload/images/slide/";
+    var folderID = 0;
+
+    $(function () {
+        genUploadImage("#image_select", "#image_show", "#image");
+    });
+    function genUploadImage(btnUpload, idReload, idSave) {
+        $(btnUpload).uploadify({
+            'multi'    : false,
+//            'method'   : 'post',
+            //'auto': false,
+            'formData'      : {
+                'folder_id' : "<?php echo $id; ?>",
+                'file_type' : "2",//image
+                'path_upload': pathImageUpload
+            },
+            /*'onUploadStart' : function(file)
+            {
+                $(btnUpload).uploadify('settings', 'formData',{
+                    'folder_id' : folderID,
+                    'file_type' : "2",
+                    'path_upload' : pathImageUpload
+                });
+            },*/
+            'swf': swfPath,
+            'uploader': pathUploadify,
+            'fileSizeLimit': '500KB',
+            'fileTypeExts': '*.gif; *.jpg; *.png',
+            'enctype': "multipart/form-data",
+            'fileObjName': 'userfile',
+            'onFallback': function () {
+                alert('Flash was not detected.');// detect flash compatible
+            }, 'onUploadSuccess': function (file, data, response) {
+                reloadImgae(idReload, data, idSave);
+            },
+            'queueSizeLimit': 1
+        });
+    }
+
+    function reloadImgae(id, img, idSave) {
+        var path = "<?php echo $baseUrl; ?>" + pathImageUpload + "/" + "<?php echo $id; ?>/"+ img;
+        $(idSave).val(img);
+        $(id).fadeOut().html(getTypeImage(path, "")).fadeIn("slow");
+    }
+
+    function getTypeImage(src, id) {
+        return '<img src="' + src + '" width="250" height="190" class="nopad thumb"/>';
+    }
+
     var url_edit_data = "<?php echo $webUrl; ?>website/slideEdit/<?php echo $id; ?>";
+    var url_update_slide = "<?php echo $webUrl; ?>website/slideUpdateImageName";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -45,10 +103,10 @@ extract((array)$arrData);
     <div class="navbar">
         <div class="navbar-inner">
             <ul class="breadcrumb">
-                <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar"
-                                                             rel='tooltip'>&nbsp;</a></i>
-                <i class="icon-chevron-right show-sidebar" style="display:none;">
-                    <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+                <i class="icon-chevron-left hide-sidebar">
+                    <a href='<?php echo $webUrl; ?>website/slide' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+<!--                <i class="icon-chevron-right show-sidebar" style="display:none;">-->
+<!--                    <a href='--><?php //echo $webUrl; ?><!--website/slide' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>-->
                 <li>
                     <a href="<?php echo $webUrl; ?>website/slide">Slide</a> <span class="divider">/</span>
                 </li>
@@ -71,12 +129,16 @@ extract((array)$arrData);
                 </label>
                 <p>
                     <label>Description
-                        <textarea name="description" id="description"><?php echo $descritpion; ?></textarea>
+                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
                     </label>
                 </p>
                 <p>
-                    <label>Image
-                        <input name="image" type="text" id="image" value="<?php echo $image; ?>" />
+                    <label>Image<br>
+                        <div id="image_show">
+                            <img  width="250" height="190"
+                                  src="<?php echo $baseUrl; ?>upload/images/slide/<?php echo "$id/$image"; ?>"/>
+                        </div>
+                        <input name="image" type="hidden" id="image" value="<?php echo $image; ?>" />
                         <input type="file" id="image_select" />
                     </label>
                 </p>

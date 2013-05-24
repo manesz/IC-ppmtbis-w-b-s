@@ -49,6 +49,22 @@ class Website_model extends CI_Model
         }
     }
 
+    /**
+     * update path image
+     *
+     * @param $id
+     * @param $path
+     * @param $table
+     * @return mixed
+     */
+    function updateImageName($id, $path, $table)
+    {
+        $data = array(
+            'image' => $path,
+        );
+        return $this->db->update($table, $data, array('id' => $id));
+    }
+
     //-----------------------Navigator------------------------------//
 
     function navigatorNew($post)

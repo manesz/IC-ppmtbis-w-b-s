@@ -60,8 +60,9 @@ class Upload extends CI_Controller
                 //$result = move_uploaded_file($data['full_path'], $targetFile);
                 //echo $data['file_name'];
 
+                echo $newName;
                 //update path file
-                $this->load->model('Client_model');
+                /*$this->load->model('Client_model');
                 if ($fileType == "1"){
                     $result = $this->Client_model->updatePathFiles($folderID, $newName);
                     if (!$result) {
@@ -72,7 +73,7 @@ class Upload extends CI_Controller
                     if (!$result) {
                         echo "update path image fail";
                     }
-                }
+                }*/
 
             }
         }
