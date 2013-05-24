@@ -32,6 +32,23 @@ class Website_model extends CI_Model
         return $this->db->update($table, $data, array('id' => $id));
     }
 
+    /**
+     * get list type
+     *
+     * @return object
+     */
+    function getListType()
+    {
+        $arrWhere = array('publish' => 1);
+        $query = $this->db->get_where('wb_type', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------Navigator------------------------------//
 
     function navigatorNew($post)
@@ -198,11 +215,28 @@ class Website_model extends CI_Model
     function pageList($id = 0)
     {
         if ($id == 0) {
-            $arrWhere = array('publish' => 1);
+            $strAND = "";
         } else {
-            $arrWhere = array('id' => $id, 'publish' => 1);
+            $strAND = " AND a.id = $id";
         }
-        $query = $this->db->get_where('wb_page', $arrWhere);
+
+        $sql = "
+            select
+              a.*,
+              b.name AS type_name
+            from
+              `wb_page` a
+              inner join `wb_type` b
+                on (
+                  a.`type` = b.`id`
+                  and b.`publish` = 1
+                )
+            where 1
+              and a.`publish` = 1
+              $strAND
+        ";
+
+        $query = $this->db->query($sql);
         if ($query->num_rows()) {
             $result = $query->result();
             return $result;
@@ -270,11 +304,28 @@ class Website_model extends CI_Model
     function postList($id = 0)
     {
         if ($id == 0) {
-            $arrWhere = array('publish' => 1);
+            $strAND = "";
         } else {
-            $arrWhere = array('id' => $id, 'publish' => 1);
+            $strAND = " AND a.id = $id";
         }
-        $query = $this->db->get_where('wb_post', $arrWhere);
+
+        $sql = "
+            select
+              a.*,
+              b.name AS type_name
+            from
+              `wb_post` a
+              inner join `wb_type` b
+                on (
+                  a.`type` = b.`id`
+                  and b.`publish` = 1
+                )
+            where 1
+              and a.`publish` = 1
+              $strAND
+        ";
+
+        $query = $this->db->query($sql);
         if ($query->num_rows()) {
             $result = $query->result();
             return $result;

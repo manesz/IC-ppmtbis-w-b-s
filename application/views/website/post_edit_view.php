@@ -69,41 +69,56 @@ extract((array)$arrData);
                 <label>Title
                     <input name="title" type="text" id="title" value="<?php echo $title; ?>"/>
                 </label>
+
                 <p>
                     <label>Description
                         <textarea name="description" id="description"><?php echo $description; ?></textarea>
                     </label>
                 </p>
+
                 <p>
                     <label>Type
                         <select name="type" id="type">
+                            <?php foreach ($arrType as $key => $value) {
+                                if ($type == $value->id) {
+                                    echo "<option selected value='$value->id'>$value->name</option>";
+                                } else {
+                                    echo "<option value='$value->id'>$value->name</option>";
+                                }
+                            }
+                            ?>
                         </select>
                     </label>
                 </p>
+
                 <p>
                     <label>Salary
-                        <input name="salary" type="text" id="salary" value="<?php echo $salary; ?>" />
+                        <input name="salary" type="text" id="salary" value="<?php echo $salary; ?>"/>
                     </label>
                 </p>
+
                 <p>
                     <label>Workplace
                         <input name="workplace" type="text" id="workplace" value="<?php echo $workplace; ?>"/>
                     </label>
                 </p>
+
                 <p>
                     <label>Responsibilities
                         <textarea name="responsibilities"
                                   id="responsibilities"><?php echo $responsibilities; ?></textarea>
                     </label>
                 </p>
+
                 <p>
                     <label>Qualification
                         <textarea name="qualification" id="qualification"><?php echo $qualification; ?></textarea>
                     </label>
                 </p>
+
                 <p>
                     <label>Tags
-                        <input name="tags" type="text" id="tags" value="<?php echo $tags; ?>" />
+                        <input name="tags" type="text" id="tags" value="<?php echo $tags; ?>"/>
                     </label>
                 </p>
 

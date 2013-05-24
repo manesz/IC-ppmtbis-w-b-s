@@ -77,6 +77,14 @@ extract((array)$arrData);
                 <p>
                     <label>Type
                         <select name="type" id="type">
+                            <?php foreach ($arrType as $key => $value) {
+                                if ($type == $value->id) {
+                                    echo "<option selected value='$value->id'>$value->name</option>";
+                                } else {
+                                    echo "<option value='$value->id'>$value->name</option>";
+                                }
+                            }
+                            ?>
                         </select>
                     </label>
                 </p>

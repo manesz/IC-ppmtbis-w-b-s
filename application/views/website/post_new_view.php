@@ -74,6 +74,10 @@ $baseUrl = base_url();
                 <p>
                     <label>Type
                         <select name="type" id="type">
+                            <?php foreach ($arrType as $key => $value) {
+                                echo "<option value='$value->id'>$value->name</option>";
+                            }
+                            ?>
                         </select>
                     </label>
                 </p>

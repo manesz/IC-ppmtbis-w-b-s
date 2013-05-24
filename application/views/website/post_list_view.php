@@ -86,7 +86,7 @@ $this->load->view('header_datatable_view');
                         <td class="center"><?php echo $value->id; ?></td>
                         <td><?php echo $value->title; ?></td>
                         <td><?php echo $value->description; ?></td>
-                        <td><?php echo $value->type; ?></td>
+                        <td><?php echo $value->type_name; ?></td>
                         <td class="center"><?php echo $value->salary; ?></td>
                         <td class="center"><?php echo $value->workplace; ?></td>
                         <td class="center"><?php echo $value->tags; ?></td>

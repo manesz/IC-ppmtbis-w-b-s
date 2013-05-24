@@ -215,9 +215,9 @@ class Website extends CI_Controller
     {
         $message = "";
 
+        $this->load->model('Website_model');
         $post = $this->input->post();
         if ($post) {
-            $this->load->model('Website_model');
             $result = $this->Website_model->pageNew($post);
             if ($result) {
                 echo $result;
@@ -226,9 +226,11 @@ class Website extends CI_Controller
             }
             exit();
         }
+        $arrType = $this->Website_model->getListType();
         $data = array(
             "webUrl" => $this->webUrl,
-            "message" => $message
+            "message" => $message,
+            "arrType" => $arrType
         );
         $this->load->view("website/page_new_view", $data);
     }
@@ -249,11 +251,13 @@ class Website extends CI_Controller
             exit();
         }
 
+        $arrType = $this->Website_model->getListType();
         $arrData = $this->Website_model->pageList($id);
         $data = array(
             "webUrl" => $this->webUrl,
             "arrData" => $arrData[0],
-            "message" => $message
+            "message" => $message,
+            "arrType" => $arrType
         );
         $this->load->view("website/page_edit_view", $data);
     }
@@ -301,9 +305,9 @@ class Website extends CI_Controller
     {
         $message = "";
 
+        $this->load->model('Website_model');
         $post = $this->input->post();
         if ($post) {
-            $this->load->model('Website_model');
             $result = $this->Website_model->postNew($post);
             if ($result) {
                 echo $result;
@@ -312,9 +316,11 @@ class Website extends CI_Controller
             }
             exit();
         }
+        $arrType = $this->Website_model->getListType();
         $data = array(
             "webUrl" => $this->webUrl,
-            "message" => $message
+            "message" => $message,
+            "arrType" => $arrType
         );
         $this->load->view("website/post_new_view", $data);
     }
@@ -335,11 +341,13 @@ class Website extends CI_Controller
             exit();
         }
 
+        $arrType = $this->Website_model->getListType();
         $arrData = $this->Website_model->postList($id);
         $data = array(
             "webUrl" => $this->webUrl,
             "arrData" => $arrData[0],
-            "message" => $message
+            "message" => $message,
+            "arrType" => $arrType
         );
         $this->load->view("website/post_edit_view", $data);
     }

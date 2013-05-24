@@ -64,22 +64,29 @@ $baseUrl = base_url();
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Title
-                    <input name="title" type="text" id="title" />
+                    <input name="title" type="text" id="title"/>
                 </label>
+
                 <p>
                     <label>Description
                         <textarea name="description" id="description"></textarea>
                     </label>
                 </p>
+
                 <p>
                     <label>Type
                         <select name="type" id="type">
+                            <?php foreach ($arrType as $key => $value) {
+                                echo "<option value='$value->id'>$value->name</option>";
+                            }
+                            ?>
                         </select>
                     </label>
                 </p>
+
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order" />
+                        <input name="order" type="text" id="order"/>
                     </label>
                 </p>
 
