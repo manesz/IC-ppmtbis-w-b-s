@@ -368,4 +368,129 @@ class Website extends CI_Controller
         );
         $this->load->view("website/post_list_view", $data);
     }
+
+    //-----------------------------------User------------------------------------------//
+
+    function user()
+    {
+        $message = "";
+        $strSelectBar = 'user';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/user_view", $data);
+    }
+
+    function userNew()
+    {
+        $message = "";
+
+        $post = $this->input->post();
+        if ($post) {
+            $this->load->model('Website_model');
+            $result = $this->Website_model->userNew($post);
+            if ($result) {
+                echo $result;
+            } else {
+                echo "add fail";
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message
+        );
+        $this->load->view("website/user_new_view", $data);
+    }
+
+    function userEdit($id)
+    {
+        $message = "";
+
+        $this->load->model('Website_model');
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->Website_model->userEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+
+        $arrData = $this->Website_model->userList($id);
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrData" => $arrData[0],
+            "message" => $message
+        );
+        $this->load->view("website/user_edit_view", $data);
+    }
+
+    function userDelete($id)
+    {
+        $this->load->model('Website_model');
+        $result = $this->Website_model->setPublish($id, "wb_user");
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    function userList()
+    {
+        $message = "";
+        $this->load->model('Website_model');
+        $arrNavigator = $this->Website_model->userList();
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrayData" => $arrNavigator,
+            "message" => $message,
+        );
+        $this->load->view("website/user_list_view", $data);
+    }
+
+    //-----------------------------------Site config------------------------------------------//
+
+    function site_config()
+    {
+        $message = "";
+        $strSelectBar = 'site_config';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/site_config_view", $data);
+    }
+
+    function site_configEdit($id)
+    {
+        $message = "";
+
+        $this->load->model('Website_model');
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->Website_model->site_configEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+
+        $arrData = $this->Website_model->site_configList($id);
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrData" => $arrData[0],
+            "message" => $message
+        );
+        $this->load->view("website/site_config_edit_view", $data);
+    }
 }

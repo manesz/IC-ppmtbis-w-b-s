@@ -282,4 +282,121 @@ class Website_model extends CI_Model
             return (object)array();
         }
     }
+
+    //-----------------------User------------------------------//
+
+    /**
+     * add user
+     *
+     * @param $user
+     * @return mixed
+     */
+    function userNew($user)
+    {
+        extract($user);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'phone' => trim($phone),
+            'email' => trim($email),
+            'permission' => trim($permission),
+            'create_time' => date("Y-m-d H:i:s")
+        );
+        $this->db->insert('wb_user', $data);
+        return $id = $this->db->insert_id('wb_user');
+    }
+
+    /**
+     * edit user
+     *
+     * @param $id
+     * @param $user
+     * @return mixed
+     */
+    function userEdit($id, $user)
+    {
+        extract($user);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'phone' => trim($phone),
+            'email' => trim($email),
+            'permission' => trim($permission),
+        );
+
+        return $this->db->update('wb_user', $data, array('id' => $id));
+    }
+
+    /**
+     * get user data
+     *
+     * @param int $id
+     * @return object
+     */
+    function userList($id = 0)
+    {
+        if ($id == 0) {
+            $arrWhere = array('publish' => 1);
+        } else {
+            $arrWhere = array('id' => $id, 'publish' => 1);
+        }
+        $query = $this->db->get_where('wb_user', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------Site Config------------------------------//
+
+    /**
+     * edit site_config
+     *
+     * @param $id
+     * @param $site_config
+     * @return mixed
+     */
+    function site_configEdit($id, $site_config)
+    {
+        extract($site_config);
+        $data = array(
+            'site_title' => trim($site_title),
+            'site_description' => trim($site_description),
+            'site_keyword' => trim($site_keyword),
+            'facebook_account' => trim($facebook_account),
+            'twitter_account' => trim($twitter_account),
+            'front_content' => trim($front_content),
+            'contact_lat_long' => trim($contact_lat_long),
+            'contact_content' => trim($contact_content),
+            'contact_phone' => trim($contact_phone),
+            'contact_fax' => trim($contact_fax),
+            'contact_email' => trim($contact_email),
+        );
+
+        return $this->db->update('wb_site_config', $data, array('id' => $id));
+    }
+
+    /**
+     * get site_config data
+     *
+     * @param int $id
+     * @return object
+     */
+    function site_configList($id = 0)
+    {
+        if ($id == 0) {
+            $arrWhere = array('publish' => 1);
+        } else {
+            $arrWhere = array('id' => $id, 'publish' => 1);
+        }
+        $query = $this->db->get_where('wb_site_config', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
 }

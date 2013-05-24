@@ -3,12 +3,12 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 15:35 น.
+ * Time: 16:07 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
-$urlListData = $webUrl . "website/postList";
+$urlListData = $webUrl . "website/userList";
 $this->load->view("header_backend_view");
 ?>
     <script>
@@ -69,11 +69,11 @@ $this->load->view("header_backend_view");
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
                     <a class="page-click" href="<?php echo $urlListData; ?>"><i
-                            class="icon-chevron-right"></i> Post</a>
+                            class="icon-chevron-right"></i> User</a>
                 </li>
                 <!--                <li class="subMenuClick">-->
-                <!--                    <a class="postClick" href="-->
-                <?php //echo $webUrl; ?><!--website/postNew">-->
+                <!--                    <a class="userClick" href="-->
+                <?php //echo $webUrl; ?><!--website/userNew">-->
                 <!--                        <i class="icon-chevron-right"></i> New</a>-->
                 <!--                </li>-->
             </ul>

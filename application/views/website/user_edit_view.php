@@ -3,23 +3,26 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 14:54 น.
+ * Time: 16:09 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
+extract((array)$arrData);
 ?>
+
 <script>
-    var url_new_data = "<?php echo $webUrl; ?>website/navigatorNew";
+    var url_edit_data = "<?php echo $webUrl; ?>website/userEdit/<?php echo $id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_new_data, $("#formPost").serialize(),
+                $.post(url_edit_data, $("#formPost").serialize(),
                     function (result) {
-                        if (result == "add fail") {
+                        if (result == "edit fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            //window.location.reload();
+                            alert(result)
+                            window.location = "<?php echo $webUrl; ?>website/user";
                         }
                     }
                 );
@@ -28,7 +31,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/navigator";
+            window.location.reload();
             return false;
         });
     });
@@ -47,9 +50,9 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>website/user">User</a> <span class="divider">/</span>
                 </li>
-                <li class="active">New</li>
+                <li class="active">Edit</li>
             </ul>
         </div>
     </div>
@@ -58,62 +61,34 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Navigator New</div>
+            <div class="muted pull-left">User Edit</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Site Title
-                    <input name="site_title" type="text" id="site_title" />
+                <label>Name
+                    <input name="name" type="text" id="name" value="<?php echo $name; ?>"/>
                 </label>
                 <p>
-                    <label>Site Description
-                        <textarea name="site_description" id="site_description"></textarea>
+                    <label>Description
+                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
                     </label>
                 </p>
                 <p>
-                    <label>Site Keyword
-                        <textarea name="site_keyword" id="site_keyword"></textarea>
+                    <label>Phone
+                        <input name="phone" type="text" id="phone" value="<?php echo $phone; ?>"/>
                     </label>
                 </p>
                 <p>
-                    <label>facebook Account
-                        <textarea name="facebook_account" id="facebook_account"></textarea>
+                    <label>email
+                        <input name="email" type="text" id="email" value="<?php echo $email; ?>" />
                     </label>
                 </p>
                 <p>
-                    <label>twitter Account
-                        <textarea name="twitter_account" id="twitter_account"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Front Content
-                        <textarea name="front_content" id="front_content"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Contact longtitude lagitude
-                        <input name="contact_lat_long" type="text" id="contact_lat_long" />
-                    </label>google map point EX:: 13.00|100.00  </p>
-                <p>
-                    <label>Contact Content
-                        <textarea name="contact_content" id="contact_content"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Contact Phone
-                        <input name="contact_phone" type="text" id="contact_phone" />
-                    </label>
-                </p>
-                <p>
-                    <label>Contact fax
-                        <input name="contact_fax" type="text" id="contact_fax" />
-                    </label>
-                </p>
-                <p>
-                    <label>Contact email
-                        <input name="contact_email" type="text" id="contact_email" />
-                    </label>
+                    <label>permission
+                        <input name="permission" type="text" id="permission"  value="<?php echo $permission; ?>"/>
+                    </label>1=admin, 2=user(insert, update ::: job)(insert, update :: page)
+
                 </p>
 
                 <div align="right">

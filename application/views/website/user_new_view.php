@@ -10,7 +10,7 @@
 $baseUrl = base_url();
 ?>
 <script>
-    var url_new_data = "<?php echo $webUrl; ?>website/navigatorNew";
+    var url_new_data = "<?php echo $webUrl; ?>website/userNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -28,7 +28,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/navigator";
+            window.location = "<?php echo $webUrl; ?>website/user";
             return false;
         });
     });
@@ -47,7 +47,7 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>website/user">User</a> <span class="divider">/</span>
                 </li>
                 <li class="active">New</li>
             </ul>
@@ -58,7 +58,7 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Navigator New</div>
+            <div class="muted pull-left">User New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">

@@ -3,16 +3,16 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 15:35 น.
+ * Time: 16:31 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
-$urlListData = $webUrl . "website/postList";
+$urlEditData = $webUrl . "website/site_configEdit/1";
 $this->load->view("header_backend_view");
 ?>
     <script>
-        var url_list_data = "<?php echo $urlListData; ?>";
+        var url_edit_data = "<?php echo $urlEditData; ?>";
         $(document).ready(function () {
 //            $(".subMenuClick").click(function () {
 //                var nameActive = "subMenuClick active";
@@ -30,7 +30,7 @@ $this->load->view("header_backend_view");
                 return false;
             });
 
-            innerHtml("#content", url_list_data)
+            innerHtml("#content", url_edit_data)
         });
 
         function validateFrom(frm) {
@@ -68,12 +68,12 @@ $this->load->view("header_backend_view");
         <div class="span3" id="sidebar">
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
-                    <a class="page-click" href="<?php echo $urlListData; ?>"><i
-                            class="icon-chevron-right"></i> Post</a>
+                    <a class="page-click" href="<?php echo $urlEditData; ?>"><i
+                            class="icon-chevron-right"></i> Site Config</a>
                 </li>
                 <!--                <li class="subMenuClick">-->
-                <!--                    <a class="postClick" href="-->
-                <?php //echo $webUrl; ?><!--website/postNew">-->
+                <!--                    <a class="site_configClick" href="-->
+                <?php //echo $webUrl; ?><!--website/site_configNew">-->
                 <!--                        <i class="icon-chevron-right"></i> New</a>-->
                 <!--                </li>-->
             </ul>
