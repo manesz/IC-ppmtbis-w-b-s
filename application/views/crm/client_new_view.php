@@ -9,12 +9,24 @@
 
 $baseUrl = base_url();
 ?>
-
 <link rel="stylesheet" type="text/css"
       href="<?php echo $baseUrl . "assets/plugin/uploadify/uploadify.css"; ?>">
 <!--    <script src="--><?php //echo $baseUrl . 'web/js/uploadify/jquery.uploadify-3.1.js'; ?><!--"></script>-->
 <script type="text/javascript"
         src="<?php echo $baseUrl; ?>assets/plugin/uploadify/jquery.uploadify-3.2.min.js"></script>
+<style type="text/css">
+    .bt-class {
+        background: url('<?php echo $baseUrl; ?>assets/plugin/uploadify/browse-btn.png') 0 0 no-repeat;
+        width: 120px !important;
+        height: 30px !important;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
+    .uploadify:hover .bt-class {
+        background-color: transparent;
+    }
+</style>
 <script>
     var swfPath = "<?php echo $baseUrl;?>assets/plugin/uploadify/uploadify.swf";
     var pathUploadify = "<?php echo $webUrl; ?>upload/do_upload";
@@ -24,6 +36,7 @@ $baseUrl = base_url();
 
     $(function () {
         genUploadImage("#logo_image_path", "#image_show", "#logo_image");
+        genUploadFiles("#file_upload", "", "");
     });
     function genUploadImage(btnUpload, idReload, idSave) {
         $(btnUpload).uploadify({
@@ -60,12 +73,49 @@ $baseUrl = base_url();
                         if (result == "update fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            window.location.reload();
+                            //window.location.reload();
+                            $('#file_upload').uploadify('upload', '*');
                         }
                     }
                 );
             },
             'queueSizeLimit': 1
+        });
+    }
+
+    function genUploadFiles(btnUpload, idReload, idSave)
+    {
+        $(btnUpload).uploadify({
+//            'multi'    : false,
+//            'method'   : 'post',
+            //'buttonImage' : "<?php echo $baseUrl; ?>assets/plugin/uploadify/browse-btn.png",
+            'buttonClass' : 'bt-class',
+            'auto': false,
+            'formData'      : {
+                'folder_id' : "noSet",
+                'file_type' : "1",//file
+                'path_upload': pathFileUpload
+            },
+            'onUploadStart' : function(file)
+            {
+                $(btnUpload).uploadify('settings', 'formData',{
+                    'folder_id' : folderID,
+                    'file_type' : "1",
+                    'path_upload' : pathFileUpload
+                });
+            },
+            'swf': swfPath,
+            'uploader': pathUploadify,
+            'fileSizeLimit': '2048KB',
+            'fileTypeExts': '*.doc; *.docx; *.xls; *.xlsx; *.pdf',//doc|docx|xls|xlsx|pdf
+            'enctype': "multipart/form-data",
+            'fileObjName': 'userfile',
+            'onFallback': function () {
+                alert('Flash was not detected.');// detect flash compatible
+            }, 'onUploadSuccess': function (file, data, response) {
+                alert(data);
+            },
+            'queueSizeLimit': 5
         });
     }
 </script>
@@ -192,14 +242,12 @@ $baseUrl = base_url();
 
                             <p>
 
-
                                 <label>ประเภทบริษัท
                                     <select name="company_type_id" id="company_type_id">
                                         <?php
                                         foreach ($company_type as $value) {
                                             echo "<option value='$value->id'>$value->name</option>";
                                         }
-
                                         ?>
                                     </select>
                                 </label>
@@ -234,20 +282,8 @@ $baseUrl = base_url();
                                                                                     id="main_product_en"></textarea>
                                 </label>
                             </p>
-
-                            <p>upload เอกสาร</p>
-
-                            <p>ชื่อเอกสาร 1 <input type="file" id="file1" name="file1"/></p>
-                            <p>ชื่อเอกสาร 2 <input type="file" id="file2" name="file2"/></p>
-                            <p>ชื่อเอกสาร 3 <input type="file" id="file3" name="file3"/></p>
-                            <p>ชื่อเอกสาร 4 <input type="file" id="file4" name="file4"/></p>
-                            <p>ชื่อเอกสาร 5 <input type="file" id="file5" name="file5"/></p>
-
                             <p>
-                                <label>
-                                    <input type="button" id="selectFile" value="select"/>
-                                </label>
-                            </p>
+                            <p>เลือกเอกสาร</p><input type="file" id="file_upload" name="file_upload"/>
 
                     </tr>
                 </table>

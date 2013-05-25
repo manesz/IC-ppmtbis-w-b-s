@@ -80,6 +80,12 @@ class Upload extends CI_Controller
 
     }
 
+    /**
+     * Create folder
+     *
+     * @param $path
+     * @return bool|string
+     */
     public function createFolder($path)
     {
         if (!is_dir($path)) //create the folder if it's not already exists

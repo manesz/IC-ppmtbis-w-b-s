@@ -2,7 +2,7 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 24/5/2556
+ * Date: 6/5/2556
  * Time: 23:09 น.
  * To change this template use File | Settings | File Templates.
  */
@@ -17,23 +17,38 @@ extract((array)$arrData);
 <script type="text/javascript"
         src="<?php echo $baseUrl; ?>assets/plugin/uploadify/jquery.uploadify-3.2.min.js"></script>
 
+<style type="text/css">
+    .bt-class {
+        background: url('<?php echo $baseUrl; ?>assets/plugin/uploadify/browse-btn.png') 0 0 no-repeat;
+        width: 120px !important;
+        height: 30px !important;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
+    .uploadify:hover .bt-class {
+        background-color: transparent;
+    }
+</style>
 <script>
     var swfPath = "<?php echo $baseUrl;?>assets/plugin/uploadify/uploadify.swf";
     var pathUploadify = "<?php echo $webUrl; ?>upload/do_upload";
     var pathImageUpload = "upload/images/company/";
-    var folderID = 0;
+    var pathFileUpload = "upload/files/company/";
+    var folderID = <?php echo $id; ?>;
 
     $(function () {
         genUploadImage("#logo_image_path", "#image_show", "#logo_image");
+        genUploadFiles("#file_upload", "", "");
     });
     function genUploadImage(btnUpload, idReload, idSave) {
         $(btnUpload).uploadify({
-            'multi'    : false,
+            'multi': false,
 //            'method'   : 'post',
             //'auto': false,
-            'formData'      : {
-                'folder_id' : "<?php echo $id; ?>",
-                'file_type' : "2",//image
+            'formData': {
+                'folder_id': folderID,
+                'file_type': "2",//image
                 'path_upload': pathImageUpload
             },
             'swf': swfPath,
@@ -51,8 +66,34 @@ extract((array)$arrData);
         });
     }
 
+    function genUploadFiles(btnUpload, idReload, idSave)
+    {
+        $(btnUpload).uploadify({
+//            'multi'    : false,
+//            'method'   : 'post',
+            'buttonClass' : 'bt-class',
+            'formData'      : {
+                'folder_id' : folderID,
+                'file_type' : "1",//file
+                'path_upload': pathFileUpload
+            },
+            'swf': swfPath,
+            'uploader': pathUploadify,
+            'fileSizeLimit': '2048KB',
+            'fileTypeExts': '*.doc; *.docx; *.xls; *.xlsx; *.pdf',//doc|docx|xls|xlsx|pdf
+            'enctype': "multipart/form-data",
+            'fileObjName': 'userfile',
+            'onFallback': function () {
+                alert('Flash was not detected.');// detect flash compatible
+            }, 'onUploadSuccess': function (file, data, response) {
+                innerHtml("#content", url_edit_data);
+            },
+            'queueSizeLimit': 5
+        });
+    }
+
     function reloadImgae(id, img, idSave) {
-        var path = "<?php echo $baseUrl; ?>" + pathImageUpload + "/" + "<?php echo $id; ?>/"+ img;
+        var path = "<?php echo $baseUrl; ?>" + pathImageUpload + "/" + "<?php echo $id; ?>/" + img;
         $(idSave).val(img);
         $(id).fadeOut().html(getTypeImage(path, "")).fadeIn("slow");
     }
@@ -62,6 +103,7 @@ extract((array)$arrData);
     }
 
     var url_edit_data = "<?php echo $webUrl; ?>crm/clientEdit/<?php echo $id; ?>";
+    var url_delete_file = "<?php echo $webUrl; ?>crm/clientDeleteFile";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -71,7 +113,7 @@ extract((array)$arrData);
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
                             alert(result)
-                            window.location.reload();
+                            //window.location.reload();
                         }
                     }
                 );
@@ -81,6 +123,29 @@ extract((array)$arrData);
 
         $("#buttonCancel").click(function () {
             window.location.reload();
+            return false;
+        });
+
+        $(".file-delete").click(function () {
+            if (!confirm("คุณต้องการลบไฟล์ ใช่ หรือไม่")) {
+                return false;
+            }
+            var url = this.href;
+            var strIndex = url.indexOf("#");
+            var fileName = url.substr(strIndex + 1, url.length);
+            $.post(url_delete_file,
+                {
+                    "id": folderID,
+                    "fileName": fileName
+                },
+                function (result) {
+                    if (result == "delete file fail") {
+                        alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                    } else {
+                        innerHtml("#content", url_edit_data);
+                    }
+                }
+            );
             return false;
         });
     });
@@ -122,8 +187,8 @@ extract((array)$arrData);
                         <td>
                             <label>รูปบริษัท
                                 <div id="image_show">
-                                    <img  width="250" height="190"
-                                          src="<?php echo $baseUrl; ?>upload/images/company/<?php echo "$id/$logo_image"; ?>"/>
+                                    <img width="250" height="190"
+                                         src="<?php echo $baseUrl; ?>upload/images/company/<?php echo "$id/$logo_image"; ?>"/>
                                 </div>
                                 <input name="userfile" type="file" id="logo_image_path"/>
                                 <input name="logo_image" type="hidden" id="logo_image"
@@ -154,7 +219,7 @@ extract((array)$arrData);
                             <p>
                                 <label>Email Office
                                     <input name="email_office" type="text" id="email_office"
-                                        value="<?php echo $email_office; ?>"/>
+                                           value="<?php echo $email_office; ?>"/>
                                 </label>
                             </p>
 
@@ -193,12 +258,11 @@ extract((array)$arrData);
                                         <?php
                                         foreach ($company_type as $value) {
                                             if ($company_type_id == $value->id) {
-                                            echo "<option selected value='$value->id'>$value->name</option>";
+                                                echo "<option selected value='$value->id'>$value->name</option>";
                                             } else {
                                                 echo "<option value='$value->id'>$value->name</option>";
                                             }
                                         }
-
                                         ?>
                                     </select>
                                 </label>
@@ -239,19 +303,23 @@ extract((array)$arrData);
                             </p>
 
                             <p>upload เอกสาร</p>
+                            <?php if ($arrFileName) foreach ($arrFileName as $key => $value): ?>
+                                <?php
 
-                            <p>ชื่อเอกสาร 1 <input type="file" id="file1" name="file1"/></p>
-                            <p>ชื่อเอกสาร 2 <input type="file" id="file2" name="file2"/></p>
-                            <p>ชื่อเอกสาร 3 <input type="file" id="file3" name="file3"/></p>
-                            <p>ชื่อเอกสาร 4 <input type="file" id="file4" name="file4"/></p>
-                            <p>ชื่อเอกสาร 5 <input type="file" id="file5" name="file5"/></p>
+                                $arrStrName = explode("-", $value);
+                                $pointStr = strpos($value, $arrStrName[3]);
 
-                            <p>
-                                <label>
-                                    <input type="button" id="selectFile" value="select"/>
-                                </label>
-                            </p>
-
+                                $strFileName = substr($value, $pointStr, strlen($value));
+                                ?>
+                                <p>
+                                    File<?php echo $key + 1 . ": ";
+                                    echo $strFileName; ?>
+                                    <a class="file-delete" href="#<?php echo $value; ?>">
+                                        <img title="Delete file<?php echo $key + 1?>"
+                                            src="<?php echo $baseUrl; ?>assets/plugin/uploadify/uploadify-cancel.png"/>
+                                    </a></p>
+                            <?php endforeach; ?>
+                            <p><input type="file" id="file_upload"></p>
                     </tr>
                 </table>
                 <p>
@@ -265,10 +333,10 @@ extract((array)$arrData);
                 <p>
                     <label>Recruitment fee
                         <input name="recruitment_fee" type="text" id="recruitment_fee"
-                            value="<?php echo $recruitment_fee; ?>"/>
+                               value="<?php echo $recruitment_fee; ?>"/>
                     </label><label>Payment Term
                         <input name="payment_term" type="text" id="payment_term"
-                            value="<?php echo $payment_term; ?>"/>
+                               value="<?php echo $payment_term; ?>"/>
                     </label>
                 </p>
 

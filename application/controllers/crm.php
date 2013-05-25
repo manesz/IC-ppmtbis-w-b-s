@@ -158,11 +158,14 @@ class CRM extends CI_Controller
         $this->load->model('Company_type_model');
         $arrCompanyType = $this->Company_type_model->getListCompanyType();
 
+        $this->load->model('Upload_model');
+        $arrFileName = $this->Upload_model->getFileFromFolder("company", $id);
         $data = array(
             'arrData' => $arrClient[0],
             'company_type' => $arrCompanyType,
             "webUrl" => $this->webUrl,
-            'message' => $message
+            'message' => $message,
+            "arrFileName" => $arrFileName
         );
         $this->load->view('crm/client_edit_view', $data);
     }
@@ -181,6 +184,22 @@ class CRM extends CI_Controller
             }
             exit();
         }
+    }
+
+    function clientDeleteFile()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $this->load->model('Upload_model');
+            $result = $this->Upload_model->deleteFile("company", $id, $fileName);
+            if ($result){
+                echo "delete file finish";
+            } else {
+                echo "delete file fail";
+            }
+        }
+        exit();
     }
 
 }
