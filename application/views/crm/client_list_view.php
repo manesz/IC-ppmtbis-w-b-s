@@ -10,14 +10,53 @@ $baseUrl = base_url();
 $this->load->view('header_datatable_view');
 ?>
 <script>
+    //var $jConflict = jQuery.noConflict();
+//    $jConflict(function () {
+//
+//    });
+
     $(document).ready(function () {
         $('#clientList').dataTable();
 
-        $('#clientNew, .edit-click').click(function(){
+        $('#clientNew').click(function(){
             innerHtml("#content", this.href);
             return false;
         });
+
+//        $('a.edit-click').click(function(){
+//            innerHtml("#content", this.href);
+//            return false;
+//        });
+//        jQuery.noConflict()("a.edit-click").on('click', function(){
+//            //innerHtml("#content", this.href);
+//            alert(this.href)
+//            return false;
+//        });
+
+
     });
+
+    function loadEditData(url)
+    {
+        innerHtml("#content", url);
+    }
+
+    function deleteClick(url)
+    {
+        if (confirm("คุณต้องการลบข้อมูลใช่หรือไม่")) {
+            $.post(url,
+                function (result) {
+                    if (result == "delete fail") {
+                        alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                    } else {
+                        alert(result)
+                        window.location.reload();
+                    }
+                }
+            );
+        }
+        return false;
+    }
 </script>
 
 <div class="row-fluid">
@@ -63,7 +102,6 @@ $this->load->view('header_datatable_view');
                 <?php
                 foreach ($arrClientList as $key => $value):
                     ?>
-
                     <tr class="<?php echo "odd_gradeX" ? $key % 2 == 0 : "odd_gradeA"; ?>">
                         <td class="center"><?php echo $value->id; ?></td>
                         <td><?php echo $value->name_th; ?></td>
@@ -72,8 +110,12 @@ $this->load->view('header_datatable_view');
                         <td class="center"><?php echo $value->create_time; ?></td>
                         <td class="center"><?php echo $value->update_time; ?></td>
                         <td class="center">
-                            <a class="edit-click" href="<?php echo $webUrl; ?>crm/clientEdit/<?php echo $value->id; ?>">
-                                แก้ไข</a>/ <a href="#">ลบ</a>/ <a href="#">ดู</a>/ <a href="#">เพิ่มตำแหน่งงาน</a></td>
+                            <a onclick="innerHtml('#content',
+                                '<?php echo $webUrl; ?>crm/clientEdit/<?php echo $value->id; ?>'); return false;"
+                               href="<?php echo $webUrl; ?>crm/clientEdit/<?php echo $value->id; ?>">
+                                แก้ไข</a> /
+                            <a href="#" onclick="return deleteClick('<?php echo $webUrl; ?>crm/clientDelete/<?php echo $value->id; ?>');">ลบ</a>/
+                            <a href="#">ดู</a> / <a href="#">เพิ่มตำแหน่งงาน</a></td>
                     </tr>
                 <?php
                 endforeach;

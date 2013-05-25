@@ -170,6 +170,18 @@ class CRM extends CI_Controller
         $this->load->view('crm/client_edit_view', $data);
     }
 
+    function clientDelete($id)
+    {
+        $this->load->model('Client_model');
+        $result = $this->Client_model->setPublish($id, 'crm_company');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
     function clientUpdateImagePath()
     {
         $post = $this->input->post();

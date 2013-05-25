@@ -14,27 +14,28 @@ $this->load->view('header_datatable_view');
     $(document).ready(function () {
         $('#dataTable').dataTable();
 
-        $('#buttonNew, .editData').click(function(){
+        $('#buttonNew').click(function(){
             innerHtml("#content", this.href);
             return false;
         });
-
-        $('.deleteData').click(function(){
-            if (confirm("คุณต้องการลบข้อมูลใช่หรือไม่")) {
-                $.post(this.href,
-                    function (result) {
-                        if (result == "delete fail") {
-                            alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
-                        } else {
-                            alert(result)
-                            window.location = "<?php echo $webUrl; ?>website/user";
-                        }
-                    }
-                );
-            }
-            return false;
-        });
     });
+
+    function deleteClick(url)
+    {
+        if (confirm("คุณต้องการลบข้อมูลใช่หรือไม่")) {
+            $.post(url,
+                function (result) {
+                    if (result == "delete fail") {
+                        alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                    } else {
+                        alert(result)
+                        window.location.reload();
+                    }
+                }
+            );
+        }
+        return false;
+    }
 </script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
@@ -90,11 +91,12 @@ $this->load->view('header_datatable_view');
                         <td><?php echo $value->permission; ?></td>
                         <td class="center"><?php echo $value->create_time; ?></td>
                         <td class="center">
-                            <a class="editData"
+                            <a class="editData" onclick="innerHtml('#content',
+                                '<?php echo $webUrl; ?>website/userEdit/<?php echo $value->id; ?>');return false;"
                                href="<?php echo $webUrl; ?>website/userEdit/<?php echo $value->id; ?>">
                                 แก้ไข</a> /
-                            <a class="deleteData"
-                               href="<?php echo $webUrl; ?>website/userDelete/<?php echo $value->id; ?>">ลบ</a>
+                            <a class="deleteData" href="#"
+                               onclick="return deleteClick('<?php echo $webUrl; ?>website/userDelete/<?php echo $value->id; ?>')">ลบ</a>
                             <!--/ <a href="#">ดู</a>-->
                         </td>
                     </tr>

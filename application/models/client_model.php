@@ -17,6 +17,21 @@ class Client_model extends CI_Model
         parent::__construct();
     }
 
+    /**
+     * set publish = 0
+     *
+     * @param $id
+     * @param $table
+     * @return mixed
+     */
+    function setPublish($id, $table)
+    {
+        $data = array(
+            'publish' => 0
+        );
+        return $this->db->update($table, $data, array('id' => $id));
+    }
+
     //-----------------------------------Client------------------------------------------//
 
     /**
