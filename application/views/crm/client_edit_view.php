@@ -86,6 +86,7 @@ extract((array)$arrData);
             'onFallback': function () {
                 alert('Flash was not detected.');// detect flash compatible
             }, 'onUploadSuccess': function (file, data, response) {
+                saveData();
                 innerHtml("#content", url_edit_data);
             },
             'queueSizeLimit': 5
@@ -104,19 +105,24 @@ extract((array)$arrData);
 
     var url_edit_data = "<?php echo $webUrl; ?>crm/clientEdit/<?php echo $id; ?>";
     var url_delete_file = "<?php echo $webUrl; ?>crm/clientDeleteFile";
+    function saveData()
+    {
+        $.post(url_edit_data, $("#formPost").serialize(),
+            function (result) {
+                if (result == "edit fail") {
+                    alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                } else {
+                    //alert(result)
+                    //alert(result)
+                    //window.location.reload();
+                }
+            }
+        );
+    }
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_edit_data, $("#formPost").serialize(),
-                    function (result) {
-                        if (result == "edit fail") {
-                            alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
-                        } else {
-                            alert(result)
-                            //window.location.reload();
-                        }
-                    }
-                );
+                saveData();
             }
             return false;
         });
@@ -142,6 +148,7 @@ extract((array)$arrData);
                     if (result == "delete file fail") {
                         alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                     } else {
+                        saveData();
                         innerHtml("#content", url_edit_data);
                     }
                 }
