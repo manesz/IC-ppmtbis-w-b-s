@@ -3,26 +3,23 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 15:38 น.
+ * Time: 15:00 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
-extract((array)$arrData);
 ?>
-
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>website/postEdit/<?php echo $id; ?>";
+    var url_new_data = "<?php echo $webUrl; ?>cpanel/postNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_edit_data, $("#formPost").serialize(),
+                $.post(url_new_data, $("#formPost").serialize(),
                     function (result) {
-                        if (result == "edit fail") {
+                        if (result == "add fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            alert(result)
-                            window.location = "<?php echo $webUrl; ?>website/post";
+                            window.location.reload();
                         }
                     }
                 );
@@ -31,7 +28,7 @@ extract((array)$arrData);
         });
 
         $("#buttonCancel").click(function () {
-            window.location.reload();
+            window.location = "<?php echo $webUrl; ?>cpanel/post";
             return false;
         });
     });
@@ -50,9 +47,9 @@ extract((array)$arrData);
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/post">Post</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/post">Post</a> <span class="divider">/</span>
                 </li>
-                <li class="active">Edit</li>
+                <li class="active">New</li>
             </ul>
         </div>
     </div>
@@ -61,64 +58,52 @@ extract((array)$arrData);
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Post Edit</div>
+            <div class="muted pull-left">Post New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Title
-                    <input name="title" type="text" id="title" value="<?php echo $title; ?>"/>
+                    <input name="title" type="text" id="title" />
                 </label>
-
                 <p>
                     <label>Description
-                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
+                        <textarea name="description" id="description"></textarea>
                     </label>
                 </p>
-
                 <p>
                     <label>Type
                         <select name="type" id="type">
                             <?php foreach ($arrType as $key => $value) {
-                                if ($type == $value->id) {
-                                    echo "<option selected value='$value->id'>$value->name</option>";
-                                } else {
-                                    echo "<option value='$value->id'>$value->name</option>";
-                                }
+                                echo "<option value='$value->id'>$value->name</option>";
                             }
                             ?>
                         </select>
                     </label>
                 </p>
-
                 <p>
                     <label>Salary
-                        <input name="salary" type="text" id="salary" value="<?php echo $salary; ?>"/>
+                        <input name="salary" type="text" id="salary" />
                     </label>
                 </p>
-
                 <p>
                     <label>Workplace
-                        <input name="workplace" type="text" id="workplace" value="<?php echo $workplace; ?>"/>
+                        <input name="workplace" type="text" id="workplace" />
                     </label>
                 </p>
-
                 <p>
                     <label>Responsibilities
-                        <textarea name="responsibilities"
-                                  id="responsibilities"><?php echo $responsibilities; ?></textarea>
+                        <textarea name="responsibilities" id="responsibilities"></textarea>
                     </label>
                 </p>
-
                 <p>
                     <label>Qualification
-                        <textarea name="qualification" id="qualification"><?php echo $qualification; ?></textarea>
+                        <textarea name="qualification" id="qualification"></textarea>
                     </label>
                 </p>
-
                 <p>
                     <label>Tags
-                        <input name="tags" type="text" id="tags" value="<?php echo $tags; ?>"/>
+                        <input name="tags" type="text" id="tags" />
                     </label>
                 </p>
 

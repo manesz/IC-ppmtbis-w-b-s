@@ -60,7 +60,7 @@ $this->load->view('header_datatable_view');
 <div class="block">
     <div class="navbar navbar-inner block-header">
         <div class="muted pull-left">Navigator List</div>
-        <div class="pull-right"><a id="buttonNew" href="<?php echo $webUrl; ?>website/navigatorNew"><span
+        <div class="pull-right"><a id="buttonNew" href="<?php echo $webUrl; ?>cpanel/navigatorNew"><span
                     class="badge badge-info">add</span></a></div>
     </div>
     <div class="block-content collapse in">
@@ -91,11 +91,11 @@ $this->load->view('header_datatable_view');
                     <td class="center"><?php echo $value->order; ?></td>
                     <td class="center"><?php echo $value->create_time; ?></td>
                     <td class="center">
-                        <a class="editData" onclick="innerHtml('#content', '<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $value->id; ?>');return false;"
-                           href="<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $value->id; ?>">
+                        <a class="editData" onclick="innerHtml('#content', '<?php echo $webUrl; ?>cpanel/navigatorEdit/<?php echo $value->id; ?>');return false;"
+                           href="<?php echo $webUrl; ?>cpanel/navigatorEdit/<?php echo $value->id; ?>">
                             แก้ไข</a> /
                         <a class="deleteData" href="#"
-                           onclick="return deleteClick('<?php echo $webUrl; ?>website/navigatorDelete/<?php echo $value->id; ?>')">ลบ</a>
+                           onclick="return deleteClick('<?php echo $webUrl; ?>cpanel/navigatorDelete/<?php echo $value->id; ?>')">ลบ</a>
                         <!--/ <a href="#">ดู</a>-->
                     </td>
                 </tr>

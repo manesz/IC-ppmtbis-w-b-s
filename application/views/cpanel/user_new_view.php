@@ -2,15 +2,15 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 19/5/2556
- * Time: 11:16 น.
+ * Date: 24/5/2556
+ * Time: 15:03 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
 ?>
 <script>
-    var url_new_data = "<?php echo $webUrl; ?>website/navigatorNew";
+    var url_new_data = "<?php echo $webUrl; ?>cpanel/userNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -28,7 +28,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/navigator";
+            window.location = "<?php echo $webUrl; ?>cpanel/user";
             return false;
         });
     });
@@ -47,7 +47,7 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/user">User</a> <span class="divider">/</span>
                 </li>
                 <li class="active">New</li>
             </ul>
@@ -58,37 +58,34 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Navigator New</div>
+            <div class="muted pull-left">User New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <label>Name
-                    <input name="name" type="text" id="name"/>
+                    <input name="name" type="text" id="name" />
                 </label>
-
                 <p>
                     <label>Description
                         <textarea name="description" id="description"></textarea>
                     </label>
                 </p>
-
                 <p>
-                    <label>Layer
-                        <input name="layer" type="text" id="layer"/>
+                    <label>Phone
+                        <input name="phone" type="text" id="phone" />
                     </label>
                 </p>
-
                 <p>
-                    <label>Parent
-                        <input name="parent" type="text" id="parent"/>
+                    <label>email
+                        <input name="email" type="text" id="email" />
                     </label>
                 </p>
-
                 <p>
-                    <label>Order
-                        <input name="order" type="text" id="order"/>
-                    </label>
+                    <label>permission
+                        <input name="permission" type="text" id="permission" />
+                    </label>1=admin, 2=user(insert, update ::: job)(insert, update :: page)
+
                 </p>
 
                 <div align="right">

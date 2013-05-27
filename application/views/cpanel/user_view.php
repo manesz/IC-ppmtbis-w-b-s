@@ -3,13 +3,13 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 15:05 น.
+ * Time: 16:07 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
-$urlListData = $webUrl . "website/pageList";
-$this->load->view("website/header");
+$urlListData = $webUrl . "cpanel/userList";
+$this->load->view("cpanel/header");
 ?>
     <script>
         var url_list_data = "<?php echo $urlListData; ?>";
@@ -69,11 +69,11 @@ $this->load->view("website/header");
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
                     <a class="page-click" href="<?php echo $urlListData; ?>"><i
-                            class="icon-chevron-right"></i>Page</a>
+                            class="icon-chevron-right"></i> User</a>
                 </li>
                 <!--                <li class="subMenuClick">-->
-                <!--                    <a class="navigatorClick" href="-->
-                <?php //echo $webUrl; ?><!--website/navigatorNew">-->
+                <!--                    <a class="userClick" href="-->
+                <?php //echo $webUrl; ?><!--cpanel/userNew">-->
                 <!--                        <i class="icon-chevron-right"></i> New</a>-->
                 <!--                </li>-->
             </ul>
@@ -86,4 +86,4 @@ $this->load->view("website/header");
 
 
 <?php
-$this->load->view("website/footer");
+$this->load->view("cpanel/footer");

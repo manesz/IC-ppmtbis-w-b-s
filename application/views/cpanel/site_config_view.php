@@ -8,8 +8,8 @@
  */
 
 $baseUrl = base_url();
-$urlEditData = $webUrl . "website/site_configEdit/1";
-$this->load->view("website/header");
+$urlEditData = $webUrl . "cpanel/site_configEdit/1";
+$this->load->view("cpanel/header");
 ?>
     <script>
         var url_edit_data = "<?php echo $urlEditData; ?>";
@@ -73,7 +73,7 @@ $this->load->view("website/header");
                 </li>
                 <!--                <li class="subMenuClick">-->
                 <!--                    <a class="site_configClick" href="-->
-                <?php //echo $webUrl; ?><!--website/site_configNew">-->
+                <?php //echo $webUrl; ?><!--cpanel/site_configNew">-->
                 <!--                        <i class="icon-chevron-right"></i> New</a>-->
                 <!--                </li>-->
             </ul>
@@ -86,4 +86,4 @@ $this->load->view("website/header");
 
 
 <?php
-$this->load->view("website/footer");
+$this->load->view("cpanel/footer");

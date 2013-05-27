@@ -2,14 +2,14 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 19/5/2556
- * Time: 10:14 น.
+ * Date: 24/5/2556
+ * Time: 15:35 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
-$urlListData = $webUrl . "website/navigatorList";
-$this->load->view("website/header");
+$urlListData = $webUrl . "cpanel/postList";
+$this->load->view("cpanel/header");
 ?>
     <script>
         var url_list_data = "<?php echo $urlListData; ?>";
@@ -34,6 +34,7 @@ $this->load->view("website/header");
         });
 
         function validateFrom(frm) {
+            return true;
             if (frm.name.value == "") {
                 alert("กรุณากรอก Name");
                 frm.name.focus();
@@ -68,11 +69,11 @@ $this->load->view("website/header");
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
                     <a class="page-click" href="<?php echo $urlListData; ?>"><i
-                            class="icon-chevron-right"></i> Navigator</a>
+                            class="icon-chevron-right"></i> Post</a>
                 </li>
                 <!--                <li class="subMenuClick">-->
-                <!--                    <a class="navigatorClick" href="-->
-                <?php //echo $webUrl; ?><!--website/navigatorNew">-->
+                <!--                    <a class="postClick" href="-->
+                <?php //echo $webUrl; ?><!--cpanel/postNew">-->
                 <!--                        <i class="icon-chevron-right"></i> New</a>-->
                 <!--                </li>-->
             </ul>
@@ -85,4 +86,4 @@ $this->load->view("website/header");
 
 
 <?php
-$this->load->view("website/footer");
+$this->load->view("cpanel/footer");

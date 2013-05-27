@@ -69,7 +69,7 @@ extract((array)$arrData);
         return '<img src="' + src + '" width="250" height="190" class="nopad thumb"/>';
     }
 
-    var url_edit_data = "<?php echo $webUrl; ?>website/slideEdit/<?php echo $id; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>cpanel/slideEdit/<?php echo $id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -79,7 +79,7 @@ extract((array)$arrData);
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
                             alert(result)
-                            window.location = "<?php echo $webUrl; ?>website/slide";
+                            window.location = "<?php echo $webUrl; ?>cpanel/slide";
                         }
                     }
                 );
@@ -103,11 +103,11 @@ extract((array)$arrData);
         <div class="navbar-inner">
             <ul class="breadcrumb">
                 <i class="icon-chevron-left hide-sidebar">
-                    <a href='<?php echo $webUrl; ?>website/slide' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+                    <a href='<?php echo $webUrl; ?>cpanel/slide' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
 <!--                <i class="icon-chevron-right show-sidebar" style="display:none;">-->
-<!--                    <a href='--><?php //echo $webUrl; ?><!--website/slide' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>-->
+<!--                    <a href='--><?php //echo $webUrl; ?><!--cpanel/slide' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>-->
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/slide">Slide</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/slide">Slide</a> <span class="divider">/</span>
                 </li>
                 <li class="active">Edit</li>
             </ul>

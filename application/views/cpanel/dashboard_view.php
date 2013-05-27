@@ -9,11 +9,11 @@
 
 $baseUrl = base_url();
 
-$this->load->view("website/header");
+$this->load->view("cpanel/header");
 ?>
 
     <script>
-        var dashboardList = "<?php echo $webUrl; ?>crm/dashboardList";
+        var url_dashboard = "<?php echo $webUrl; ?>cpanel/dashboardList";
         $(document).ready(function(){
             $(".subMenuClick").click(function(){
                 var nameActive = "subMenuClick active";
@@ -29,7 +29,7 @@ $this->load->view("website/header");
                 innerHtml("#content", this.href)
             });
 
-            innerHtml("#content", dashboardList)
+            innerHtml("#content", url_dashboard)
         });
 
         var strWait = "<div align='center'><img width='50' height='50' "
@@ -45,7 +45,7 @@ $this->load->view("website/header");
         <div class="span3" id="sidebar">
             <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
                 <li class="subMenuClick active">
-                    <a class="linkSubMenu" href="<?php echo $webUrl; ?>crm/dashboardList"><i class="icon-chevron-right"></i> Dashboard</a>
+                    <a class="linkSubMenu" href="<?php echo $webUrl; ?>cpanel/dashboard"><i class="icon-chevron-right"></i> Dashboard</a>
                 </li>
                 <li class="subMenuClick">
                     <a href="#"><i class="icon-chevron-right"></i> Statistics</a>
@@ -90,4 +90,4 @@ $this->load->view("website/header");
 
 
 <?php
-$this->load->view("website/footer");
+$this->load->view("cpanel/footer");

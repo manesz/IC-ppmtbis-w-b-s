@@ -3,26 +3,23 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 16:09 น.
+ * Time: 14:57 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
-extract((array)$arrData);
 ?>
-
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>website/userEdit/<?php echo $id; ?>";
+    var url_new_data = "<?php echo $webUrl; ?>cpanel/pageNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                $.post(url_edit_data, $("#formPost").serialize(),
+                $.post(url_new_data, $("#formPost").serialize(),
                     function (result) {
-                        if (result == "edit fail") {
+                        if (result == "add fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            alert(result)
-                            window.location = "<?php echo $webUrl; ?>website/user";
+                            window.location.reload();
                         }
                     }
                 );
@@ -31,7 +28,7 @@ extract((array)$arrData);
         });
 
         $("#buttonCancel").click(function () {
-            window.location.reload();
+            window.location = "<?php echo $webUrl; ?>cpanel/page";
             return false;
         });
     });
@@ -50,9 +47,9 @@ extract((array)$arrData);
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/user">User</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/page">Page</a> <span class="divider">/</span>
                 </li>
-                <li class="active">Edit</li>
+                <li class="active">New</li>
             </ul>
         </div>
     </div>
@@ -61,34 +58,36 @@ extract((array)$arrData);
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">User Edit</div>
+            <div class="muted pull-left">Page New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Name
-                    <input name="name" type="text" id="name" value="<?php echo $name; ?>"/>
+                <label>Title
+                    <input name="title" type="text" id="title"/>
                 </label>
+
                 <p>
                     <label>Description
-                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
+                        <textarea name="description" id="description"></textarea>
                     </label>
                 </p>
-                <p>
-                    <label>Phone
-                        <input name="phone" type="text" id="phone" value="<?php echo $phone; ?>"/>
-                    </label>
-                </p>
-                <p>
-                    <label>email
-                        <input name="email" type="text" id="email" value="<?php echo $email; ?>" />
-                    </label>
-                </p>
-                <p>
-                    <label>permission
-                        <input name="permission" type="text" id="permission"  value="<?php echo $permission; ?>"/>
-                    </label>1=admin, 2=user(insert, update ::: job)(insert, update :: page)
 
+                <p>
+                    <label>Type
+                        <select name="type" id="type">
+                            <?php foreach ($arrType as $key => $value) {
+                                echo "<option value='$value->id'>$value->name</option>";
+                            }
+                            ?>
+                        </select>
+                    </label>
+                </p>
+
+                <p>
+                    <label>Order
+                        <input name="order" type="text" id="order"/>
+                    </label>
                 </p>
 
                 <div align="right">

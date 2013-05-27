@@ -1,4 +1,4 @@
-<?php include "header.php"?>
+<?php include "header.php" ?>
 
 <!-- START: CONTENT -->
 <div id="white_content">
@@ -1158,4 +1158,4 @@
 </div>
 <!-- end of wrapper -->
 
-<?php include "footer.php"?>
+<?php include "footer.php" ?>

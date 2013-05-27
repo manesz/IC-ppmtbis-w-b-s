@@ -12,7 +12,7 @@ extract((array)$arrData);
 ?>
 
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>website/site_configEdit/<?php echo $id; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>cpanel/site_configEdit/<?php echo $id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -22,7 +22,7 @@ extract((array)$arrData);
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
                             alert(result)
-                            window.location = "<?php echo $webUrl; ?>website/site_config";
+                            window.location = "<?php echo $webUrl; ?>cpanel/site_config";
                         }
                     }
                 );

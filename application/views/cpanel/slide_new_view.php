@@ -68,8 +68,8 @@ $baseUrl = base_url();
         });
     }
 
-    var url_new_data = "<?php echo $webUrl; ?>website/slideNew";
-    var url_update_slide = "<?php echo $webUrl; ?>website/slideUpdateImageName";
+    var url_new_data = "<?php echo $webUrl; ?>cpanel/slideNew";
+    var url_update_slide = "<?php echo $webUrl; ?>cpanel/slideUpdateImageName";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -90,7 +90,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/slide";
+            window.location = "<?php echo $webUrl; ?>cpanel/slide";
             return false;
         });
     });
@@ -109,7 +109,7 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/slide">Slide</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/slide">Slide</a> <span class="divider">/</span>
                 </li>
                 <li class="active">New</li>
             </ul>

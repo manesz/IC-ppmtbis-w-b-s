@@ -2,15 +2,15 @@
 /**
  * Created by JetBrains PhpStorm.
  * User: Rux
- * Date: 24/5/2556
- * Time: 15:00 น.
+ * Date: 19/5/2556
+ * Time: 11:16 น.
  * To change this template use File | Settings | File Templates.
  */
 
 $baseUrl = base_url();
 ?>
 <script>
-    var url_new_data = "<?php echo $webUrl; ?>website/postNew";
+    var url_new_data = "<?php echo $webUrl; ?>cpanel/navigatorNew";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -28,7 +28,7 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>website/post";
+            window.location = "<?php echo $webUrl; ?>cpanel/navigator";
             return false;
         });
     });
@@ -47,7 +47,7 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/post">Post</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/navigator">Navigator</a> <span class="divider">/</span>
                 </li>
                 <li class="active">New</li>
             </ul>
@@ -58,52 +58,36 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Post New</div>
+            <div class="muted pull-left">Navigator New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Title
-                    <input name="title" type="text" id="title" />
+                <label>Name
+                    <input name="name" type="text" id="name"/>
                 </label>
+
                 <p>
                     <label>Description
                         <textarea name="description" id="description"></textarea>
                     </label>
                 </p>
+
                 <p>
-                    <label>Type
-                        <select name="type" id="type">
-                            <?php foreach ($arrType as $key => $value) {
-                                echo "<option value='$value->id'>$value->name</option>";
-                            }
-                            ?>
-                        </select>
+                    <label>Layer
+                        <input name="layer" type="text" id="layer"/>
                     </label>
                 </p>
+
                 <p>
-                    <label>Salary
-                        <input name="salary" type="text" id="salary" />
+                    <label>Parent
+                        <input name="parent" type="text" id="parent"/>
                     </label>
                 </p>
+
                 <p>
-                    <label>Workplace
-                        <input name="workplace" type="text" id="workplace" />
-                    </label>
-                </p>
-                <p>
-                    <label>Responsibilities
-                        <textarea name="responsibilities" id="responsibilities"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Qualification
-                        <textarea name="qualification" id="qualification"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Tags
-                        <input name="tags" type="text" id="tags" />
+                    <label>Order
+                        <input name="order" type="text" id="order"/>
                     </label>
                 </p>
 

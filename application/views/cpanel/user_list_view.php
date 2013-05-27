@@ -3,7 +3,7 @@
  * Created by JetBrains PhpStorm.
  * User: Rux
  * Date: 24/5/2556
- * Time: 15:05 น.
+ * Time: 16:07 น.
  * To change this template use File | Settings | File Templates.
  */
 
@@ -50,7 +50,7 @@ $this->load->view('header_datatable_view');
                                                              rel='tooltip'>&nbsp;</a></i>
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
-                <li class="active">Page</li>
+                <li class="active">User</li>
             </ul>
         </div>
     </div>
@@ -59,8 +59,8 @@ $this->load->view('header_datatable_view');
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Page List</div>
-            <div class="pull-right"><a id="buttonNew" href="<?php echo $webUrl; ?>website/pageNew"><span
+            <div class="muted pull-left">User List</div>
+            <div class="pull-right"><a id="buttonNew" href="<?php echo $webUrl; ?>cpanel/userNew"><span
                         class="badge badge-info">add</span></a></div>
         </div>
         <div class="block-content collapse in">
@@ -68,10 +68,11 @@ $this->load->view('header_datatable_view');
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
+                    <th>Name</th>
                     <th>Description</th>
-                    <th>Type</th>
-                    <th>Order</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Permission</th>
                     <th>วันที่สร้าง</th>
                     <th>จัดการข้อมูล</th>
                 </tr>
@@ -83,17 +84,19 @@ $this->load->view('header_datatable_view');
 
                     <tr class="<?php echo "odd_gradeX" ? $key % 2 == 0 : "odd_gradeA"; ?>">
                         <td class="center"><?php echo $value->id; ?></td>
-                        <td><?php echo $value->title; ?></td>
+                        <td><?php echo $value->name; ?></td>
                         <td><?php echo $value->description; ?></td>
-                        <td><?php echo $value->type_name; ?></td>
-                        <td class="center"><?php echo $value->order; ?></td>
+                        <td><?php echo $value->phone; ?></td>
+                        <td><?php echo $value->email; ?></td>
+                        <td><?php echo $value->permission; ?></td>
                         <td class="center"><?php echo $value->create_time; ?></td>
                         <td class="center">
-                            <a class="editData" onclick="innerHtml('#content', '<?php echo $webUrl; ?>website/pageEdit/<?php echo $value->id; ?>');return false;"
-                               href="<?php echo $webUrl; ?>website/pageEdit/<?php echo $value->id; ?>">
+                            <a class="editData" onclick="innerHtml('#content',
+                                '<?php echo $webUrl; ?>cpanel/userEdit/<?php echo $value->id; ?>');return false;"
+                               href="<?php echo $webUrl; ?>cpanel/userEdit/<?php echo $value->id; ?>">
                                 แก้ไข</a> /
                             <a class="deleteData" href="#"
-                               onclick="return deleteClick('<?php echo $webUrl; ?>website/pageDelete/<?php echo $value->id; ?>')">ลบ</a>
+                               onclick="return deleteClick('<?php echo $webUrl; ?>cpanel/userDelete/<?php echo $value->id; ?>')">ลบ</a>
                             <!--/ <a href="#">ดู</a>-->
                         </td>
                     </tr>
