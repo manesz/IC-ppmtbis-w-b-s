@@ -76,40 +76,31 @@ $baseUrl = base_url();
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Name
-                    <input name="name" type="text" id="name"/>
-                </label>
-
-                <p>
-                    <label>Description
-                        <textarea name="description" id="description"></textarea>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Layer
-                        <input maxlength="2" name="layer" type="text" id="layer"
-                               onkeypress="return validateNum(event);" value="0"/>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Parent
-                        <input maxlength="2" name="parent" type="text" id="parent"
-                               onkeypress="return validateNum(event);" value="0"/>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Order
-                        <input maxlength="2" name="order" type="text" id="order"
-                               onkeypress="return validateNum(event);" value="0"/>
-                    </label>
-                </p>
-
-                <div align="right">
-                    <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                    <button class="btn btn-primary" id="buttonSave">save</button>
+                <div class="row-fluid">
+                    <div class="span4">Name</div>
+                    <div class="span8"><input name="name" type="text" id="name" class="input-block-level" value=""/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Description</div>
+                    <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Layer</div>
+                    <div class="span8"><input name="layer" type="text" id="layer" class="input-block-level" value=""/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Parent</div>
+                    <div class="span8"><input name="parent" type="text" id="parent" class="input-block-level" value=""/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Order</div>
+                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" value=""/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
+                        <button class="btn btn-warning" id="buttonCancel">cancel</button>
+                        <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -67,37 +67,38 @@ extract((array)$arrData);
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Title
-                    <input name="title" type="text" id="title" value="<?php echo $title; ?>"/>
-                </label>
-                <p>
-                    <label>Description
-                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Type
-                        <select name="type" id="type">
+                <div class="row-fluid">
+                    <div class="span4">Title</div>
+                    <div class="span8"><input name="title" type="text" id="title" class="input-block-level" value="<?php echo $title; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Description</div>
+                    <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"><?php echo $description; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Type</div>
+                    <div class="span8">
+                        <select name="type" id="type" class="input-block-level">
                             <?php foreach ($arrType as $key => $value) {
-                                if ($type == $value->id) {
-                                    echo "<option selected value='$value->id'>$value->name</option>";
-                                } else {
-                                    echo "<option value='$value->id'>$value->name</option>";
-                                }
+                            if ($type == $value->id) {
+                                echo "<option selected value='$value->id'>$value->name</option>";
+                            } else {
+                                echo "<option value='$value->id'>$value->name</option>";
                             }
+                        }
                             ?>
                         </select>
-                    </label>
-                </p>
-                <p>
-                    <label>Order
-                        <input name="order" type="text" id="order" value="<?php echo $order; ?>" />
-                    </label>
-                </p>
-
-                <div align="right">
-                    <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                    <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Order</div>
+                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" value="<?php echo $order; ?>" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
+                        <button class="btn btn-warning" id="buttonCancel">cancel</button>
+                        <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
                 </div>
             </form>
         </div>

@@ -86,10 +86,12 @@ class Website extends CI_Controller
     {
         $message = "";
         $strSelectBar = 'post';
+        $arrData = $this->CPanel_model->postList($id);
         $data = array(
             "webUrl" => $this->webUrl,
             "message" => $message,
-            "selectBar" => $strSelectBar
+            "selectBar" => $strSelectBar,
+            "arrData" => $arrData[0]
         );
         $this->load->view("website/single", $data);
     }

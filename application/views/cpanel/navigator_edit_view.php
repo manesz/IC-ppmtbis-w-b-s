@@ -67,37 +67,31 @@ extract((array)$arrData);
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Name
-                    <input name="name" type="text" id="name" value="<?php echo $name; ?>"/>
-                </label>
-
-                <p>
-                    <label>Description
-                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Layer
-                        <input name="layer" type="text" id="layer" value="<?php echo $layer; ?>"/>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Parent
-                        <input name="parent" type="text" id="parent" value="<?php echo $parent; ?>"/>
-                    </label>
-                </p>
-
-                <p>
-                    <label>Order
-                        <input name="order" type="text" id="order" value="<?php echo $order; ?>"/>
-                    </label>
-                </p>
-
-                <div align="right">
-                    <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                    <button class="btn btn-primary" id="buttonSave">save</button>
+                <div class="row-fluid">
+                    <div class="span4">Name</div>
+                    <div class="span8"><input name="name" type="text" id="name" class="input-block-level" value="<?php echo $name; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Description</div>
+                    <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"><?php echo $description; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Layer</div>
+                    <div class="span8"><input name="layer" type="text" id="layer" class="input-block-level" value="<?php echo $layer; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Parent</div>
+                    <div class="span8"><input name="parent" type="text" id="parent" class="input-block-level" value="<?php echo $parent; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Order</div>
+                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" value="<?php echo $order; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
+                        <button class="btn btn-warning" id="buttonCancel">cancel</button>
+                        <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
                 </div>
             </form>
         </div>

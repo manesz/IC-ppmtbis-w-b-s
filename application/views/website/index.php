@@ -1,7 +1,7 @@
 <?php //require_once("header.php");
 $this->load->view("website/header");
 $baseUrl = base_url();
-
+$arrData = $this->CPanel_model->site_configList(1);
 ?>
 
 <div class="everything">
@@ -182,7 +182,8 @@ $this->load->view("website/header-content");?>
 
     <h3>Welcome to <span style="color: #7ab317;">PROMPTBIS</span></h3>
     <p>&nbsp;</p>
-    <p>PROMPT has been established by a team of professionals highly experienced in many fields of expertise i.e. human resources, accounting, finance, asset management, logistics and information technology, etc.   The company aims to provide one-stop services of business consultations and solutions on the principles of highly quality, punctually, customer satisfaction and cost effectiveness.   To maximize customers' satisfaction and return on investment, we continuously maintain our standardization and develop our organization to serve the better in the future.</p><br/>
+<!--    <p>PROMPT has been established by a team of professionals highly experienced in many fields of expertise i.e. human resources, accounting, finance, asset management, logistics and information technology, etc.   The company aims to provide one-stop services of business consultations and solutions on the principles of highly quality, punctually, customer satisfaction and cost effectiveness.   To maximize customers' satisfaction and return on investment, we continuously maintain our standardization and develop our organization to serve the better in the future.</p><br/>-->
+    <p><?php echo $arrData[0]->front_content; ?></p><br/>
 
     <div class='fix'></div>
 </div>

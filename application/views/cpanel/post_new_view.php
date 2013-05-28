@@ -8,7 +8,9 @@
  */
 
 $baseUrl = base_url();
-?>
+?><script src="<?php echo $baseUrl; ?>assets/js/jquery-1.9.1.js"></script>
+<script src="<?php echo $baseUrl; ?>assets/plugin/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="<?php echo $baseUrl; ?>assets/plugin/ckeditor/contents.css">
 <script>
     var url_new_data = "<?php echo $webUrl; ?>cpanel/postNew";
     $(document).ready(function () {
@@ -31,6 +33,8 @@ $baseUrl = base_url();
             window.location = "<?php echo $webUrl; ?>cpanel/post";
             return false;
         });
+        CKEDITOR.replace('responsibilities');
+        CKEDITOR.replace('qualification');
     });
 </script>
 <div class="row-fluid">
@@ -63,53 +67,51 @@ $baseUrl = base_url();
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Title
-                    <input name="title" type="text" id="title" />
-                </label>
-                <p>
-                    <label>Description
-                        <textarea name="description" id="description"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Type
-                        <select name="type" id="type">
-                            <?php foreach ($arrType as $key => $value) {
-                                echo "<option value='$value->id'>$value->name</option>";
-                            }
+                <div class="row-fluid">
+                    <div class="span4">Title</div>
+                    <div class="span8"><input name="title" type="text" id="title" class="input-block-level" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Description</div>
+                    <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Type</div>
+                    <div class="span8">
+                        <select name="type" id="type" class="input-block-level">
+                            <?php
+                                foreach ($arrType as $key => $value) {
+                                    echo "<option value='$value->id'>$value->name</option>";
+                                }
                             ?>
                         </select>
-                    </label>
-                </p>
-                <p>
-                    <label>Salary
-                        <input name="salary" type="text" id="salary" />
-                    </label>
-                </p>
-                <p>
-                    <label>Workplace
-                        <input name="workplace" type="text" id="workplace" />
-                    </label>
-                </p>
-                <p>
-                    <label>Responsibilities
-                        <textarea name="responsibilities" id="responsibilities"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Qualification
-                        <textarea name="qualification" id="qualification"></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Tags
-                        <input name="tags" type="text" id="tags" />
-                    </label>
-                </p>
-
-                <div align="right">
-                    <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                    <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Salary</div>
+                    <div class="span8"><input name="salary" type="text" id="salary" class="input-block-level" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Workplace</div>
+                    <div class="span8"><input name="workplace" type="text" id="workplace" class="input-block-level" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Responsibilities</div>
+                    <div class="span8"><textarea name="responsibilities" id="responsibilities" class="input-block-level editor" rows="10"></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Qualification</div>
+                    <div class="span8"><textarea name="qualification" id="qualification" class="input-block-level editor" rows="10"></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Tags</div>
+                    <div class="span8"><input name="tags" type="text" id="tags" class="input-block-level" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
+                        <button class="btn btn-warning" id="buttonCancel">cancel</button>
+                        <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
                 </div>
             </form>
         </div>

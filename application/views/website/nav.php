@@ -1,8 +1,5 @@
 <?php
 $arrJobsMenu = $this->Website_model->getListJobMenu();
-//echo "<pre>";
-//var_dump($arrJobsMenu);
-//echo "</pre>";
 
 ?>
 

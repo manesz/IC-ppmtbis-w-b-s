@@ -67,34 +67,34 @@ extract((array)$arrData);
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Name
-                    <input name="name" type="text" id="name" value="<?php echo $name; ?>"/>
-                </label>
-                <p>
-                    <label>Description
-                        <textarea name="description" id="description"><?php echo $description; ?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Phone
-                        <input name="phone" type="text" id="phone" value="<?php echo $phone; ?>"/>
-                    </label>
-                </p>
-                <p>
-                    <label>email
-                        <input name="email" type="text" id="email" value="<?php echo $email; ?>" />
-                    </label>
-                </p>
-                <p>
-                    <label>permission
-                        <input name="permission" type="text" id="permission"  value="<?php echo $permission; ?>"/>
-                    </label>1=admin, 2=user(insert, update ::: job)(insert, update :: page)
-
-                </p>
-
-                <div align="right">
-                    <button class="btn btn-warning" id="buttonCancel">cancel</button>
-                    <button class="btn btn-primary" id="buttonSave">save</button>
+                <div class="row-fluid">
+                    <div class="span4">Name</div>
+                    <div class="span8"><input name="name" type="text" id="name" class="input-block-level" value="<?php echo $name; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Description</div>
+                    <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"><?php echo $description; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Phone</div>
+                    <div class="span8"><input name="phone" type="text" id="phone" class="input-block-level" value="<?php echo $phone; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">email</div>
+                    <div class="span8"><input name="email" type="text" id="email" class="input-block-level" value="<?php echo $email; ?>" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">permission</div>
+                    <div class="span8">
+                        <input name="permission" type="text" id="permission" class="input-block-level" value="<?php echo $permission; ?>"/>
+                        <span style="font-size: 10px; color: red">1=admin, 2=user(insert, update ::: job)(insert, update :: page)</span>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
+                        <button class="btn btn-warning" id="buttonCancel">cancel</button>
+                        <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
                 </div>
             </form>
         </div>

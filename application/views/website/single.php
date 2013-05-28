@@ -72,18 +72,15 @@
                     });
                 });
             </script>
-
-
+            <H4><?php echo $arrData->title; ?></H4>
+            <div class='des-sc-dots-divider'></div>
+            <H4>Salary : <?php echo $arrData->salary; ?></H4>
+            <H4>Workplace : <?php echo $arrData->workplace; ?></H4>
+            <H4>Responsibilities</H4>
+            <?php echo $arrData->responsibilities; ?>
+            <H4>Qualifications</H4>
+            <?php echo $arrData->qualification; ?>
             <br/><br/>
-
-            <?php
-                $cateID = @$_GET["cateID"];
-                $jobID = @$_GET["jobID"];
-
-                displayContent($cateID, $jobID);
-            ?>
-
-
         </div>
     </div>
 </section>
