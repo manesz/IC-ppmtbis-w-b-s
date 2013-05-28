@@ -1,0 +1,205 @@
+/* 
+========================================
+
+	Freshlook HTML by DesignareThemes
+	
+	Captions.css
+	(In this file you can find the css used
+	 in revolution slider on our theme preview)
+========================================
+
+*/
+.tp-caption.fl-title{
+			position: absolute; 		
+			font-size: 22px;
+			font-weight: bold;
+			font-family: Helvetica Neue, Arial !important;
+			line-height: 26px;
+			color: #444;	
+			width: 50%;
+			right: clear-both;
+}
+.tp-caption.big_white{
+			position: absolute; 
+			color: #fff; 
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 36px; 
+			line-height: 36px; 
+			font-family: Arial; 
+			padding: 0px 4px; 
+			padding-top: 1px;
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			background-color:none !important;
+			letter-spacing: -1.5px;										
+}
+.tp-caption.big_orange{
+			position: absolute; 
+			color: #ff7302; 
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 36px; 
+			line-height: 36px; 
+			font-family: Arial; 
+			padding: 0px 4px; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			background-color:none !important;
+			letter-spacing: -1.5px;															
+		}	
+					
+.tp-caption.big_black{
+			position: absolute; 
+			color: #000; 
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 36px; 
+			line-height: 36px; 
+			font-family: Arial; 
+			padding: 0px 4px; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			background-color:none !important;
+			letter-spacing: -1.5px;															
+		}		
+
+.tp-caption.medium_grey{
+			position: absolute; 
+			color: #fff; 
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 20px; 
+			line-height: 20px; 
+			font-family: Arial; 
+			padding: 2px 4px; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			background-color:none !important;
+			white-space:nowrap;	
+			text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);		
+		}	
+					
+.tp-caption.small_text{
+			position: absolute; 
+			color: #666; 
+			text-shadow: none; 
+			font-weight: normal; 
+			font-size: 12px; 
+			line-height: 20px; 
+			font-family: Helvetica Neue, Arial; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			white-space:nowrap;	
+					
+		}
+					
+.tp-caption.medium_text{
+			position: absolute; 
+			color: #7AB317; 
+			text-shadow: none; 
+			font-weight: normal; 
+			font-size: 18px; 
+			line-height: 20px; 
+			font-family: Helvetica Neue, Arial; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			white-space:nowrap;	
+				
+		}
+					
+.tp-caption.large_text{
+			position: absolute; 
+			
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 40px; 
+			line-height: 40px; 
+			font-family: Helvetica Neue,Arial; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			white-space:nowrap;	
+			color: #444;		
+		}	
+					
+.tp-caption.very_large_text{
+			position: absolute; 
+			color: #7AB317;	 
+			text-shadow: none; 
+			font-weight: 800; 
+			font-size: 60px; 
+			line-height: 60px; 
+			font-family: Helvetica Neue,Arial; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			white-space:nowrap;	
+			
+			letter-spacing: -2px;		
+		}
+					
+.tp-caption.very_big_white{
+			position: absolute; 
+			color: #fff; 
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 60px; 
+			line-height: 60px; 
+			font-family: Arial; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			white-space:nowrap;	
+			padding: 0px 4px; 
+			padding-top: 1px;
+			background-color:none !important;
+					}	
+					
+.tp-caption.very_big_black{
+			position: absolute; 
+			color: #444; 
+			text-shadow: none; 
+			font-weight: 700; 
+			font-size: 45px; 
+			line-height: 45px; 
+			font-family: Helvetica Neue,Arial; 
+			margin: 0px; 
+			border-width: 0px; 
+			border-style: none; 
+			white-space:nowrap;	
+			padding: 0px 4px; 
+			padding-top: 1px;
+					
+					}
+					
+.tp-caption.boxshadow{
+		-moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+		-webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+	}
+											
+.tp-caption.black{
+		color: #000; 
+		text-shadow: none;		
+	}	
+					
+.tp-caption.noshadow {
+		text-shadow: none;		
+	}	
+					
+.tp-caption a { 
+	color: #ff7302; text-shadow: none;	-webkit-transition: all 0.2s ease-out; -moz-transition: all 0.2s ease-out; -o-transition: all 0.2s ease-out; -ms-transition: all 0.2s ease-out;	 
+}			
+	
+.tp-caption a:hover { 
+	color: #ffa902; 
+}
+
+.caption{ background: none; }

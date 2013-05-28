@@ -1,0 +1,348 @@
+/**
+ * Farbtastic Color Picker 1.2
+ * © 2008 Steven Wittens
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+ */
+.farbtastic {
+  position: relative;
+}
+.farbtastic * {
+  position: absolute;
+  cursor: crosshair;
+}
+.farbtastic, .farbtastic .wheel {
+  width: 160px;
+  height: 160px;
+}
+.farbtastic .color, .farbtastic .overlay {
+  top: 44px;
+  left: 44px;
+  width: 74px;
+  height: 74px;
+}
+.farbtastic .wheel {
+  background: url(../images/wheel.png) no-repeat;
+  width: 160px;
+  height: 160px;
+}
+.farbtastic .overlay {
+  background: url(../images/mask.png) no-repeat;
+}
+.farbtastic .marker {
+  width: 17px;
+  height: 17px;
+  margin: -8px 0 0 -8px;
+  overflow: hidden; 
+  background: url(../images/marker.png) no-repeat;
+}
+
+/* 10) Switcher  ===============================================================================
+   ============================================================================================= */
+#switcher{ 
+	position: absolute;
+	left: 0px;
+	top: 200px;
+	z-index: 99999999;
+	background:#fff;
+	border:1px solid #ddd;
+	padding:0 4px 10px 7px;	
+	width:150px;
+}
+#switcher h6{
+	font-size: 14px;
+	font-weight: bold;
+}
+#switcher form select{
+	width:148px;
+	padding:4px 6px;
+	border:1px solid #ccc;
+}
+.option_btn{
+	position: fixed;
+	top: 40px;
+	cursor: pointer;
+	z-index: 99999999;
+	width: 38px;
+	height: 38px;
+	background: #7AB317;
+}
+
+.settings-open{
+	background:#7AB317 url(../img/close.png) no-repeat center center;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	left: 10px;
+	top: 30px;
+	margin-left: -20px;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-ms-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+}
+
+.settings-close{
+	background:#ccc url(../img/open.png) no-repeat center center;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+	left: 10px;
+top: 30px;
+-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-ms-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	margin-left: 10px;
+}
+#colorpicker{
+	position: relative;
+	left: 8px;
+	margin: 0;
+	top: 48px;
+}
+#color{
+	position: relative;
+	margin: 25px 0 0 30px;
+	width: 30%;
+	border: none;
+	padding: 4px 6px;
+}
+/*
+#option_wrapper
+{
+	position: fixed;
+	top: 40px;
+	left:-222px;
+	width: 200px;
+	padding: 7px 0 30px 0;
+	background-color: #fff;
+	z-index: 9999999999999999999999999999;
+	color: #666;
+	font-size: 11px;
+	border: 1px solid #E1E1E1;
+	border-bottom: 1px solid rgba(150, 150, 150, 0.2);
+	-webkit-box-shadow: 2px 2px 0px 0px rgba(150, 150, 150, 0.1);
+	-moz-box-shadow: 2px 2px 0px 0px rgba(150, 150, 150, 0.1);
+	box-shadow: 2px 2px 0px 0px rgba(150, 150, 150, 0.1);
+}
+*/
+
+#option_wrapper
+{
+	position: fixed;
+	top: 40px;
+	left:-230px;
+	width: 235px;
+	height: 268px;
+	background: url(../img/justtest.png) no-repeat center center;
+	z-index: 99999999;
+	
+	
+	
+}
+
+
+#option_wrapper .inner
+{
+	width: 90%;
+	margin:auto;
+}
+#option_wrapper h6{
+	width: 90%;
+	font-style: normal;
+	text-align: center;
+	position: relative;
+	left: 10px !important;
+}
+#bg_body_image{
+	position: relative;
+	float: left;
+	top: 5px;
+	left: 5px;
+}
+.switch-button {	
+	border:1px solid #fff;
+	border-left:1px solid #fff;
+	display:block;
+	height:30px;
+	width:30px;
+	position:absolute;
+	margin-left:152px;
+	margin-top:10px;
+	cursor:pointer;
+}
+#option_wrapper p{
+	margin-bottom: 5px;
+	margin-top: 10px;
+	position: relative;
+	float: left;
+	width: 100%;
+	text-align: center;
+	right: 2px;
+	font-family: Georgia;
+	font-weight: 400;
+	color: #CCC;
+	font-style: italic;
+}
+#option_wrapper .button{
+	top: 22px;
+	position: relative;
+	float: left;
+	padding: 4px 22px;
+	background: #EEE;
+	text-align: center;
+	margin-bottom: 20px;
+	left: 11px;
+	color: #999;
+	font-weight: bold;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+
+}
+/*
+#option_wrapper a.button:hover{
+	font-weight: bold;
+	padding: 4px 37px;
+	opacity: 0.8;
+	filter:alpha(opacity=80); 
+	border-bottom: none !important;
+	-webkit-box-shadow: none !important; 
+	-moz-box-shadow: none !important; 
+	box-shadow: none !important; 
+}
+
+.settings-open {
+	background:#fff url(../images/close.png) no-repeat center center;
+	border-bottom: none;
+}
+.settings-close {
+	background:#fff url(../images/open.png) no-repeat center center;
+	border-bottom: none;
+}
+
+
+a.closed:hover, a.open:hover {
+	border-bottom: none;
+}
+*/
+
+.theme{
+	position: relative;
+	top: 10px;
+	margin-bottom: 19px;
+}
+.theme .dark{
+	background: #333;
+	padding: 8px 20px;
+	text-shadow: none !important;
+	color: white !important;
+}
+.theme .nature{
+	background: #ccc;
+	padding: 8px 20px;
+	text-shadow: none !important;
+	color: white !important;
+}
+.theme a.dark:hover, .theme a.nature:hover, #option_wrapper .skins a:hover{
+	border-bottom: none !important;
+	opacity:0.8;
+	filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+#option_wrapper .skins{
+	position: relative;
+	float: left;
+	left: 0;
+	top: 5px;
+	padding-bottom: 0;
+	width: 110%;
+}
+#option_wrapper .skins li{
+	position: relative;
+	float: left;
+	margin-right: 2px;
+	margin-bottom: 2px;
+}
+#option_wrapper .skins a{
+	position: relative;
+	float: left;
+	text-decoration: none;
+	border: none !important;
+	width: 25px;
+	height: 24px;
+	text-indent: -9999px;
+}
+#option_wrapper .skins a.blue{
+	background: #00ccff;
+}
+#option_wrapper .skins a.red{
+	background: #f73a3a;
+}
+#option_wrapper .skins a.green{
+	background: #66cc33;
+}
+#option_wrapper .skins a.pink{
+	background: #cc3399;
+}
+#option_wrapper .skins a.purple{
+	background: #9933cc;
+}
+#option_wrapper .skins a.bluegreen{
+	background: #3ABAAA;
+}
+#option_wrapper .skins a.redwine{
+	background: #663333;
+}
+#option_wrapper .skins a.darkorange{
+	background: #cc3300;
+}
+#option_wrapper .skins a.orange{
+	background: #f36a33;
+}
+#option_wrapper .skins a.violet{
+	background: #333366;
+}
+#option_wrapper .skins a.greenblue{
+	background: #669999;
+}
+#option_wrapper .skins a.greenyellow{
+	background: #ccff33;
+}
+#option_wrapper .skins a.yellow{
+	background: #ffcc33;
+}
+#option_wrapper .skins a.aqua{
+	background: #00FFFF;
+}
+#option_wrapper .skins a.lima{
+	background: #999933;
+}
+/*
+.proj .zoom{
+	position: absolute;
+	top:60px;
+	left:-180px;
+	display: block;
+	width:47px;
+	height:48px;
+	background: url(../img/zoom.png) no-repeat;
+	opacity: 0;
+	margin: 0 auto;
+	
+}
+*/
+
+

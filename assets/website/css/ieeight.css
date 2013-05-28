@@ -1,0 +1,40 @@
+/* 
+========================================
+
+	Freshlook HTML by DesignareThemes
+	
+	ieeight.css
+	(for internet explorer 8)
+========================================
+
+*/
+.blog_content .post .video-thumb, .blog_content .post .video-thumb iframe{ z-index: 5 ;}
+.blog_content .post .post_type.video{ z-index: 9999999999 ;}
+
+header .social{ left: 60px !important; }
+
+ul.da-thumbs li:hover > a > div { background: black;}
+
+img.camera_thumb{ height: auto; }
+
+.flex-direction-nav a.prev{ left: -70px; }
+.flex-direction-nav a.next{ right: -70px; }
+
+.projectCategories {background: black;}
+
+ul.ch-grid li a h3{ opacity: 0; filter: alpha(opacity=0);}
+.magnifier, .hover-flex { opacity: 0; filter: alpha(opacity=0);}
+
+.search_top #s{
+	padding-bottom: 7px;
+}
+
+.search_top #searchform.ie_searcher_open {
+	margin-left: 21px;
+}
+.search_top #searchform.ie_searcher_close { 
+	margin-left: 0px;
+}
+
+#topcontrol{z-index: 9999 !important;}
+.validateform ul.forms textarea{ overflow: hidden; }

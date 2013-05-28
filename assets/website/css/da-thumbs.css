@@ -1,0 +1,247 @@
+/* 
+========================================
+
+	Freshlook HTML by DesignareThemes
+	
+	da-thumbs.css
+	(used on the projects hover style2)
+========================================
+
+*/
+.no-flicker{-webkit-transform:translate3d(0,0,0); -webkit-backface-visibility: hidden; -moz-transform:translate3d(0,0,0); -moz-backface-visibility: hidden;}
+
+.da-thumbs {
+	list-style: none;
+}
+.da-thumbs li {
+	position: relative;
+}
+span.overlay_categories span{
+	font-weight: bold;
+	font-size: 13px;
+	font-family: Helvetica Neue, Arial;
+}
+.team-box{
+	margin: 10px;
+}
+.da-thumbs li a,
+.da-thumbs li a img {
+	display: block;
+	position: relative;
+}
+.da-thumbs li a {
+	overflow: hidden;
+}
+.da-thumbs li a div {
+	position: absolute;
+	background: rgba(33, 33, 33, 0.8);
+	width: 100%;
+	height: 100%;
+}
+
+.da-thumbs.da-recent-projs li a div {
+	position: absolute;
+	background: rgba(255, 255, 255, .8);
+	width: 100%;
+	height: 100%;
+}
+
+.home_widget .da-thumbs.da-recent-projs li a div{
+	background: rgba(0, 0, 0, .8);
+}
+
+
+.da-thumbs li a div.da-animate {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+/* Initial state classes: */
+.da-slideFromTop {
+	left: 0px;
+	top: -100%;
+}
+.da-slideFromBottom {
+	left: 0px;
+	top: 100%;
+}
+.da-slideFromLeft {
+	top: 0px; 
+	left: -100%;
+}
+.da-slideFromRight {
+	top: 0px;
+	left: 100%;
+}
+/* Final state classes: */
+.da-slideTop {
+	top: 0px;
+}
+.da-slideLeft {
+	left: 0px;
+}
+.da-thumbs li.eight a div .overlay_categories{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 5px 20px 5px 45px;
+}
+.da-thumbs li.one-third a div .overlay_categories{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 0 20px 5px 30px;
+}
+.da-thumbs li.four a div .overlay_categories{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 0 20px 0 20px;
+}
+.da-thumbs li.eight a div .overlay_categories .sp{
+	background: #000;
+	padding: 4px 8px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	font-size: 13px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	color: #fff;
+	position: relative;
+	float: left;
+}
+.da-thumbs li.one-third a div .overlay_categories .sp{
+	background: #000;
+	padding: 4px 8px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	font-size: 12px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	color: #fff;
+	position: relative;
+	float: left;
+}
+.da-thumbs li.four a div .overlay_categories .sp{
+	background: #000;
+	padding: 2px 4px;
+	margin-right: 2px;
+	margin-bottom: 2px;
+	font-size: 11px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	color: #fff;
+	position: relative;
+	float: left;
+}
+.da-thumbs li.eight a div .overlay_title {
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 45px 20px 0 45px;
+	font-weight: normal;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	width: 85%;
+	font-size: 40px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	xbox-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 -10px 0 rgba(255,255,255,0.3);
+	line-height: 33px;
+	
+}
+
+.da-thumbs li.one-third a div .overlay_title {
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 30px 20px 0 30px;
+	font-weight: normal;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	width: 87%;
+	font-size: 30px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	xbox-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 -10px 0 rgba(255,255,255,0.3);
+	line-height: 24px;
+	
+}
+
+.da-thumbs li.four a div .overlay_title{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 10px 20px 0 20px;
+	font-weight: normal;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	width: 87%;
+	font-size: 18px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	line-height: 18px;
+	
+}
+.da-animate .overlay_title{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 0 0;
+	margin: 20px 20px 10px 30px;
+	font-weight: normal;
+	color: rgba(255,255,255,0.9);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	width: 87%;
+	font-size: 18px;
+	font-family: Helvetica Neue, Arial;
+	font-weight: bold;
+	xbox-shadow: 0 1px 0 rgba(0,0,0,0.1), 0 -10px 0 rgba(255,255,255,0.3);
+	text-align: left;
+}
+.home_widget .flex-direction-nav{
+	top: -18%;
+}
+.home_widget .project_images .flex-direction-nav{
+	top: 0%;
+}
+.da-thumbs li.four a div .overlay_sep{
+	height: 2px;
+	background: #7AB317;
+	width: 35px;
+	position: relative;
+	float: left;
+	margin: 0 0 5px 20px;
+}
+.page_title_s2 .overlay_sep, .page_title_s3 .overlay_sep{
+	height: 2px;
+	background: #7AB317;
+	width: 45px;
+	position: absolute;
+	left: 0;
+	margin-left: 6px;
+	top: 29px;
+}
+.da-thumbs li.four a div .overlay_text{
+	display: block;
+	position: relative;
+	float: left;
+	padding: 10px 0 30px 0;
+	margin: 0 20px 20px 20px;
+	font-weight: normal;
+	color: rgba(255,255,255,0.9);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	width: 87%;
+	font-size: 11px;
+	line-height: 18px;
+	font-family: Helvetica Neue, Arial;
+	
+}

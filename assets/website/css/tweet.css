@@ -1,0 +1,41 @@
+/* 
+========================================
+
+	Freshlook HTML by DesignareThemes
+	
+	tweet.css
+
+========================================
+
+*/
+#tweet_scroll_place{
+	position: relative;
+height: 40px;
+overflow: hidden;
+background: #7AB317;
+	border-bottom: 4px solid #333;
+}
+
+.tweet_bird{
+	background: url(../img/twitter_bird.png) no-repeat 0 8px;
+}
+
+#tweet_scroll_place li{
+	padding: 10px 0;
+	color: #fff;
+}
+
+#tweet_scroll_place li a{
+	color: #fff;
+}
+
+#tweet_scroll_place li img{
+	padding-right: 10px;
+	margin-top: -2px;
+	position: relative;
+	float: left;
+}
+.tweet_avatar{display: none;}
+.tweet_text{font-size: 14px;}
+.tweet_time{color: #4c7504 !important;}
+.tweet_list{position: relative; left: 40px;}
