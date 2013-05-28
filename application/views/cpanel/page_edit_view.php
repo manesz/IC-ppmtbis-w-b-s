@@ -52,7 +52,8 @@ extract((array)$arrData);
                 <li>
                     <a href="<?php echo $webUrl; ?>cpanel/page">Page</a> <span class="divider">/</span>
                 </li>
-                <li class="active">Edit</li>
+                <li class="active">Edit<span class="divider">/</span></li>
+                <li class="active"><?php echo $id; ?></li>
             </ul>
         </div>
     </div>

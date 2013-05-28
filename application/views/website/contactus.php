@@ -10,7 +10,7 @@ $this->load->view("website/header");
         <div class="inner">
             <div id="colorpicker"></div>
             <form style="margin: 20px 20px 0 28px;position: relative;top:12px;">
-                <input type="text" id="color" name="color" value="#7AB317" />
+                <input type="text" id="color" name="color" value="#7AB317"/>
             </form>
         </div>
 
@@ -38,16 +38,19 @@ $this->load->view("website/header");
     <!-- END: INFO ABOVE MENU -->
 
     <div id="map" style=" width: 100%; height: 350px ;"></div>
-    <input type="hidden" id="gm_lat" value="13.7500" />
-    <input type="hidden" id="gm_lng" value="100.4833" />
+    <input type="hidden" id="gm_lat" value="13.7500"/>
+    <input type="hidden" id="gm_lng" value="100.4833"/>
 
     <div id="white_content" style="margin-top: 10px;"> <!-- begin white-content -->
         <div id="wrapper"> <!-- begin wrapper -->
 
             <div class="main_cols container">
                 <div class="sixteen columns">
-                    <br />
-                    <h1 style="font-size: 38px !important; font-weight: normal; color: #ccc; top: -20px; position: relative;">We&#8217;d love to hear from you.</h1>
+                    <br/>
+
+                    <h1 style="font-size: 38px !important; font-weight: normal; color: #ccc; top: -20px; position: relative;">
+                        We&#8217;d love to hear from you.</h1>
+
                     <div class="des-sc-dots-divider" style="top:-10px; position:relative;"></div>
                 </div>
             </div>
@@ -61,24 +64,32 @@ $this->load->view("website/header");
                         <h4 class="flex-title"></h4>
 
                         <h3>Welcome to <span style="color: #7ab317;">PROMPTBIS</span></h3>
+
                         <p>&nbsp;</p>
-                        <p>PROMPT has been established by a team of professionals highly experienced in many fields of expertise i.e. human resources, accounting, finance, asset management, logistics and information technology, etc.   The company aims to provide one-stop services of business consultations and solutions on the principles of highly quality, punctually, customer satisfaction and cost effectiveness.   To maximize customers' satisfaction and return on investment, we continuously maintain our standardization and develop our organization to serve the better in the future.</p><br/>
+                        <!--<p>PROMPT has been established by a team of professionals highly experienced in many fields of expertise i.e. human resources, accounting, finance, asset management, logistics and information technology, etc.   The company aims to provide one-stop services of business consultations and solutions on the principles of highly quality, punctually, customer satisfaction and cost effectiveness.   To maximize customers' satisfaction and return on investment, we continuously maintain our standardization and develop our organization to serve the better in the future.</p><br/>-->
+                        <p><?php echo $arrData->contact_content; ?></p><br/>
 
                         <div class="eight columns">
                             <h4>Additional Information</h4>
-                            <p><strong>Phone:</strong> (02) 694-3997<br />
-                                <strong>Fax:</strong> (02) 694-3996<br />
+                            <p>
+<!--                                <strong>Phone:</strong> (02) 694-3997<br/>-->
+<!--                                <strong>Fax:</strong> (02) 694-3996<br/>-->
+<!--                                <strong>Email:</strong>-->
+                                <strong>Phone:</strong> <?php echo $arrData->contact_phone; ?><br/>
+                                <strong>Fax:</strong> <?php echo $arrData->contact_fax;?><br/>
                                 <strong>Email:</strong>
-                                <a class="inlineAdmedialink" href="#">info@promptbis.com</a><br />
+                                <a class="inlineAdmedialink" href="email:"><?php echo $arrData->contact_email; ?></a><br/>
 
                             <div class='socialdiv'>
-                                <br />
+                                <br/>
                                 <ul>
                                     <li>
-                                        <a href=http://www.facebook.com target='_blank' class='facebook' title='Facebook'></a>
+                                        <a href=http://www.facebook.com target='_blank' class='facebook'
+                                           title='Facebook' style="cursor: pointer;"></a>
                                     </li>
                                     <li>
-                                        <a href=http://www.twitter.com target='_blank' class='twitter' title='Twitter'></a>
+                                        <a href=http://www.twitter.com target='_blank' class='twitter'
+                                           title='Twitter' style="cursor: pointer;"></a>
                                     </li>
                                     <!--                                        <li>-->
                                     <!--                                            <a href=http://www.stumbleupon.com target='_blank' class='linkedin' title='LinkedIn'></a>-->
@@ -90,7 +101,8 @@ $this->load->view("website/header");
                                     <!--                                            <a href=http://www.stumbleupon.com target='_blank' class='picasa' title='Picasa'></a>-->
                                     <!--                                        </li>-->
                                 </ul>
-                            </div><br /><br />
+                            </div>
+                            <br/><br/>
 
                             <!--                                <h4>Secondary Office</h4>-->
                             <!--                                <p><strong>Phone:</strong> (003) 001-7722<br />-->
@@ -106,7 +118,7 @@ $this->load->view("website/header");
 
                     </div>
                     <script type="text/javascript">
-                        $(document).ready(function(){
+                        $(document).ready(function () {
                             $('#myslider-1').flexslider({
                                 animation: "fade",
                                 slideDirection: "vertical",
@@ -117,17 +129,18 @@ $this->load->view("website/header");
                                 pauseOnHover: true,
                                 keyboardNav: false,
                                 controlNav: false,
-                                start: function(slider) {
-                                    $("#myslider-1 .slides li").eq(slider.currentSlide).find(".flex-caption").animate({'bottom' : '0'}, 500);
-                                } ,after: function(slider) {
-                                    $("#myslider-1 .slides li").find(".flex-caption").each(function(){
+                                start: function (slider) {
+                                    $("#myslider-1 .slides li").eq(slider.currentSlide).find(".flex-caption").animate({'bottom': '0'}, 500);
+                                }, after: function (slider) {
+                                    $("#myslider-1 .slides li").find(".flex-caption").each(function () {
                                         $(this).css('bottom', '-100px');
-                                        if($(this).parent().hasClass('clone')){}
-                                        else{
-                                            $(this).animate({'bottom' : '-100px'}, 500);
+                                        if ($(this).parent().hasClass('clone')) {
+                                        }
+                                        else {
+                                            $(this).animate({'bottom': '-100px'}, 500);
                                         }
                                     });
-                                    $("#myslider-1 .slides li").eq(slider.currentSlide).find(".flex-caption").animate({'bottom' : '0'}, 500);
+                                    $("#myslider-1 .slides li").eq(slider.currentSlide).find(".flex-caption").animate({'bottom': '0'}, 500);
                                 }
                             });
                         });
@@ -137,30 +150,48 @@ $this->load->view("website/header");
 
                 <div class="eight columns">
                     <h4>Drop us a line</h4>
+
                     <div class="contact-form">
                         <div class="message_success form_success"></div>
                         <form method="post" action="#" class="validateform">
                             <ul class="forms">
                                 <li>
-                                    <label for="name">Name</label><input type="text" name="name" class="yourname txt corner-input" onfocus="checkerror(this)" onblur="var v = $(this).val(); $('.yourname_val').html(v);">
+                                    <label for="name">Name</label><input type="text" name="name"
+                                                                         class="yourname txt corner-input"
+                                                                         onfocus="checkerror(this)"
+                                                                         onblur="var v = $(this).val(); $('.yourname_val').html(v);">
+
                                     <div class="yourname_val" style="display:none"></div>
                                 </li>
                                 <li>
-                                    <label for="email">Email</label><input style="margin: 10px 0;" type="text" name="email" class="youremail txt corner-input" onfocus="checkerror(this)" onblur="var v = $(this).val(); $('.youremail_val').html(v);">
+                                    <label for="email">Email</label><input style="margin: 10px 0;" type="text"
+                                                                           name="email"
+                                                                           class="youremail txt corner-input"
+                                                                           onfocus="checkerror(this)"
+                                                                           onblur="var v = $(this).val(); $('.youremail_val').html(v);">
+
                                     <div class="youremail_val" style="display:none"></div>
                                 </li>
                                 <li>
-                                    <label for="message">Message</label><textarea name="message" class="yourmessage textarea message corner-input" rows=20 cols=30 onfocus="checkerror(this)" onblur="var v = $(this).val(); $('.yourmessage_val').html(v);"></textarea>
+                                    <label for="message">Message</label><textarea name="message"
+                                                                                  class="yourmessage textarea message corner-input"
+                                                                                  rows=20 cols=30
+                                                                                  onfocus="checkerror(this)"
+                                                                                  onblur="var v = $(this).val(); $('.yourmessage_val').html(v);"></textarea>
+
                                     <div class="yourmessage_val" style="display:none"></div>
                                 </li>
                                 <li>
-                                    <a style="font-family: Arial, sans-serif;" id="send-comment" href="javascript:;" onclick="sendemail($(this),'geral@designarethemes.com', 'From Your Website', 'Please enter a name.', 'Please enter a valid email.', 'Please give us a message.', 'Thanks! We will back to you soon...', 'Ups! Something wrong. Try again.')" class="submit button medium yellow">Send</a>
+                                    <a style="font-family: Arial, sans-serif;" id="send-comment" href="javascript:;"
+                                       onclick="sendemail($(this),'geral@designarethemes.com', 'From Your Website', 'Please enter a name.', 'Please enter a valid email.', 'Please give us a message.', 'Thanks! We will back to you soon...', 'Ups! Something wrong. Try again.')"
+                                       class="submit button medium yellow">Send</a>
                                 </li>
                             </ul>
                         </form>
                     </div>
                 </div>
-            </div><br/>
+            </div>
+            <br/>
 
             <div class="container"> <!-- begin container -->
 

@@ -12,7 +12,7 @@ extract((array)$arrData);
 ?>
 
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>website/navigatorEdit/<?php echo $id; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>cpanel/navigatorEdit/<?php echo $id; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -22,7 +22,7 @@ extract((array)$arrData);
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
                             alert(result)
-                            window.location = "<?php echo $webUrl; ?>website/navigator";
+                            window.location = "<?php echo $webUrl; ?>cpanel/navigator";
                         }
                     }
                 );
@@ -50,9 +50,10 @@ extract((array)$arrData);
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>website/navigator">Navigator</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/navigator">Navigator</a> <span class="divider">/</span>
                 </li>
-                <li class="active">Edit</li>
+                <li class="active">Edit<span class="divider">/</span></li>
+                <li class="active"><?php echo $id; ?></li>
             </ul>
         </div>
     </div>

@@ -32,6 +32,19 @@ $baseUrl = base_url();
             return false;
         });
     });
+
+    function validateNum(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode( key );
+        var regex = /[0-9]/;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault)
+                theEvent.preventDefault();
+        }
+    }
+
 </script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
@@ -75,19 +88,22 @@ $baseUrl = base_url();
 
                 <p>
                     <label>Layer
-                        <input name="layer" type="text" id="layer"/>
+                        <input maxlength="2" name="layer" type="text" id="layer"
+                               onkeypress="return validateNum(event);" value="0"/>
                     </label>
                 </p>
 
                 <p>
                     <label>Parent
-                        <input name="parent" type="text" id="parent"/>
+                        <input maxlength="2" name="parent" type="text" id="parent"
+                               onkeypress="return validateNum(event);" value="0"/>
                     </label>
                 </p>
 
                 <p>
                     <label>Order
-                        <input name="order" type="text" id="order"/>
+                        <input maxlength="2" name="order" type="text" id="order"
+                               onkeypress="return validateNum(event);" value="0"/>
                     </label>
                 </p>
 

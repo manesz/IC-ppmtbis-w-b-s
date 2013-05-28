@@ -45,10 +45,14 @@ class Website extends CI_Controller
     function contactus()
     {
         $message = "";
+
+        $this->load->model('CPanel_model');
+        $arrData = $this->CPanel_model->site_configList(1);
         $strSelectBar = 'contactus';
         $data = array(
             "webUrl" => $this->webUrl,
             "message" => $message,
+            "arrData" => $arrData[0],
             "selectBar" => $strSelectBar
         );
         $this->load->view("website/contactus", $data);

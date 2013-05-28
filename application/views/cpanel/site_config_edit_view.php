@@ -63,68 +63,55 @@ extract((array)$arrData);
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
-                <label>Site Title
-                    <input name="site_title" type="text" id="site_title" value="<?php echo $site_title; ?>"/>
-                </label>
-                <p>
-                    <label>Site Description
-                        <textarea name="site_description"
-                                  id="site_description"><?php echo $site_description; ?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Site Keyword
-                        <textarea name="site_keyword" id="site_keyword"><?php echo $site_keyword?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>facebook Account
-                        <textarea name="facebook_account"
-                                  id="facebook_account"><?php echo $facebook_account;?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>twitter Account
-                        <textarea name="twitter_account" id="twitter_account"><?php echo $twitter_account; ?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Front Content
-                        <textarea name="front_content" id="front_content"><?php echo $front_content; ?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Contact longtitude lagitude
-                        <input name="contact_lat_long" type="text" id="contact_lat_long"
-                               value="<?php echo $contact_lat_long;?>" />
-                    </label>google map point EX:: 13.00|100.00
-                </p>
-                <p>
-                    <label>Contact Content
-                        <textarea name="contact_content" id="contact_content"><?php echo $contact_content; ?></textarea>
-                    </label>
-                </p>
-                <p>
-                    <label>Contact Phone
-                        <input name="contact_phone" type="text" id="contact_phone"
-                               value="<?php echo $contact_phone;?>" />
-                    </label>
-                </p>
-                <p>
-                    <label>Contact fax
-                        <input name="contact_fax" type="text" id="contact_fax" value="<?php echo $contact_fax; ?>"/>
-                    </label>
-                </p>
-                <p>
-                    <label>Contact email
-                        <input name="contact_email" type="text" id="contact_email"
-                               value="<?php echo $contact_email ?>"/>
-                    </label>
-                </p>
-
-                <div align="right">
-<!--                    <button class="btn btn-warning" id="buttonCancel">cancel</button>-->
-                    <button class="btn btn-primary" id="buttonSave">save</button>
+                <div class="row-fluid">
+                    <div class="span4">Site Title</div>
+                    <div class="span8"><input name="site_title" type="text" id="site_title" class="input-block-level" value="<?php echo $site_title; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Site Description</div>
+                    <div class="span8"><textarea name="site_description" id="site_description" class="input-block-level" rows="10"><?php echo $site_description; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Site Keyword</div>
+                    <div class="span8"><textarea name="site_keyword" id="site_keyword" class="input-block-level" rows="10"><?php echo $site_keyword?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">facebook Account</div>
+                    <div class="span8"><textarea name="facebook_account" id="facebook_account" class="input-block-level" rows="10"><?php echo $facebook_account;?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">twitter Account</div>
+                    <div class="span8"><textarea name="twitter_account" id="twitter_account" class="input-block-level" rows="10"><?php echo $twitter_account; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Front Content</div>
+                    <div class="span8"><textarea name="front_content" id="front_content" class="input-block-level" rows="10"><?php echo $front_content; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Contact Longtitude/Lagitude</div>
+                    <div class="span8"><input name="contact_lat_long" type="text" id="contact_lat_long" class="input-block-level" value="<?php echo $contact_lat_long;?>" /><span style="font-size: 10px; color: red;">google map point EX:: 13.00|100.00</span></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Contact Content</div>
+                    <div class="span8"><textarea name="contact_content" id="contact_content" class="input-block-level" rows="10"><?php echo $contact_content; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Contact Phone</div>
+                    <div class="span8"><input name="contact_phone" type="text" id="contact_phone" class="input-block-level" value="<?php echo $contact_phone;?>" /></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Contact fax</div>
+                    <div class="span8"><input name="contact_fax" type="text" id="contact_fax" class="input-block-level" value="<?php echo $contact_fax; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Contact email</div>
+                    <div class="span8"><input name="contact_email" type="text" id="contact_email" class="input-block-level" value="<?php echo $contact_email ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
+                        <!--                    <button class="btn btn-warning" id="buttonCancel">cancel</button>-->
+                        <button class="btn btn-primary" id="buttonSave">save</button>
+                    </div>
                 </div>
             </form>
         </div>
