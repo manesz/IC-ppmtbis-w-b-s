@@ -6,21 +6,20 @@
  * Time: 9:09 น.
  * To change this template use File | Settings | File Templates.
  */
+
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class CRM extends CI_Controller
+class Crm extends CI_Controller
 {
     private $webUrl = "";
 
     function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('form', 'url'));
 //        $this->webUrl = base_url();
 //        $this->webUrl .= strstr($_SERVER['HTTP_HOST'], 'localhost') > -1 ? 'index.php/' : base_url();
-
-        if (strstr($_SERVER['HTTP_HOST'], 'localhost') > -1){
-            $this->webUrl .= base_url(). 'index.php/';
+        if (strstr($_SERVER['HTTP_HOST'], 'localhost') > -1) {
+            $this->webUrl .= base_url() . 'index.php/';
         } else {
             $this->webUrl = base_url();
         }
@@ -28,7 +27,7 @@ class CRM extends CI_Controller
 
     function index()
     {
-        redirect($this->webUrl . "crm/login");
+        redirect($this->webUrl . "crm/dashboard");
     }
 
     //-----------------------------------Login-Logout------------------------------------------//

@@ -27,6 +27,7 @@ class Website extends CI_Controller
 
     function index()
     {
-        redirect($this->webUrl . "website");
+//        redirect($this->webUrl . "website");
+        $this->load->view("website/index");
     }
 }

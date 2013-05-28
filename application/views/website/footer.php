@@ -261,17 +261,7 @@
 <!-- end of everything -->
 
 <!-- GOOGLE ANALYTICS -->
-<script type="text/javascript">
 
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-39948175-1', 'designarethemes.com');
-    ga('send', 'pageview');
-
-</script>
 <!-- END OF GOOGLE ANALYTICS -->
 
 
@@ -306,7 +296,7 @@
 <div style="display:none;" id="freshlook_links_color_hover"></div>
 
 <!-- IMAGE LOADER -->
-<div style="display:none;" class="loadinger"><img alt="loading" src="img/ajx_loading.gif"></div>
+<div style="display:none;" class="loadinger"><img alt="loading" src="../../../assets/website/img/ajx_loading.gif"></div>
 
 </body>
 </html>

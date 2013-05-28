@@ -30,6 +30,34 @@ class Cpanel extends CI_Controller
         redirect($this->webUrl . "cpanel/dashboard");
     }
 
+    //-----------------------------------Login-Logout------------------------------------------//
+
+    function login()
+    {
+        $post = $this->input->post();
+        $message = "";
+        if ($post) {
+            $this->load->model('Auth_model');
+            $resultLogin = $this->Auth_model->signIn($post);
+            if ($resultLogin) {
+                redirect($this->webUrl . "cpanel/dashboard");
+            } else {
+                echo 'login fail';
+            }
+        }
+        if (empty($this->session->userdata['username'])) {
+            $this->load->view('cpanel/login_view', array('message' => $message));
+        } else {
+            redirect($this->webUrl . "cpanel/dashboard");
+        }
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy();
+        redirect($this->webUrl . "cpanel/login");
+    }
+
     //-----------------------------------Dashboard------------------------------------------//
     function dashboard()
     {
