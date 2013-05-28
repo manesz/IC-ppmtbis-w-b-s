@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array();
+$autoload['model'] = array('Website_model', 'CPanel_model');
 
 
 /* End of file autoload.php */

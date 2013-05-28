@@ -81,4 +81,16 @@ class Website extends CI_Controller
         );
         $this->load->view("website/single", $data);
     }
+
+    function post($id)
+    {
+        $message = "";
+        $strSelectBar = 'post';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/single", $data);
+    }
 }

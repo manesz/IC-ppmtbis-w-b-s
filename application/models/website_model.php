@@ -16,4 +16,31 @@ class Website_model extends CI_Model
     {
         parent::__construct();
     }
+
+    function getListJobMenu()
+    {
+        $sql = "
+            SELECT
+              a.*,
+              b.`name` AS type_name
+            FROM
+              `wb_post` a
+              INNER JOIN `wb_type` b
+                ON (
+                  a.`type` = b.`id`
+                  AND b.`publish` = 1
+                )
+            WHERE 1
+              AND a.`publish` = 1
+                ORDER BY a.`type`,
+                  a.`create_time`
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
 }
