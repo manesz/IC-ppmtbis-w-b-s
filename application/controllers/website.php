@@ -53,4 +53,28 @@ class Website extends CI_Controller
         );
         $this->load->view("website/contactus", $data);
     }
+
+    function our_service()
+    {
+        $message = "";
+        $strSelectBar = 'our_service';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/our-service", $data);
+    }
+
+    function about_us()
+    {
+        $message = "";
+        $strSelectBar = 'about_us';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/single", $data);
+    }
 }

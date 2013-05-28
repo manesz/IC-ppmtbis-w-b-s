@@ -1,9 +1,9 @@
-<?php require_once("header.php");?>
-<?php require_once("functions.php");?>
+<?php $this->load->view("website/header");?>
+<?php $this->load->view("website/functions");?>
 
-<?php require_once("header-content.php");?>
+<?php $this->load->view("website/header-content");?>
 
-<?php require_once("title.php");?>
+<?php $this->load->view("website/title");?>
 
 <div id="white_content">
 
@@ -93,11 +93,11 @@
 
 <div id="secondary" class="widget-area four columns" style="position: relative; float: right;">
 
-    <?php require_once("sidebar.php");?>
+    <?php $this->load->view("website/sidebar");?>
 
 </div><!-- #secondary .widget-area -->
 </div><!-- #primary -->
 </div><!-- enf of .container -->
 </div><!-- end of wrapper -->
 
-<?php require_once("footer.php");?>
+<?php $this->load->view("website/footer");?>

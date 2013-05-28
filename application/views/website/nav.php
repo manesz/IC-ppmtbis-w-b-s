@@ -7,7 +7,7 @@
 </li>
 
 <li class="menu-item">
-    <a href="our-service.php" <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?> >Our Service</a>
+    <a href="<?php echo $webUrl; ?>website/our_service" <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?> >Our Service</a>
 </li>
 
 <li class="menu-item">
@@ -222,12 +222,12 @@
 </li>
 
 <li class="menu-item">
-    <a href="single.php">About Us</a>
+    <a href="<?php echo $webUrl; ?>website/about_us" <?php echo $selectBar == "about_us" ? "class=\"selected\"" : ""; ?>>About Us</a>
 </li>
 
 <li class="menu-item">
     <a href="<?php echo $webUrl; ?>website/contactus"
-        <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?>>Contact Us</a>
+        <?php echo $selectBar == "contactus" ? "class=\"selected\"" : ""; ?>>Contact Us</a>
 </li>
 
 </ul>
