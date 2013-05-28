@@ -1,5 +1,7 @@
 <?php //require_once("header.php");
 $this->load->view("website/header");
+$baseUrl = base_url();
+
 ?>
 
 <div class="everything">
@@ -473,6 +475,6 @@ $this->load->view("website/header-content");?>
 </div><!-- end of wrapper -->
 
 <?php //require_once("footer.php");
-$this->load->view("website/footer")
+$this->load->view("website/footer");
 ?>
 

@@ -12,6 +12,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Website extends CI_Controller
 {
     private $webUrl = "";
+    private $listJobMenu = array();
 
     function __construct()
     {
@@ -23,11 +24,33 @@ class Website extends CI_Controller
         } else {
             $this->webUrl = base_url();
         }
+
+        //load list job menu
+
     }
 
     function index()
     {
 //        redirect($this->webUrl . "website");
-        $this->load->view("website/index");
+        $message = "";
+        $strSelectBar = 'home';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/index", $data);
+    }
+
+    function contactus()
+    {
+        $message = "";
+        $strSelectBar = 'contactus';
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("website/contactus", $data);
     }
 }
