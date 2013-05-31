@@ -189,25 +189,26 @@ extract((array)$arrData);
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="">
                 <input type="hidden" name="key_account_manager_id" value="1"/>
+                <div class="row-fluid">
+                    <div class="span2">รูปบริษัท</div>
+                    <div class="span3"><div id="image_show">
+                        <img width="250" height="190"
+                             src="<?php echo $baseUrl; ?>upload/images/company/<?php echo "$id/$logo_image"; ?>"/>
+                    </div>
+                        <input name="userfile" type="file" id="logo_image_path"/>
+                        <input name="logo_image" type="hidden" id="logo_image" class="input-block-level" value="<?php echo $logo_image; ?>"/></div><!--  class="input-block-level" -->
+                    <div class="span2">...</div>
+                    <div class="span3">....</div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">รายละเอียดบริษัทภาษาไทย</div>
+                    <div class="span3"><textarea id="description_th" class="input-block-level" rows="10" name="description_th"><?php echo $description_th; ?></textarea></div><!--  class="input-block-level" -->
+                    <div class="span2">...</div>
+                    <div class="span3">....</div><!--  class="input-block-level" -->
+                </div>
                 <table cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
-                            <label>รูปบริษัท
-                                <div id="image_show">
-                                    <img width="250" height="190"
-                                         src="<?php echo $baseUrl; ?>upload/images/company/<?php echo "$id/$logo_image"; ?>"/>
-                                </div>
-                                <input name="userfile" type="file" id="logo_image_path"/>
-                                <input name="logo_image" type="hidden" id="logo_image"
-                                       value="<?php echo $logo_image; ?>"/>
-                            </label>
-
-                            <p>
-                                <label>รายละเอียดบริษัทภาษาไทย
-                                    <textarea id="description_th"
-                                              name="description_th"><?php echo $description_th; ?></textarea>
-                                </label>
-                            </p>
 
                             <p>
                                 <label>ที่อยู่บริษัทภาษาไทย

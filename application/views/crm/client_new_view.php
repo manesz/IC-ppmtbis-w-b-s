@@ -183,132 +183,84 @@ $baseUrl = base_url();
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                 <input type="hidden" name="key_account_manager_id" value="1"/>
-                <table cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td>
-                            <label>รูปบริษัท
-                                <input name="userfile" type="file" id="logo_image_path"/>
-                                <input name="logo_image" type="hidden" id="logo_image" value=""/>
-                            </label>
+                <div class="row-fluid">
+                    <div class="span2">รูปบริษัท</div>
+                    <div class="span4">
+                        <input name="userfile" type="file" id="logo_image_path"/>
+                        <input name="logo_image" type="hidden" id="logo_image" value=""/>
+                    </div><!--  class="input-block-level" -->
+                    <div class="span2">ชื่อบริษัทภาษาไทย </div>
+                    <div class="span4"><input name="name_th" type="text" id="name_th" class="input-block-level"/></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">ชื่อบริษัทแบบย่อ </div>
+                    <div class="span4"><input name="name_short" type="text" id="name_short" class="input-block-level"/></div><!--  class="input-block-level" -->
 
-                            <p>
-                                <label>รายละเอียดบริษัทภาษาไทย
-                                    <textarea id="description_th" name="description_th"></textarea>
-                                </label>
-                            </p>
+                    <div class="span2">ชื่อบริษัทภาษาอังกฤษ </div>
+                    <div class="span4"><input name="name_en" type="text" id="name_en" class="input-block-level"/></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">รายละเอียดบริษัทภาษาไทย</div>
+                    <div class="span4"><textarea id="description_th" class="input-block-level" rows="5" name="description_th"></textarea></div><!--  class="input-block-level" -->
+                    <div class="span2">รายละเอียดบริษัทภาษาอังกฤษ </div>
+                    <div class="span4"><textarea name="description_en" id="description_en" class="input-block-level" rows="5"></textarea></div><!--  class="input-block-level" -->
 
-                            <p>
-                                <label>ที่อยู่บริษัทภาษาไทย
-                                    <textarea name="address_th" id="address_th"></textarea>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>เบอร์โทรศัพท์ Office
-                                    <input name="office_number" type="text" id="office_number"/>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>Email Office
-                                    <input name="email_office" type="text" id="email_office"/>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>รายละเอียดสินค้าและบริการภาษาไทย
-                                    <textarea name="main_product_th" id="main_product_th"></textarea>
-                                </label>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <label>ชื่อบริษัทภาษาไทย
-                                    <input name="name_th" type="text" id="name_th"/>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>ชื่อบริษัทภาษาอังกฤษ
-                                    <input name="name_en" type="text" id="name_en"/>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>ชื่อบริษัทแบบย่อ
-                                    <input name="name_short" type="text" id="name_short"/>
-                                </label>
-                            </p>
-
-                            <p>
-
-                                <label>ประเภทบริษัท
-                                    <select name="company_type_id" id="company_type_id">
-                                        <?php
-                                        foreach ($company_type as $value) {
-                                            echo "<option value='$value->id'>$value->name</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>รายละเอียดบริษัทภาษาอังกฤษ
-                                    <textarea name="description_en" id="description_en"></textarea>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>ที่อยู่ภาษาอังกฤษ
-                                    <textarea name="address_en" id="address_en"></textarea>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>เบอร์ FAX
-                                    <input name="fax_number" type="text" id="fax_number"/>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>link website
-                                    <input name="website_link" type="text" id="website_link"/>
-                                </label>
-                            </p>
-
-                            <p>
-                                <label>รายละเอียดสินค้าและบริการภาษาอังกฤษ<textarea name="main_product_en"
-                                                                                    id="main_product_en"></textarea>
-                                </label>
-                            </p>
-                            <p>
-                            <p>เลือกเอกสาร</p><input type="file" id="file_upload" name="file_upload"/>
-
-                    </tr>
-                </table>
-                <p>
-                    <label>Remark
-                        <textarea name="remark" id="remark"></textarea>
-                    </label>
-                </p>
-
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">ที่อยู่บริษัทภาษาไทย</div>
+                    <div class="span4"><textarea name="address_th" id="address_th" class="input-block-level" rows="5"></textarea></div><!--  class="input-block-level" -->
+                    <div class="span2">ที่อยู่ภาษาอังกฤษ </div>
+                    <div class="span4"><textarea name="address_en" id="address_en" class="input-block-level" rows="5"></textarea></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">เบอร์โทรศัพท์ Office</div>
+                    <div class="span4"><input name="office_number" type="text" id="office_number" class="input-block-level"/></div><!--  class="input-block-level" -->
+                    <div class="span2">Email Office </div>
+                    <div class="span4"><input name="email_office" type="text" id="email_office" class="input-block-level"/></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">ประเภทบริษัท</div>
+                    <div class="span4">
+                        <select name="company_type_id" id="company_type_id" class="input-block-level">
+                            <?php
+                            foreach ($company_type as $value) {
+                                echo "<option value='$value->id'>$value->name</option>";
+                            }
+                            ?>
+                        </select>
+                    </div><!--  class="input-block-level" -->
+                    <div class="span2">เบอร์ FAX</div>
+                    <div class="span4"><input name="fax_number" type="text" id="fax_number" class="input-block-level"/></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">รายละเอียดสินค้าและบริการภาษาไทย </div>
+                    <div class="span4"><textarea name="main_product_th" id="main_product_th" class="input-block-level" rows="5"></textarea></div><!--  class="input-block-level" -->
+                    <div class="span2">รายละเอียดสินค้าและบริการภาษาอังกฤษ</div>
+                    <div class="span4"><textarea name="main_product_en" id="main_product_en" class="input-block-level" rows="5"></textarea></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">link website </div>
+                    <div class="span4"><input name="website_link" type="text" id="website_link" class="input-block-level"/></div><!--  class="input-block-level" -->
+                    <div class="span2">เลือกเอกสาร</div>
+                    <div class="span4"><input type="file" id="file_upload" name="file_upload"/></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">Remark </div>
+                    <div class="span10"><textarea name="remark" id="remark" class="input-block-level" rows="5"></textarea></div><!--  class="input-block-level" -->
+                </div>
                 <p><strong>รายละเอียดการจ่ายเงิน</strong></p>
-
-                <p>
-                    <label>Recruitment fee
-                        <input name="recruitment_fee" type="text" id="recruitment_fee"/>
-                    </label><label>Payment Term
-                        <input name="payment_term" type="text" id="payment_term"/>
-                    </label>
-                </p>
-
-                <p>
-                    <label align="right">
+                <div class="row-fluid">
+                    <div class="span2">Recruitment fee </div>
+                    <div class="span4"><input name="recruitment_fee" type="text" id="recruitment_fee" class="input-block-level"/></div><!--  class="input-block-level" -->
+                    <div class="span2">Payment Term </div>
+                    <div class="span4"><input name="payment_term" type="text" id="payment_term" class="input-block-level"/></div><!--  class="input-block-level" -->
+                </div>
+                <div class="row-fluid">
+                    <div class="span12" align="right">
                         <button class="btn btn-warning" id="buttonCancel">cancel</button>
                         <button class="btn btn-primary" id="buttonSave">save</button>
-                    </label>
-                </p>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

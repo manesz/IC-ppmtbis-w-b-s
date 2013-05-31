@@ -296,7 +296,7 @@
 <div style="display:none;" id="freshlook_links_color_hover"></div>
 
 <!-- IMAGE LOADER -->
-<div style="display:none;" class="loadinger"><img alt="loading" src="../../../assets/website/img/ajx_loading.gif"></div>
+<div style="display:none;" class="loadinger"><img alt="loading" src="img/ajx_loading.gif"></div>
 
 </body>
 </html>

@@ -35,6 +35,18 @@ extract((array)$arrData);
             return false;
         });
     });
+
+    function validateNum(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode( key );
+        var regex = /[0-9]/;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault)
+                theEvent.preventDefault();
+        }
+    }
 </script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
@@ -77,15 +89,15 @@ extract((array)$arrData);
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Layer</div>
-                    <div class="span8"><input name="layer" type="text" id="layer" class="input-block-level" value="<?php echo $layer; ?>"/></div>
+                    <div class="span8"><input name="layer" type="text" id="layer" onkeypress="return validateNum(event);" class="input-block-level" value="<?php echo $layer; ?>"/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Parent</div>
-                    <div class="span8"><input name="parent" type="text" id="parent" class="input-block-level" value="<?php echo $parent; ?>"/></div>
+                    <div class="span8"><input name="parent" type="text" onkeypress="return validateNum(event);" id="parent" class="input-block-level" value="<?php echo $parent; ?>"/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Order</div>
-                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" value="<?php echo $order; ?>"/></div>
+                    <div class="span8"><input name="order" type="text" onkeypress="return validateNum(event);" id="order" class="input-block-level" value="<?php echo $order; ?>"/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12" align="right">
