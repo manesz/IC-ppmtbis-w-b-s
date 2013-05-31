@@ -120,7 +120,7 @@ class Crm extends CI_Controller
         $arrCompanyType = $this->Company_type_model->getListCompanyType();
 
         $post = $this->input->post();
-        if ($post) {//echo 1;exit();
+        if ($post) {//var_dump($this->session);exit();
             $this->load->model('Client_model');
             $result = $this->Client_model->clientNew($post);
             if ($result){

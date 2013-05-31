@@ -218,7 +218,7 @@ $baseUrl = base_url();
         </div>
         <div class="block-content collapse in">
             <form id="formPost" name="formPost" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
-                <input type="hidden" name="key_account_manager_id" value="1"/>
+                <input type="hidden" name="key_account_manager_id" value="4"/>
 
                 <div class="row-fluid">
                     <div class="span2">รูปบริษัท</div>

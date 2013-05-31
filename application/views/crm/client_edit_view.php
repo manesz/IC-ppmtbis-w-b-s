@@ -29,6 +29,17 @@ extract((array)$arrData);
     .uploadify:hover .bt-class {
         background-color: transparent;
     }
+
+    .uploadify-queue-item {
+        background-color: #C7FFFF;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font: 11px Verdana, Geneva, sans-serif;
+        margin-top: 5px;
+        width: 280px;
+        padding: 10px;
+    }
 </style>
 <script>
     var swfPath = "<?php echo $baseUrl;?>assets/plugin/uploadify/uploadify.swf";
@@ -41,6 +52,7 @@ extract((array)$arrData);
         genUploadImage("#logo_image_path", "#image_show", "#logo_image");
         genUploadFiles("#file_upload", "", "");
     });
+
     function genUploadImage(btnUpload, idReload, idSave) {
         $(btnUpload).uploadify({
             'multi': false,
@@ -60,7 +72,7 @@ extract((array)$arrData);
             'onFallback': function () {
                 alert('Flash was not detected.');// detect flash compatible
             }, 'onUploadSuccess': function (file, data, response) {
-                reloadImgae(idReload, data, idSave);
+                reloadImage(idReload, data, idSave);
             },
             'queueSizeLimit': 1
         });
@@ -86,14 +98,13 @@ extract((array)$arrData);
             'onFallback': function () {
                 alert('Flash was not detected.');// detect flash compatible
             }, 'onUploadSuccess': function (file, data, response) {
-                saveData();
-                innerHtml("#content", url_edit_data);
+                saveData(true, url_edit_data);
             },
             'queueSizeLimit': 5
         });
     }
 
-    function reloadImgae(id, img, idSave) {
+    function reloadImage(id, img, idSave) {
         var path = "<?php echo $baseUrl; ?>" + pathImageUpload + "/" + "<?php echo $id; ?>/" + img;
         $(idSave).val(img);
         $(id).fadeOut().html(getTypeImage(path, "")).fadeIn("slow");
@@ -105,16 +116,19 @@ extract((array)$arrData);
 
     var url_edit_data = "<?php echo $webUrl; ?>crm/clientEdit/<?php echo $id; ?>";
     var url_delete_file = "<?php echo $webUrl; ?>crm/clientDeleteFile";
-    function saveData()
+    function saveData(reload, url)
     {
         $.post(url_edit_data, $("#formPost").serialize(),
             function (result) {
                 if (result == "edit fail") {
                     alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                 } else {
-                    //alert(result)
-                    //alert(result)
-                    //window.location.reload();
+                    if (reload) {
+                        innerHtml("#content", url);
+                    }
+                    if (url == "refresh") {
+                        window.location.reload();
+                    }
                 }
             }
         );
@@ -122,7 +136,7 @@ extract((array)$arrData);
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
-                saveData();
+                saveData(false, "refresh");
             }
             return false;
         });
@@ -148,8 +162,7 @@ extract((array)$arrData);
                     if (result == "delete file fail") {
                         alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                     } else {
-                        saveData();
-                        innerHtml("#content", url_edit_data);
+                        saveData(true, url_edit_data);
                     }
                 }
             );
