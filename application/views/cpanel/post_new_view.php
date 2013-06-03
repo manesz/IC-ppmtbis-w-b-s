@@ -108,6 +108,10 @@ $baseUrl = base_url();
                     <div class="span8"><input name="tags" type="text" id="tags" class="input-block-level" /></div>
                 </div>
                 <div class="row-fluid">
+                    <div class="span4">Hot Job</div>
+                    <div class="span8"><input name="hotjob" type="checkbox" id="hotjob" class="input-block-level" /></div>
+                </div>
+                <div class="row-fluid">
                     <div class="span12" align="right">
                         <button class="btn btn-warning" id="buttonCancel">cancel</button>
                         <button class="btn btn-primary" id="buttonSave">save</button>

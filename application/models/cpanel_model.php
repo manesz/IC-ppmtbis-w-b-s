@@ -281,6 +281,7 @@ class CPanel_model extends CI_Model
             'responsibilities' => trim($responsibilities),
             'qualification' => trim($qualification),
             'tags' => trim($tags),
+            'hotjob' => empty($hotjob) ? 0 : 1,
             'create_time' => date("Y-m-d H:i:s")
         );
         $this->db->insert('wb_post', $data);
@@ -306,6 +307,7 @@ class CPanel_model extends CI_Model
             'responsibilities' => trim($responsibilities),
             'qualification' => trim($qualification),
             'tags' => trim($tags),
+            'hotjob' => empty($hotjob) ? 0 : 1,
         );
 
         return $this->db->update('wb_post', $data, array('id' => $id));

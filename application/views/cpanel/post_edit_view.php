@@ -14,8 +14,8 @@ extract((array)$arrData);
 <script src="<?php echo $baseUrl; ?>assets/plugin/ckeditor/ckeditor.js"></script>
 <link rel="stylesheet" href="<?php echo $baseUrl; ?>assets/plugin/ckeditor/contents.css">
 <script>
-    function CKupdate(){
-        for ( instance in CKEDITOR.instances )
+    function CKupdate() {
+        for (instance in CKEDITOR.instances)
             CKEDITOR.instances[instance].updateElement();
     }
 
@@ -37,7 +37,6 @@ extract((array)$arrData);
             }
             return false;
         });
-
 
 
         $("#buttonCancel").click(function () {
@@ -83,11 +82,13 @@ extract((array)$arrData);
             <form id="formPost" name="formPost" method="post" action="">
                 <div class="row-fluid">
                     <div class="span4">Title</div>
-                    <div class="span8"><input name="title" type="text" id="title" class="input-block-level" value="<?php echo $title; ?>"/></div>
+                    <div class="span8"><input name="title" type="text" id="title" class="input-block-level"
+                                              value="<?php echo $title; ?>"/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Description</div>
-                    <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"><?php echo $description; ?></textarea></div>
+                    <div class="span8"><textarea name="description" id="description" class="input-block-level"
+                                                 rows="10"><?php echo $description; ?></textarea></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Type</div>
@@ -107,23 +108,36 @@ extract((array)$arrData);
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Salary</div>
-                    <div class="span8"><input name="salary" type="text" id="salary" class="input-block-level" value="<?php echo $salary; ?>"/></div>
+                    <div class="span8"><input name="salary" type="text" id="salary" class="input-block-level"
+                                              value="<?php echo $salary; ?>"/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Workplace</div>
-                    <div class="span8"><input name="workplace" type="text" id="workplace" class="input-block-level" value="<?php echo $workplace; ?>"/></div>
+                    <div class="span8"><input name="workplace" type="text" id="workplace" class="input-block-level"
+                                              value="<?php echo $workplace; ?>"/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Responsibilities</div>
-                    <div class="span8"><textarea name="responsibilities" id="responsibilities" class="ckeditor input-block-level " rows="10"><?php echo $responsibilities; ?></textarea></div>
+                    <div class="span8"><textarea name="responsibilities" id="responsibilities"
+                                                 class="ckeditor input-block-level "
+                                                 rows="10"><?php echo $responsibilities; ?></textarea></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Qualification</div>
-                    <div class="span8"><textarea name="qualification" id="qualification" class="ckeditor input-block-level" rows="10"><?php echo $qualification; ?></textarea></div>
+                    <div class="span8"><textarea name="qualification" id="qualification"
+                                                 class="ckeditor input-block-level"
+                                                 rows="10"><?php echo $qualification; ?></textarea></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Tags</div>
-                    <div class="span8"><input name="tags" type="text" id="tags" class="input-block-level" value="<?php echo $tags; ?>"/></div>
+                    <div class="span8"><input name="tags" type="text" id="tags" class="input-block-level"
+                                              value="<?php echo $tags; ?>"/></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Hot Job</div>
+                    <div class="span8"><input name="hotjob" type="checkbox" id="hotjob"
+                                              class="input-block-level" <?php echo $hotjob == 0 ? '' : 'checked'; ?>/>
+                    </div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12" align="right">

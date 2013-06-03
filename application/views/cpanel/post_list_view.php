@@ -14,14 +14,13 @@ $this->load->view('header_datatable_view');
     $(document).ready(function () {
         $('#dataTable').dataTable();
 
-        $('#buttonNew').click(function(){
+        $('#buttonNew').click(function () {
             innerHtml("#content", this.href);
             return false;
         });
     });
 
-    function deleteClick(url)
-    {
+    function deleteClick(url) {
         if (confirm("คุณต้องการลบข้อมูลใช่หรือไม่")) {
             $.post(url,
                 function (result) {
@@ -74,6 +73,7 @@ $this->load->view('header_datatable_view');
                     <th>Salary</th>
                     <th>Workplace</th>
                     <th>Tags</th>
+                    <th>Hot Job</th>
                     <th>วันที่สร้าง</th>
                     <th>จัดการข้อมูล</th>
                 </tr>
@@ -91,6 +91,7 @@ $this->load->view('header_datatable_view');
                         <td class="center"><?php echo $value->salary; ?></td>
                         <td class="center"><?php echo $value->workplace; ?></td>
                         <td class="center"><?php echo $value->tags; ?></td>
+                        <td class="center"><?php echo $value->hotjob == 1 ? 'Yes' : 'No'; ?></td>
                         <td class="center"><?php echo $value->create_time; ?></td>
                         <td class="center">
                             <a class="editData" onclick="innerHtml('#content',
