@@ -13,9 +13,14 @@ $baseUrl = base_url();
 <link rel="stylesheet" href="<?php echo $baseUrl; ?>assets/plugin/ckeditor/contents.css">
 <script>
     var url_new_data = "<?php echo $webUrl; ?>cpanel/postNew";
+    function CKupdate() {
+        for (instance in CKEDITOR.instances)
+            CKEDITOR.instances[instance].updateElement();
+    }
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
+                CKupdate();
                 $.post(url_new_data, $("#formPost").serialize(),
                     function (result) {
                         if (result == "add fail") {
