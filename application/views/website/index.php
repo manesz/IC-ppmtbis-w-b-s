@@ -2,6 +2,9 @@
 $this->load->view("website/header");
 $baseUrl = base_url();
 $arrData = $this->CPanel_model->site_configList(1);
+
+
+$arrHotJob = $this->CPanel_model->postList(0, true);
 ?>
 
 <div class="everything">
@@ -132,53 +135,6 @@ $this->load->view("website/header-content");?>
 
 <!-- START: SERVICES ICONS -->
 <div id='service-29' class='shortcode-services default'>
-<!--    <ul class='service-items'>-->
-<!--        <li class='service-item even one-third column no-flicker'>-->
-<!--            <p class='designare_icon'><img src='img/designare_icons/icon73.png' title='Perfect for your Business photo' class='designare_icon' alt=""></p>-->
-<!---->
-<!--            <p class='item-title'>Perfect for your Business</p>-->
-<!---->
-<!--            <p class='item-desc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard.</p>-->
-<!---->
-<!--            <p>&nbsp;</p>-->
-<!---->
-<!--            <p><a href="#"><strong>Read more →</strong></a></p>-->
-<!---->
-<!--            <p></p>-->
-<!--        </li>-->
-<!---->
-<!--        <li class='service-item even one-third column no-flicker'>-->
-<!--            <p class='designare_icon'><img src='img/designare_icons/icon84.png' title='Responsive Design photo' class='designare_icon' alt=""></p>-->
-<!---->
-<!--            <p class='item-title'>Responsive Design</p>-->
-<!---->
-<!--            <p class='item-desc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard.</p>-->
-<!---->
-<!--            <p>&nbsp;</p>-->
-<!---->
-<!--            <p><a href="#"><strong>Read more →</strong></a></p>-->
-<!---->
-<!--            <p></p>-->
-<!--        </li>-->
-<!---->
-<!--        <li class='service-item odd one-third column no-flicker'>-->
-<!--            <p class='designare_icon'><img src='img/designare_icons/icon24.png' title='Flying Text Captions photo' class='designare_icon' alt=""></p>-->
-<!---->
-<!--            <p class='item-title'>Flying Text Captions</p>-->
-<!---->
-<!--            <p class='item-desc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard.</p>-->
-<!---->
-<!--            <p>&nbsp;</p>-->
-<!---->
-<!--            <p><strong><a href="#">Read more →</a></strong></p>-->
-<!---->
-<!--            <p></p>-->
-<!--        </li>-->
-<!---->
-<!--        <li style="list-style: none; display: inline">-->
-<!--            <p></p>-->
-<!--        </li>-->
-<!--    </ul>-->
 
     <h3>Welcome to <span style="color: #7ab317;">PROMPTBIS</span></h3>
     <p>&nbsp;</p>
@@ -189,6 +145,25 @@ $this->load->view("website/header-content");?>
 </div>
 <!-- END: SERVICES ICONS -->
 
+<!-- FACEBOOK BOX -->
+<div class="shortcode-services default">
+    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FPROMPT%2F246528425359362&amp;width=292&amp;height=290&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=false&amp;header=true&amp;appId=121360188027071" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:280px;" allowTransparency="true"></iframe>
+</div>
+<!-- END: FACEBOOK BOX -->
+
+
+    <div class="recentPostsSidebar_widget">
+
+        <!--    <h2>Recent Posts</h2>-->
+        <h2>Hot Jobs</h2>
+
+        <ul class="recentposts_listing">
+            <?php foreach ($arrHotJob as $key => $value):
+                ?>
+                <li><a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 
 <!-- 1/2 + 1/2 COLUMNS -->
 <div class="main_cols container">

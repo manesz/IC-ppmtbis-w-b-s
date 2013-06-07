@@ -11,10 +11,10 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
         <a href="<?php echo $webUrl; ?>" <?php echo $selectBar == "home" ? "class=\"selected\"" : ""; ?> >Home</a>
     </li>
 
-    <!--<li class="menu-item">
+    <li class="menu-item">
         <a href="<?php echo $webUrl; ?>website/our_service" <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?> >Our
             Service</a>
-    </li>-->
+    </li>
 
     <li class="menu-item">
         <a href="#">Jobs</a>
@@ -255,10 +255,10 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
 <!--</ul>-->
 <!--</li>-->
 
-<li class="menu-item">
+<!--<li class="menu-item">
     <a href="#" <?php echo $selectBar == "about_us" ? "class=\"selected\"" : ""; ?>
         >About Us</a>
-</li>
+</li>-->
 
 <li class="menu-item">
     <a href="<?php echo $webUrl; ?>website/contactus"

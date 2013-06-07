@@ -316,15 +316,18 @@ class CPanel_model extends CI_Model
     /**
      * get post data
      *
-     * @param int $id
-     * @return object
      */
-    function postList($id = 0)
+    function postList($id = 0, $hotJob = false)
     {
         if ($id == 0) {
             $strAND = "";
         } else {
             $strAND = " AND a.id = $id";
+        }
+        if ($hotJob == 0) {
+            $strAND .= "";
+        } else {
+            $strAND .= " AND a.hotjob = 1";
         }
 
         $sql = "
