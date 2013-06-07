@@ -213,6 +213,133 @@ class Crm extends CI_Controller
         exit();
     }
 
-    //-----------------------------------Client------------------------------------------//
+    //-----------------------------------Job------------------------------------------//
+    function job()
+    {
+        $message = "";
+        $strSelectBar = "job";
 
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/job_view", $data);
+    }
+
+    function jobList()
+    {
+        $this->load->model('job_model');
+        $arrjob = $this->job_model->getListjob();
+
+        $this->load->model('Company_type_model');
+        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+
+        $data = array(
+            'arrjobList' => $arrjob,
+            'company_type' => $arrCompanyType,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/job_list_view', $data);
+    }
+
+    function jobNew()
+    {
+        $this->load->model('Company_type_model');
+        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+
+        $post = $this->input->post();
+        if ($post) {//var_dump($this->session);exit();
+            $this->load->model('job_model');
+            $result = $this->job_model->jobNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            'company_type' => $arrCompanyType,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/job_new_view', $data);
+    }
+
+    function jobEdit($id)
+    {
+        $message = "";
+        $this->load->model('job_model');
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->job_model->jobEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrjob = $this->job_model->getListjob($id);
+
+        $this->load->model('Company_type_model');
+        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+
+        $this->load->model('Upload_model');
+        $arrFileName = $this->Upload_model->getFileFromFolder("company", $id);
+        $data = array(
+            'arrData' => $arrjob[0],
+            'company_type' => $arrCompanyType,
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+            "arrFileName" => $arrFileName
+        );
+        $this->load->view('crm/job_edit_view', $data);
+    }
+
+    function jobDelete($id)
+    {
+        $this->load->model('job_model');
+        $result = $this->job_model->setPublish($id, 'crm_company');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    function jobUpdateImagePath()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $this->load->model('job_model');
+            $result = $this->job_model->jobUpdatePathImage($id, $path);
+            if ($result) {
+                echo "update success";
+            } else {
+                echo "update fail";
+            }
+            exit();
+        }
+    }
+
+    function jobDeleteFile()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $this->load->model('Upload_model');
+            $result = $this->Upload_model->deleteFile("company", $id, $fileName);
+            if ($result){
+                echo "delete file finish";
+            } else {
+                echo "delete file fail";
+            }
+        }
+        exit();
+    }
 }

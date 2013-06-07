@@ -9,6 +9,7 @@
 
 $baseUrl = base_url();
 ?>
+</div>
 <hr>
 <footer>
     <p>&copy; Vincent Gabriel 2013</p>

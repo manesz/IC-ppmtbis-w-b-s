@@ -49,7 +49,7 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Admin Panel</a>
+            <a class="brand" href="<?php echo $webUrl; ?>cpanel/dashboard">Admin Panel</a>
 
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
@@ -70,7 +70,7 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav">
+                <!--<ul class="nav">
                     <li <?php echo $selectBar == "dashboard" ? 'class="active"' : "" ?> >
                         <a href="<?php echo $webUrl; ?>cpanel/dashboard">Dashboard</a>
                     </li>
@@ -169,10 +169,82 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <!--                            </li>-->
                     <!--                        </ul>-->
                     <!--                    </li>-->
-                </ul>
+<!--                </ul>-->
             </div>
             <!--/.nav-collapse -->
         </div>
     </div>
 </div>
 <div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3" id="sidebar">
+            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                <li <?php echo $selectBar == "dashboard" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/dashboard">
+                        <i class="icon-chevron-right"></i> Dashboard</a>
+                </li>
+                <li <?php echo $selectBar == "navigator" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/navigator">
+                        <i class="icon-chevron-right"></i> Navigator</a>
+                </li>
+                <li <?php echo $selectBar == "slide" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/slide">
+                        <i class="icon-chevron-right"></i> Slide</a>
+                </li>
+                <li <?php echo $selectBar == "page" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/page">
+                        <i class="icon-chevron-right"></i> Page</a>
+                </li>
+                <li <?php echo $selectBar == "post" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/post">
+                        <i class="icon-chevron-right"></i> Post</a>
+                </li>
+                <li <?php echo $selectBar == "user" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/user">
+                        <i class="icon-chevron-right"></i> User</a>
+                </li>
+                <li <?php echo $selectBar == "site_config" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>cpanel/site_config">
+                        <i class="icon-chevron-right"></i> Site Config</a>
+                </li>
+                <!--<li class="subMenuClick">
+                    <a href="#"><i class="icon-chevron-right"></i> Statistics</a>
+                </li>
+                <li>
+                    <a href="#"><i class="icon-chevron-right"></i> Buttons & Icons</a>
+                </li>
+                <li>
+                    <a href="#"><i class="icon-chevron-right"></i> UI & Interface</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-success pull-right">731</span> Orders</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-success pull-right">812</span> Invoices</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-info pull-right">27</span> Clients</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-info pull-right">1,234</span> Users</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-info pull-right">2,221</span> Messages</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-info pull-right">11</span> Reports</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-important pull-right">83</span> Errors</a>
+                </li>
+                <li>
+                    <a href="#"><span class="badge badge-warning pull-right">4,231</span> Logs</a>
+                </li>-->
+
+            </ul>
+        </div>
+        <!--/span-->
+        <div class="span9" id="content">
+
+        </div>
+    </div>
