@@ -145,7 +145,10 @@ extract((array)$arrData);
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Order</div>
-                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" value="<?php echo $order; ?>"/></div>
+                    <div class="span8">
+                        <input name="order" type="text" id="order" class="input-block-level"
+                               value="<?php echo $order; ?>" maxlength="4" onkeypress="return validateNum(event);"/>
+                    </div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12" align="right">

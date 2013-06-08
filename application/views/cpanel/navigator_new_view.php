@@ -32,19 +32,6 @@ $baseUrl = base_url();
             return false;
         });
     });
-
-    function validateNum(evt) {
-        var theEvent = evt || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode( key );
-        var regex = /[0-9]/;
-        if( !regex.test(key) ) {
-            theEvent.returnValue = false;
-            if(theEvent.preventDefault)
-                theEvent.preventDefault();
-        }
-    }
-
 </script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
@@ -86,15 +73,18 @@ $baseUrl = base_url();
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Layer</div>
-                    <div class="span8"><input name="layer" onkeypress="return validateNum(event);" type="text" id="layer" class="input-block-level" value=""/></div>
+                    <div class="span8"><input name="layer" maxlength="4"
+                                              onkeypress="return validateNum(event);" type="text" id="layer" class="input-block-level" value=""/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Parent</div>
-                    <div class="span8"><input name="parent" onkeypress="return validateNum(event);" type="text" id="parent" class="input-block-level" value=""/></div>
+                    <div class="span8"><input name="parent" maxlength="4"
+                                              onkeypress="return validateNum(event);" type="text" id="parent" class="input-block-level" value=""/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Order</div>
-                    <div class="span8"><input name="order" onkeypress="return validateNum(event);" type="text" id="order" class="input-block-level" value=""/></div>
+                    <div class="span8"><input name="order" maxlength="4"
+                                              onkeypress="return validateNum(event);" type="text" id="order" class="input-block-level" value=""/></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12" align="right">

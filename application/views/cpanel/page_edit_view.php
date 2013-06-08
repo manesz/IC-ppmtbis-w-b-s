@@ -15,6 +15,7 @@ extract((array)$arrData);
 <link rel="stylesheet" href="<?php echo $baseUrl; ?>assets/plugin/ckeditor/contents.css">
 <script>
     var url_edit_data = "<?php echo $webUrl; ?>cpanel/pageEdit/<?php echo $id; ?>";
+    var url_get_order_list = "<?php echo $webUrl; ?>cpanel/pageGetListOrder";
     function CKupdate() {
         for (instance in CKEDITOR.instances)
             CKEDITOR.instances[instance].updateElement();
@@ -37,6 +38,19 @@ extract((array)$arrData);
             return false;
         });
 
+        $("#type").change(function () {
+            $.post(url_get_order_list, { id: this.value },
+                function (result) {
+                    if (result == "get fail") {
+                        alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
+                    } else {
+                        $("#change-navigator").html(result);
+                        $("#order").select();
+                    }
+                }
+            );
+        });
+
         $("#buttonCancel").click(function () {
             window.location.reload();
             return false;
@@ -44,6 +58,18 @@ extract((array)$arrData);
 
         CKEDITOR.replace('description');
     });
+
+    function validateNum(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode( key );
+        var regex = /[0-9]/;
+        if( !regex.test(key) ) {
+            theEvent.returnValue = false;
+            if(theEvent.preventDefault)
+                theEvent.preventDefault();
+        }
+    }
 </script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
@@ -85,6 +111,13 @@ extract((array)$arrData);
                     <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"><?php echo $description; ?></textarea></div>
                 </div>
                 <div class="row-fluid">
+                    <div class="span4">รายการที่เลือกแล้ว</div>
+                    <div class="span8" id="change-navigator">
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="row-fluid">
                     <div class="span4">Type</div>
                     <div class="span8">
                         <select name="type" id="type" class="input-block-level">
@@ -101,7 +134,10 @@ extract((array)$arrData);
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Order</div>
-                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" value="<?php echo $order; ?>" /></div>
+                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level"
+                                              value="<?php echo $order; ?>" maxlength="4"
+                                              onkeypress="return validateNum(event);"/>
+                    </div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12" align="right">

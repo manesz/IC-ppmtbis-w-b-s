@@ -299,11 +299,12 @@ class Cpanel extends CI_Controller
             }
             exit();
         }
-        $arrType = $this->CPanel_model->getListType();
+//        $arrType = $this->CPanel_model->getListType();
+        $arrNavigator = $this->CPanel_model->navigatorList();
         $data = array(
             "webUrl" => $this->webUrl,
             "message" => $message,
-            "arrType" => $arrType
+            "arrType" => $arrNavigator
         );
         $this->load->view("cpanel/page_new_view", $data);
     }
@@ -324,13 +325,14 @@ class Cpanel extends CI_Controller
             exit();
         }
 
-        $arrType = $this->CPanel_model->getListType();
+        //$arrType = $this->CPanel_model->getListType();
+        $arrNavigator = $this->CPanel_model->navigatorList(); //เปลี่ยนจาก type เป็น navigator
         $arrData = $this->CPanel_model->pageList($id);
         $data = array(
             "webUrl" => $this->webUrl,
             "arrData" => $arrData[0],
             "message" => $message,
-            "arrType" => $arrType
+            "arrType" => $arrNavigator
         );
         $this->load->view("cpanel/page_edit_view", $data);
     }
@@ -360,9 +362,27 @@ class Cpanel extends CI_Controller
         $this->load->view("cpanel/page_list_view", $data);
     }
 
+    function pageGetListOrder()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $arrOrder = $this->CPanel_model->pageGetListOrder($id);
+            if (is_object($arrOrder)) {
+                echo "ยังไม่มีข้อมูล";
+            } else {
+                foreach ($arrOrder as $key => $value) {
+                    echo "ลำดับที่ $value->order. $value->title";
+                }
+            }
+            exit();
+        }
+        echo "get fail";
+    }
+
     //-----------------------------------Post------------------------------------------//
 
-    function post()
+    function job()
     {
         $message = "";
         $strSelectBar = 'post';

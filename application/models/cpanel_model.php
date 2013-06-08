@@ -242,7 +242,7 @@ class CPanel_model extends CI_Model
               b.name AS type_name
             from
               `wb_page` a
-              inner join `wb_type` b
+              inner join `wb_navigator` b
                 on (
                   a.`type` = b.`id`
                   and b.`publish` = 1
@@ -252,6 +252,30 @@ class CPanel_model extends CI_Model
               $strAND
         ";
 
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    /**
+     * Get List Order
+     *
+     * @param $id
+     * @return object
+     */
+    function pageGetListOrder($id)
+    {
+        $sql = "
+            SELECT
+              *
+            FROM `wb_page`
+            WHERE 1
+            AND `type` = $id
+        ";
         $query = $this->db->query($sql);
         if ($query->num_rows()) {
             $result = $query->result();
@@ -445,6 +469,7 @@ class CPanel_model extends CI_Model
             'contact_phone' => trim($contact_phone),
             'contact_fax' => trim($contact_fax),
             'contact_email' => trim($contact_email),
+            'contact_address' => trim($contact_address),
         );
 
         return $this->db->update('wb_site_config', $data, array('id' => $id));

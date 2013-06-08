@@ -196,8 +196,8 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                         <i class="icon-chevron-right"></i> Page</a>
                 </li>
                 <li <?php echo $selectBar == "post" ? 'class="active"' : "" ?>>
-                    <a href="<?php echo $webUrl; ?>cpanel/post">
-                        <i class="icon-chevron-right"></i> Post</a>
+                    <a href="<?php echo $webUrl; ?>cpanel/job">
+                        <i class="icon-chevron-right"></i> Job</a>
                 </li>
                 <li <?php echo $selectBar == "user" ? 'class="active"' : "" ?>>
                     <a href="<?php echo $webUrl; ?>cpanel/user">

@@ -69,7 +69,7 @@ $this->load->view('header_datatable_view');
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Description</th>
+<!--                <th>Description</th>-->
                 <th>Layer</th>
                 <th>Parent</th>
                 <th>Order</th>
@@ -85,7 +85,7 @@ $this->load->view('header_datatable_view');
                 <tr class="<?php echo "odd_gradeX" ? $key % 2 == 0 : "odd_gradeA"; ?>">
                     <td class="center"><?php echo $value->id; ?></td>
                     <td><?php echo $value->name; ?></td>
-                    <td><?php echo $value->description; ?></td>
+                    <!--<td><?php echo $value->description; ?></td>-->
                     <td><?php echo $value->layer; ?></td>
                     <td class="center"><?php echo $value->parent; ?></td>
                     <td class="center"><?php echo $value->order; ?></td>

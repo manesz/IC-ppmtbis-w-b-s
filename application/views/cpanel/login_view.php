@@ -26,7 +26,7 @@ $baseUrl = base_url();
 <div class="container">
 
     <form class="form-signin" method="post">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <img src="http://demo.ideacorners.com/promptbis/assets/img/PROMPTBIS-CPANEL.png"/>
         <input type="text" name="username" class="input-block-level" placeholder="Username">
         <input type="password" name="password" class="input-block-level" placeholder="Password">
         <label class="checkbox">

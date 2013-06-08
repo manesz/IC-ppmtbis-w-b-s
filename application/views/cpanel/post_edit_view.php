@@ -30,14 +30,13 @@ extract((array)$arrData);
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
                             alert(result)
-                            window.location = "<?php echo $webUrl; ?>cpanel/post";
+                            window.location = "<?php echo $webUrl; ?>cpanel/job";
                         }
                     }
                 );
             }
             return false;
         });
-
 
         $("#buttonCancel").click(function () {
             window.location.reload();
@@ -63,7 +62,7 @@ extract((array)$arrData);
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>cpanel/post">Post</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/job">Job</a> <span class="divider">/</span>
                 </li>
                 <li class="active">Edit<span class="divider">/</span></li>
                 <li class="active"><?php echo $id; ?></li>
@@ -75,7 +74,7 @@ extract((array)$arrData);
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Post Edit</div>
+            <div class="muted pull-left">Job Edit</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">

@@ -142,7 +142,9 @@ $baseUrl = base_url();
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Order</div>
-                    <div class="span8"><input name="order" type="text" id="order" class="input-block-level" /></div>
+                    <div class="span8"><input name="order" onkeypress="return validateNum(event);"
+                                              type="text" id="order" class="input-block-level" maxlength="4"/>
+                    </div>
                 </div>
                 <div class="row-fluid">
                     <div class="span12" align="right">

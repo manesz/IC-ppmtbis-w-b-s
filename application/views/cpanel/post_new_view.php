@@ -35,7 +35,8 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>cpanel/post";
+            window.location.reload();
+            //window.location = "<?php echo $webUrl; ?>cpanel/post";
             return false;
         });
         CKEDITOR.replace('responsibilities');
@@ -56,7 +57,7 @@ $baseUrl = base_url();
                 <i class="icon-chevron-right show-sidebar" style="display:none;">
                     <a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
                 <li>
-                    <a href="<?php echo $webUrl; ?>cpanel/post">Post</a> <span class="divider">/</span>
+                    <a href="<?php echo $webUrl; ?>cpanel/post">Job</a> <span class="divider">/</span>
                 </li>
                 <li class="active">New</li>
             </ul>
@@ -67,7 +68,7 @@ $baseUrl = base_url();
     <!-- block -->
     <div class="block">
         <div class="navbar navbar-inner block-header">
-            <div class="muted pull-left">Post New</div>
+            <div class="muted pull-left">Job New</div>
             <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
         </div>
         <div class="block-content collapse in">

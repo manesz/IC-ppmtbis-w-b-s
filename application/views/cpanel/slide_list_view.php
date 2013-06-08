@@ -70,7 +70,7 @@ $this->load->view('header_datatable_view');
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
-                    <th>Description</th>
+                    <!--<th>Description</th>-->
                     <th>Order</th>
                     <th>วันที่สร้าง</th>
                     <th>จัดการข้อมูล</th>
@@ -84,7 +84,7 @@ $this->load->view('header_datatable_view');
                     <tr class="<?php echo "odd_gradeX" ? $key % 2 == 0 : "odd_gradeA"; ?>">
                         <td class="center"><?php echo $value->id; ?></td>
                         <td><?php echo $value->title; ?></td>
-                        <td><?php echo $value->description; ?></td>
+                        <!--<td><?php echo $value->description; ?></td>-->
                         <td class="center"><?php echo $value->order; ?></td>
                         <td class="center"><?php echo $value->create_time; ?></td>
                         <td class="center">
