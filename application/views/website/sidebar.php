@@ -4,7 +4,7 @@ $arrHotJob = $this->CPanel_model->postList(0, true);
 
 <!-- SEARCH WIDGET -->
 <div id="search-2" class="widget widget_search">
-    <form role="search" method="get" id="searchform" action="#">
+    <form role="search" method="get" id="searchform" action="<?php echo $webUrl; ?>website/search">
         <div>
             <label class="screen-reader-texts" for="s">Search for:</label>
             <input type="text" value="Find what you want..."

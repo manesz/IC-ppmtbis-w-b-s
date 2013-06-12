@@ -1,3 +1,7 @@
+<?php
+$arrData = $this->CPanel_model->site_configList(1);
+var_dump($arrData[0]);
+?>
 <!-- START FOOTER -->
 <div id="big_footer">
 <div class="white_content_arrow">
@@ -235,7 +239,7 @@
         <div class="copys_right eight columns">
             <ul id="footer_menu" class="footer_menu">
                 <li class="menu-item">
-                    <a href="#">Home</a>
+                    <a href="<?php echo $webUrl; ?>">Home</a>
                 </li>
 
                 <li class="menu-item">
@@ -297,6 +301,5 @@
 
 <!-- IMAGE LOADER -->
 <div style="display:none;" class="loadinger"><img alt="loading" src="img/ajx_loading.gif"></div>
-
 </body>
 </html>

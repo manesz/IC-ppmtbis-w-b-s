@@ -95,4 +95,24 @@ class Website extends CI_Controller
         );
         $this->load->view("website/single", $data);
     }
+
+    function search()
+    {
+        $search = @$_GET['s'];
+        if ($search) {
+            $arrDataPage = $this->Website_model->searchPage($search);
+            $arrDataPost = $this->Website_model->searchPost($search);
+            var_dump($arrDataPage);
+            var_dump($arrDataPost);
+        }
+    }
+
+    function sendEmail()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $this->Website_model->sendEmail($name, $email, $message);
+        }
+    }
 }

@@ -150,7 +150,7 @@ extract((array)$arrData);
                     <div class="span4">Contact Longtitude/Lagitude</div>
                     <div class="span8"><input name="contact_lat_long" type="text" id="contact_lat_long"
                                               class="input-block-level" value="<?php echo $contact_lat_long; ?>"/><span
-                            style="font-size: 10px; color: red;">google map point EX:: 13.00|100.00</span></div>
+                            style="font-size: 10px; color: red;">google map point EX:: 13.00,100.00</span></div>
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Contact Content</div>
