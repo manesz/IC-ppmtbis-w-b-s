@@ -34,8 +34,8 @@
 <!-- END: INFO ABOVE MENU -->
 
     <div id="map" style=" width: 100%; height: 350px ;"></div>
-    <input type="hidden" id="gm_lat" value="13.7500" />
-    <input type="hidden" id="gm_lng" value="100.4833" />
+    <input type="hidden" id="gm_lat" value="13.939982" />
+    <input type="hidden" id="gm_lng" value="100.541210" />
 
     <div id="white_content" style="margin-top: 10px;"> <!-- begin white-content -->
         <div id="wrapper"> <!-- begin wrapper -->

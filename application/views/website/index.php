@@ -7,7 +7,7 @@ $arrData = $this->CPanel_model->site_configList(1);
 $arrHotJob = $this->CPanel_model->postList(0, true);
 ?>
 
-<div class="everything">
+<div class="everything" xmlns="http://www.w3.org/1999/html">
 
 <!-- COLOR Switcher (hidden by default) -->
 <div id="option_wrapper" style="display: none;">
@@ -145,25 +145,17 @@ $this->load->view("website/header-content");?>
 </div>
 <!-- END: SERVICES ICONS -->
 
-<!-- FACEBOOK BOX -->
-<div class="shortcode-services default">
-    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FPROMPT%2F246528425359362&amp;width=292&amp;height=290&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=false&amp;header=true&amp;appId=121360188027071" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:280px;" allowTransparency="true"></iframe>
-</div>
-<!-- END: FACEBOOK BOX -->
-
-
-    <div class="recentPostsSidebar_widget">
-
-        <!--    <h2>Recent Posts</h2>-->
-        <h2>Hot Jobs</h2>
-
-        <ul class="recentposts_listing">
-            <?php foreach ($arrHotJob as $key => $value):
-                ?>
-                <li><a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a></li>
-            <?php endforeach; ?>
-        </ul>
+<!-- HOT JOBS -->
+<div class="main_cols container" style="margin-bottom: 30px;">
+    <h3>HOT <span style="color: #7ab317;">JOBS</span></h3>
+    <?php foreach ($arrHotJob as $key => $value):?>
+    <div class="eight columns">
+        <img src="http://demo.ideacorners.com/promptbis/assets/website/images/option-icon-favorite.png"/>
+        <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
     </div>
+    <?php endforeach; ?>
+</div>
+<!-- END: HOT JOBS -->
 
 <!-- 1/2 + 1/2 COLUMNS -->
 <div class="main_cols container">
@@ -285,9 +277,11 @@ $this->load->view("website/header-content");?>
 </div><br />
 <!-- END: FEATURED BOX WITH SIMPLE BORDER -->
 
-
-
-
+<!-- FACEBOOK BOX -->
+<div class="default">
+    <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FPROMPT%2F246528425359362&amp;width=292&amp;height=290&amp;show_faces=true&amp;colorscheme=light&amp;stream=false&amp;show_border=false&amp;header=true&amp;appId=121360188027071" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100%; height:240px;" allowTransparency="true"></iframe>
+</div>
+<!-- END: FACEBOOK BOX -->
 
 </div><!-- .entry-content -->
 
