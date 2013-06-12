@@ -1,5 +1,6 @@
 <?php
 $arrJobsMenu = $this->Website_model->getListJobMenu();
+$arrNavigator = $this->CPanel_model->navigatorList();
 
 ?>
 
@@ -14,6 +15,12 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
     <li class="menu-item">
         <a href="<?php echo $webUrl; ?>website/our_service" <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?> >Our
             Service</a>
+        <ul class="sub-menu">
+            <?php foreach ($arrNavigator as $key => $value): ?>
+                <li class="menu-item"><a
+                        href="#"><?php echo $value->name; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
     </li>
 
     <li class="menu-item">
@@ -22,25 +29,26 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
         <ul class="sub-menu">
             <?php $oldID = ""; ?>
             <?php foreach ($arrJobsMenu as $key => $value) : ?>
-                <?php if ($value->type != $oldID): ?>
-                    <?php if ($key > 0): ?>
-                            </ul>
-                        </li>
-<!--                        </ul>-->
-                    <?php endif; ?>
-                    <?php $oldID = $value->type; ?>
-                        <li class="menu-item">
-                            <a href="#"><?php echo $value->type_name; ?></a>
-                            <ul class="sub-menu">
-                                <li class="menu-item">
-                                    <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
-                                </li>
-                <?php else: ?>
-                    <li class="menu-item">
-                        <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
-                    </li>
+            <?php if ($value->type != $oldID): ?>
+            <?php if ($key > 0): ?>
+        </ul>
+    </li>
+    <!--                        </ul>-->
+    <?php endif; ?>
+    <?php $oldID = $value->type; ?>
+    <li class="menu-item">
+        <a href="#"><?php echo $value->type_name; ?></a>
+        <ul class="sub-menu">
+            <li class="menu-item">
+                <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
+            </li>
+            <?php else: ?>
+                <li class="menu-item">
+                    <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
+                </li>
             <?php
-            endif; ?>
+            endif;
+            ?>
             <?php endforeach; ?>
             <?php ?>
         </ul>
