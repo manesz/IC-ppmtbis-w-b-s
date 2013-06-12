@@ -36,6 +36,10 @@ $this->load->view("cpanel/header");
         });
 
         function validateFrom(frm) {
+            if (numImageSelect < 2) {
+                alert("กรุณาเลือกภาพ Slide ให้ครบ");
+                return false;
+            }
             return true;
             if (frm.name.value == "") {
                 alert("กรุณากรอก Name");
@@ -69,11 +73,11 @@ $this->load->view("cpanel/header");
         function validateNum(evt) {
             var theEvent = evt || window.event;
             var key = theEvent.keyCode || theEvent.which;
-            key = String.fromCharCode( key );
+            key = String.fromCharCode(key);
             var regex = /[0-9]/;
-            if( !regex.test(key) ) {
+            if (!regex.test(key)) {
                 theEvent.returnValue = false;
-                if(theEvent.preventDefault)
+                if (theEvent.preventDefault)
                     theEvent.preventDefault();
             }
         }

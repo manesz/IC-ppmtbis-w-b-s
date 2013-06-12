@@ -260,7 +260,10 @@ class Cpanel extends CI_Controller
         if ($post) {
             extract($post);
             $this->load->model('CPanel_model');
-            $result = $this->CPanel_model->updateImageName($id, $path, "wb_slide");
+            $data = array(
+                $imageColumn => $path,
+            );
+            $result = $this->CPanel_model->updateImageName($id, $data);
             if ($result) {
                 echo "update success";
             } else {

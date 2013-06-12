@@ -49,22 +49,6 @@ class CPanel_model extends CI_Model
         }
     }
 
-    /**
-     * update path image
-     *
-     * @param $id
-     * @param $path
-     * @param $table
-     * @return mixed
-     */
-    function updateImageName($id, $path, $table)
-    {
-        $data = array(
-            'image' => $path,
-        );
-        return $this->db->update($table, $data, array('id' => $id));
-    }
-
     //-----------------------Navigator------------------------------//
 
     function navigatorNew($post)
@@ -131,6 +115,7 @@ class CPanel_model extends CI_Model
             'title' => trim($title),
             'description' => trim($description),
             'image' => $image,
+            'image_2' => $image_2,
             'order' => intval($order),
             'create_time' => date("Y-m-d H:i:s")
         );
@@ -152,6 +137,7 @@ class CPanel_model extends CI_Model
             'title' => trim($title),
             'description' => trim($description),
             'image' => $image,
+            'image_2' => $image_2,
             'order' => intval($order)
         );
 
@@ -178,6 +164,11 @@ class CPanel_model extends CI_Model
         } else {
             return (object)array();
         }
+    }
+
+    function updateImageName($id, $data)
+    {
+        return $this->db->update("wb_slide", $data, array('id' => $id));
     }
 
     //-----------------------Page------------------------------//

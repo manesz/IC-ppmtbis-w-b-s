@@ -20,9 +20,12 @@ $baseUrl = base_url();
     var pathUploadify = "<?php echo $webUrl; ?>upload/do_upload";
     var pathImageUpload = "upload/images/slide/";
     var folderID = 0;
+    var numImageSelect = 0;
+    var ckReload = 0;
 
     $(function () {
-        genUploadImage("#image_select", "#image_show", "#image");
+        genUploadImage("#image_select", "#image_show", "image");
+        genUploadImage("#image_select_2", "#image_show_2", "image_2");
     });
     function genUploadImage(btnUpload, idReload, idSave) {
         $(btnUpload).uploadify({
@@ -32,6 +35,12 @@ $baseUrl = base_url();
                 'folder_id' : "noSet",
                 'file_type' : "2",//image
                 'path_upload': pathImageUpload
+            },
+            'onSelect': function (file) {
+                numImageSelect++;
+            },
+            'onCancel': function (file) {
+                numImageSelect--;
             },
             'onUploadStart' : function(file)
             {
@@ -44,6 +53,7 @@ $baseUrl = base_url();
             'swf': swfPath,
             'uploader': pathUploadify,
             'fileSizeLimit': '500KB',
+            //'sizeLimit'   : 100*100,
             'fileTypeExts': '*.gif; *.jpg; *.png',
             'enctype': "multipart/form-data",
             'fileObjName': 'userfile',
@@ -51,15 +61,21 @@ $baseUrl = base_url();
                 alert('Flash was not detected.');// detect flash compatible
             }, 'onUploadSuccess': function (file, data, response) {
                 $.post(url_update_slide, {
-                        "id":folderID,
-                        "path":data
+                        "id": folderID,
+                        "path": data,
+                        "imageColumn": idSave
                     },
                     function (result) {
                         if (result == "update fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
+                            ckReload++;
+                            if (ckReload == 2) {
+                                window.location.reload();
+                            } else {
+                                $('#image_select_2').uploadify('upload', '*');
+                            }
                             //alert(result);
-                            window.location.reload();
                         }
                     }
                 );
@@ -90,7 +106,8 @@ $baseUrl = base_url();
         });
 
         $("#buttonCancel").click(function () {
-            window.location = "<?php echo $webUrl; ?>cpanel/slide";
+            //window.location = "<?php echo $webUrl; ?>cpanel/slide";
+            window.location.reload();
             return false;
         });
     });
@@ -134,10 +151,17 @@ $baseUrl = base_url();
                     <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"></textarea></div>
                 </div>
                 <div class="row-fluid">
-                    <div class="span4">Image</div>
+                    <div class="span4">Image 1</div>
                     <div class="span8">
                         <input name="image" type="hidden" id="image" value="" />
                         <input type="file" id="image_select" />
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Image 2</div>
+                    <div class="span8">
+                        <input name="image_2" type="hidden" id="image_2" value="" />
+                        <input type="file" id="image_select_2" />
                     </div>
                 </div>
                 <div class="row-fluid">

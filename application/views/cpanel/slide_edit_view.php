@@ -22,9 +22,12 @@ extract((array)$arrData);
     var pathUploadify = "<?php echo $webUrl; ?>upload/do_upload";
     var pathImageUpload = "upload/images/slide/";
     var folderID = 0;
+    var numImageSelect = 2;
+    var ckReload = 0;
 
     $(function () {
         genUploadImage("#image_select", "#image_show", "#image");
+        genUploadImage("#image_select_2", "#image_show_2", "#image_2");
     });
     function genUploadImage(btnUpload, idReload, idSave) {
         $(btnUpload).uploadify({
@@ -78,7 +81,7 @@ extract((array)$arrData);
                         if (result == "edit fail") {
                             alert('เกิดการผิดพลาด\n** กรุณาตรวจสอบ **');
                         } else {
-                            alert(result)
+                            alert(result);
                             window.location = "<?php echo $webUrl; ?>cpanel/slide";
                         }
                     }
@@ -133,7 +136,7 @@ extract((array)$arrData);
                     <div class="span8"><textarea name="description" id="description" class="input-block-level" rows="10"><?php echo $description; ?></textarea></div>
                 </div>
                 <div class="row-fluid">
-                    <div class="span4">Image</div>
+                    <div class="span4">Image 1</div>
                     <div class="span8">
                         <div id="image_show">
                             <img  width="250" height="190"
@@ -141,6 +144,17 @@ extract((array)$arrData);
                         </div>
                         <input name="image" type="hidden" id="image" value="<?php echo $image; ?>" />
                         <input type="file" id="image_select" />
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Image 2</div>
+                    <div class="span8">
+                        <div id="image_show_2">
+                            <img  width="250" height="190"
+                                  src="<?php echo $baseUrl; ?>upload/images/slide/<?php echo "$id/$image_2"; ?>"/>
+                        </div>
+                        <input name="image_2" type="hidden" id="image_2" value="<?php echo $image_2; ?>" />
+                        <input type="file" id="image_select_2" />
                     </div>
                 </div>
                 <div class="row-fluid">
