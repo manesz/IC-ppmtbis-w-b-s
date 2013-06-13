@@ -99,28 +99,42 @@ class Website_model extends CI_Model
     }
 
     /**
-     * Drop us a line
-     *
+     * @param $to
+     * @param $message
      * @param $name
      * @param $email
-     * @param $message
+     * @return bool
      */
-    function sendEmail($name, $email, $message)
+    function sendEmail($to, $message, $name, $email)
     {
         $arrData = $this->CPanel_model->site_configList(1);
-        $this->load->library('email');
 
+        $subject = "CONTACT FORM WIDGET";
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'mail.latendahouse.com',
+            'smtp_port' => 25,
+            'smtp_user' => 'info@latendahouse.com',
+            'smtp_pass' => 'w,jpvd',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+        );
+        $this->load->library('email', $config);
         $this->email->from($email, $name);
 //        $this->email->to($arrData[0]->contact_email);
-       $this->email->to('ruxchuk@gmail.com');
+        $this->email->to($to);
 //        $this->email->cc('another@another-example.com');
 //        $this->email->bcc('them@their-example.com');
 
-        $this->email->subject('Drop us a line');
+        $this->email->subject($subject);
         $this->email->message($message);
 
-        $this->email->send();
-
-        echo $this->email->print_debugger();
+        if ($this->email->send()) {
+            return true;
+        } else {
+            return false;
+        }
+        //echo $this->email->print_debugger();
     }
 }

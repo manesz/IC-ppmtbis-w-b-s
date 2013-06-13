@@ -106,7 +106,9 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
                 <!-- CONTACT FORM WIDGET -->
                 <div class="contact-form">
                     <div class="message_success form_success"></div>
-
+                    <script>
+                        var urlSendEmail = "<?php echo $webUrl; ?>website/sendEmail";
+                    </script>
                     <form method="post" action="#" class="validateform">
                         <ul class="forms">
                             <li>
@@ -123,14 +125,15 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
 
                             <li>
                                 <label for="message">Message</label>
-                                <textarea name="message" id="message" class="yourmessage textarea message corner-input" rows="20" cols="30" onfocus="checkerror(this)" onblur="var v = $(this).val(); $('.yourmessage_val').html(v);">
-                                </textarea>
+                                <textarea name="message" id="message" class="yourmessage textarea message corner-input"
+                                          rows="20" cols="30" onfocus="checkerror(this)"
+                                          onblur="var v = $(this).val(); $('.yourmessage_val').html(v);"></textarea>
 
                                 <div class="yourmessage_val" style="display:none"></div>
                             </li>
 
                             <li>
-                                <a id="send-comment" href="javascript:;" onclick="sendemail($(this),'geral@designarethemes.com', 'Email Subject', 'Name Error', 'Email Error', 'Message Error', 'Message Sent', 'Message Failed')" class="submit button small black round_corners">Send</a>
+                                <a id="send-comment" href="javascript:;" onclick="sendemail($(this), 'ruxchuk@gmail.com', 'Email Subject', 'Name Error', 'Email Error', 'Message Error', 'Message Sent', 'Message Failed')" class="submit button small black round_corners">Send</a>
                             </li>
                         </ul>
                     </form>

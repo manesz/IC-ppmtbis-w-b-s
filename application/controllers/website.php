@@ -112,7 +112,21 @@ class Website extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
-            $this->Website_model->sendEmail($name, $email, $message);
+            //$this->Website_model->sendEmail($name, $email, $message);
+
+            if (!empty($name) && !empty($email) && !empty($message)) {
+                if ($success)
+                    $s = $success;
+                else
+                    $s = "Message send successfully.";
+                if ($this->Website_model->sendEmail($sendTo, $message, $name, $email))
+                    echo $s;
+                else {
+//                    $err = $unsuccess;
+//                    echo $err;
+                    echo "send fail";
+                }
+            }
         }
     }
 }
