@@ -108,32 +108,34 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
                     <div class="message_success form_success"></div>
                     <script>
                         var urlSendEmail = "<?php echo $webUrl; ?>website/sendEmail";
+                        //var emailSender = 'ruxchuk@gmail.com';
+                        var emailSender = 'info@ideacorners.com';
                     </script>
-                    <form method="post" action="#" class="validateform">
+                    <form method="post" action="#" class="validateform" id="frmFooterSendEmail">
                         <ul class="forms">
                             <li>
                                 <label for="name">Name</label><input type="text" name="name" id="name" class="yourname txt corner-input" onfocus="checkerror(this)" onblur="var v = $(this).val(); $('.yourname_val').html(v);">
 
                                 <div class="yourname_val" style="display:none"></div>
                             </li>
-
                             <li>
                                 <label for="email">Email</label><input type="text" name="email" id="email" class="youremail txt corner-input" onfocus="checkerror(this)" onblur="var v = $(this).val(); $('.youremail_val').html(v);">
 
                                 <div class="youremail_val" style="display:none"></div>
                             </li>
-
                             <li>
                                 <label for="message">Message</label>
                                 <textarea name="message" id="message" class="yourmessage textarea message corner-input"
                                           rows="20" cols="30" onfocus="checkerror(this)"
                                           onblur="var v = $(this).val(); $('.yourmessage_val').html(v);"></textarea>
-
                                 <div class="yourmessage_val" style="display:none"></div>
                             </li>
-
                             <li>
-                                <a id="send-comment" href="javascript:;" onclick="sendemail($(this), 'ruxchuk@gmail.com', 'Email Subject', 'Name Error', 'Email Error', 'Message Error', 'Message Sent', 'Message Failed')" class="submit button small black round_corners">Send</a>
+                                <a id="send-comment" href="javascript:;" onclick="sendemail($(this),
+                                emailSender, 'Email Subject', 'Name Error', 'Email Error',
+                                'Message Error', 'Message Sent', 'Message Failed',
+                                document.getElementById('frmFooterSendEmail'))"
+                                   class="submit button small black round_corners">Send</a>
                             </li>
                         </ul>
                     </form>

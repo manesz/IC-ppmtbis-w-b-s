@@ -1,4 +1,4 @@
-function sendemail(el, SendTo, Subject, NameErr, EmailErr, MessageErr, SuccessErr, UnsuccessErr) {
+function sendemail(el, SendTo, Subject, NameErr, EmailErr, MessageErr, SuccessErr, UnsuccessErr, frm) {
 
     //Custom variables
     var sendTo = SendTo; //send the form elements to this email (company email)
@@ -96,15 +96,16 @@ function sendemail(el, SendTo, Subject, NameErr, EmailErr, MessageErr, SuccessEr
          el.find('.message_success').html("Error while contacting server, please try again.");
          }
          });*/
+
         $.post(urlSendEmail, data,
             function (data) {
                 if (data != 'send fail') {
                     el.find('.message_success').css('background', '#64943c');
                     el.find('.message_success').css('display', 'block');
                     el.find('.message_success').html(data);
-                    document.getElementById('name').value = "";
-                    document.getElementById('email').value = "";
-                    document.getElementById('message').value = "";
+                    frm.name.value = "";
+                    frm.email.value = "";
+                    frm.message.value = "";
                 }
                 else {
                     // Message
@@ -124,7 +125,6 @@ function sendemail(el, SendTo, Subject, NameErr, EmailErr, MessageErr, SuccessEr
         el.find('.message_success').css('display', 'block');
         el.find('.message_success').html("Sending...");
     }
-
 }
 
 function checkerror(elem) {

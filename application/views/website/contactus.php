@@ -122,7 +122,7 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
 
                 </div>
                 <script type="text/javascript">
-                    $(document).ready(function () {
+                    /*$(document).ready(function () {
                         $('#myslider-1').flexslider({
                             animation: "fade",
                             slideDirection: "vertical",
@@ -147,7 +147,7 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                                 $("#myslider-1 .slides li").eq(slider.currentSlide).find(".flex-caption").animate({'bottom': '0'}, 500);
                             }
                         });
-                    });
+                    });*/
                 </script>
 
             </div>
@@ -157,37 +157,43 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
 
                 <div class="contact-form">
                     <div class="message_success form_success"></div>
-                    <form method="post" action="<?php echo $webUrl; ?>website/sendEmail" class="validateform">
+                    <form method="post" action="#" class="validateform" id="frmContactus">
                         <ul class="forms">
                             <li>
-                                <label for="name">Name</label><input type="text" name="name"
-                                                                     class="yourname txt corner-input"
-                                                                     onfocus="checkerror(this)"
-                                                                     onblur="var v = $(this).val(); $('.yourname_val').html(v);">
+                                <label for="name">Name</label>
+                                <input type="text" name="name"
+                                       class="yourname txt corner-input"
+                                       onfocus="checkerror(this)"
+                                       onblur="var v = $(this).val(); $('.yourname_val').html(v);">
 
                                 <div class="yourname_val" style="display:none"></div>
                             </li>
                             <li>
-                                <label for="email">Email</label><input style="margin: 10px 0;" type="text"
-                                                                       name="email"
-                                                                       class="youremail txt corner-input"
-                                                                       onfocus="checkerror(this)"
-                                                                       onblur="var v = $(this).val(); $('.youremail_val').html(v);">
+                                <label for="email">Email</label>
+                                <input style="margin: 10px 0;" type="text"
+                                       name="email"
+                                       class="youremail txt corner-input"
+                                       onfocus="checkerror(this)"
+                                       onblur="var v = $(this).val(); $('.youremail_val').html(v);">
 
                                 <div class="youremail_val" style="display:none"></div>
                             </li>
                             <li>
-                                <label for="message">Message</label><textarea name="message"
-                                                                              class="yourmessage textarea message corner-input"
-                                                                              rows=20 cols=30
-                                                                              onfocus="checkerror(this)"
-                                                                              onblur="var v = $(this).val(); $('.yourmessage_val').html(v);"></textarea>
+                                <label for="message">Message</label>
+                                <textarea name="message"
+                                          class="yourmessage textarea message corner-input"
+                                          rows=20 cols=30
+                                          onfocus="checkerror(this)"
+                                          onblur="var v = $(this).val(); $('.yourmessage_val').html(v);"></textarea>
 
                                 <div class="yourmessage_val" style="display:none"></div>
                             </li>
                             <li>
                                 <a style="font-family: Arial, sans-serif;" id="send-comment" href="javascript:;"
-                                   onclick="sendemail($(this),'geral@designarethemes.com', 'From Your Website', 'Please enter a name.', 'Please enter a valid email.', 'Please give us a message.', 'Thanks! We will back to you soon...', 'Ups! Something wrong. Try again.')"
+                                   onclick="sendemail($(this), emailSender,
+                                   'From Your Website', 'Please enter a name.', 'Please enter a valid email.',
+                                   'Please give us a message.', 'Thanks! We will back to you soon...',
+                                   'Ups! Something wrong. Try again.', document.getElementById('frmContactus'))"
                                    class="submit button medium yellow">Send</a>
                             </li>
                         </ul>
@@ -196,25 +202,25 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
             </div>
         </div>
         <br/>
+        <!-- begin container -->
+        <!--        <div class="container"> -->
+        <!-- begin post -->
+        <!--            <div class="post"> -->
 
-        <div class="container"> <!-- begin container -->
+        <!--<div class="entry">
 
-            <div class="post"> <!-- begin post -->
-
-                <div class="entry">
-
-                    <div class="main_cols container">
+            <div class="main_cols container">
 
 
-                        <div class="eight columns">
-
-                        </div>
-                    </div>
+                <div class="eight columns">
 
                 </div>
             </div>
 
         </div>
+    </div>
+
+</div>-->
 
     </div>
 </div>
