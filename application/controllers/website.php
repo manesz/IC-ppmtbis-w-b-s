@@ -85,7 +85,7 @@ class Website extends CI_Controller
     function post($id)
     {
         $message = "";
-        $strSelectBar = 'post';
+        $strSelectBar = 'job';
         $arrData = $this->CPanel_model->postList($id);
         $data = array(
             "webUrl" => $this->webUrl,
@@ -96,15 +96,40 @@ class Website extends CI_Controller
         $this->load->view("website/single", $data);
     }
 
+    function page($id)
+    {
+        $message = "";
+        $strSelectBar = 'our_service';
+        $arrData = $this->CPanel_model->pageList($id);
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar,
+            "arrData" => $arrData[0]
+        );
+        $this->load->view("website/page", $data);
+    }
+
+
+
     function search()
     {
         $search = @$_GET['s'];
+
         if ($search) {
-            $arrDataPage = $this->Website_model->searchPage($search);
+//            $arrDataPage = $this->Website_model->searchPage($search);
             $arrDataPost = $this->Website_model->searchPost($search);
-            var_dump($arrDataPage);
-            var_dump($arrDataPost);
+//            var_dump($arrDataPage);
+//            var_dump($arrDataPost);
+        } else {
+            $arrDataPost = $this->Website_model->searchPost("");
         }
+        $data = array(
+            'arrData' => $arrDataPost,
+            "webUrl" => $this->webUrl,
+            "selectBar" => "",
+        );
+        $this->load->view("website/category", $data);
     }
 
     function sendEmail()
@@ -119,7 +144,7 @@ class Website extends CI_Controller
                     $s = $success;
                 else
                     $s = "Message send successfully.";
-                if ($this->Website_model->sendEmail($sendTo, $message, $name, $email))
+                if ($this->Website_model->sendEmail($sendTo, $subject, $message, $name, $email))
                     echo $s;
                 else {
 //                    $err = $unsuccess;

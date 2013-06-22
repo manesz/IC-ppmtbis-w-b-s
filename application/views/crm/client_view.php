@@ -64,19 +64,7 @@ $this->load->view("crm/header");
             }
         }
     </script>
-    <div class="row-fluid">
-        <div class="span3" id="sidebar">
-            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                <li class="subMenuClick active">
-                    <a class="page-click" href="<?php echo $urlListData; ?>"><i
-                            class="icon-chevron-right"></i> Client</a>
-                </li>
-            </ul>
-        </div>
-        <!--/span-->
-        <div class="span9" id="content">
-
-        </div>
+    <div class="span9" id="content">
     </div>
 
 

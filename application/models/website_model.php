@@ -44,50 +44,25 @@ class Website_model extends CI_Model
         }
     }
 
-    function searchPage($strSearch)
-    {
-//        $exStr = explode(" ", $strSearch);
-//        $sqlAnd = "";
-//        if (count($exStr) > 0) {
-//            $sqlAnd = implode(', ')
-//        }
-        $sql = "
-            SELECT
-              *
-            FROM `wb_page`
-            WHERE 1
-            AND (
-              title LIKE '%$strSearch%'
-              OR description LIKE '$strSearch'
-            )
-
-        ";
-        $query = $this->db->query($sql);
-        if ($query->num_rows()) {
-            $result = $query->result();
-            return $result;
-        } else {
-            return (object)array();
-        }
-    }
-
     function searchPost($strSearch)
     {
-//        $exStr = explode(" ", $strSearch);
-//        $sqlAnd = "";
-//        if (count($exStr) > 0) {
-//            $sqlAnd = implode(', ')
-//        }
         $sql = "
-            SELECT
-              *
-            FROM `wb_post`
-            WHERE 1
+            select
+              a.*,
+              b.name AS type_name
+            from
+              `wb_post` a
+              inner join `wb_type` b
+                on (
+                  a.`type` = b.`id`
+                  and b.`publish` = 1
+                )
+            where 1
+              and a.`publish` = 1
             AND (
-              title LIKE '%$strSearch%'
-              OR description LIKE '$strSearch'
+              a.title LIKE '%$strSearch%'
+              OR a.description LIKE '$strSearch'
             )
-
         ";
         $query = $this->db->query($sql);
         if ($query->num_rows()) {
@@ -100,37 +75,40 @@ class Website_model extends CI_Model
 
     /**
      * @param $to
+     * @param $subject
      * @param $message
      * @param $name
      * @param $email
      * @return bool
      */
-    function sendEmail($to, $message, $name, $email)
+    function sendEmail($to, $subject, $message, $name, $email)
     {
-        $arrData = $this->CPanel_model->site_configList(1);
-
-        $subject = "CONTACT FORM WIDGET";
+        //$arrData = $this->CPanel_model->site_configList(1);
         $config = Array(
             'protocol' => 'smtp',
-            'smtp_host' => 'mail.latendahouse.com',
-            'smtp_port' => 25,
-            'smtp_user' => 'info@latendahouse.com',
-            'smtp_pass' => 'w,jpvd',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 456,
+            'smtp_user' => 'chukkapun.r@ideacorners.com',
+            'smtp_pass' => 'p@ssw0rd1234',
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
-        $this->load->library('email', $config);
-        $this->email->from($email, $name);
+        try {
+            $this->load->library('email', $config);
+            $this->email->from($email, $name);
 //        $this->email->to($arrData[0]->contact_email);
-        $this->email->to($to);
+            $this->email->to($to);
 //        $this->email->cc('another@another-example.com');
 //        $this->email->bcc('them@their-example.com');
 
-        $this->email->subject($subject);
-        $this->email->message($message);
-
-        if ($this->email->send()) {
+            $this->email->subject($subject);
+            $this->email->message($message);
+            $result = $this->email->send();
+        } catch (Exception $e) {
+            return false;
+        }
+        if ($result) {
             return true;
         } else {
             return false;

@@ -28,7 +28,7 @@ extract((array)$arrData);
     var folderID = <?php echo $id; ?>;
 
     $(function () {
-        genUploadImage("#logo_image_path", "#image_show", "#contact_address");
+        genUploadImage("#logo_image_path", "#image_show", "#contact_image");
     });
     function genUploadImage(btnUpload, idReload, idSave) {
         $(btnUpload).uploadify({
@@ -42,14 +42,14 @@ extract((array)$arrData);
             },
             'swf': swfPath,
             'uploader': pathUploadify,
-            'fileSizeLimit': '1024KB',
+            'fileSizeLimit': '2024KB',
             'fileTypeExts': '*.gif; *.jpg; *.png',
             'enctype': "multipart/form-data",
             'fileObjName': 'userfile',
             'onFallback': function () {
                 alert('Flash was not detected.');// detect flash compatible
             }, 'onUploadSuccess': function (file, data, response) {
-                alert(data)
+                //alert(data);
                 reloadImage(idReload, data, idSave);
             },
             'queueSizeLimit': 1
@@ -174,14 +174,19 @@ extract((array)$arrData);
                 </div>
                 <div class="row-fluid">
                     <div class="span4">Contact Address</div>
+                    <div class="span8"><textarea name="contact_address" id="contact_address" class="input-block-level"
+                                                 rows="10"><?php echo $contact_address; ?></textarea></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span4">Contact Image</div>
                     <div class="span8">
                         <div id="image_show">
                         <img width="250" height="190"
-                             src="<?php echo $baseUrl; ?>upload/images/site_config/<?php echo "$id/$contact_address"; ?>"/>
+                             src="<?php echo $baseUrl; ?>upload/images/site_config/<?php echo "$id/$contact_image"; ?>"/>
                         </div>
                         <input name="userfile" type="file" id="logo_image_path"/>
-                        <input name="contact_address" type="hidden" id="contact_address"
-                               value="<?php echo $contact_address ?>"/>
+                        <input name="contact_image" type="hidden" id="contact_image"
+                               value="<?php echo $contact_image; ?>"/>
                     </div>
                 </div>
                 <div class="row-fluid">

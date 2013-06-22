@@ -2,9 +2,8 @@
 $arrData = $this->CPanel_model->site_configList(1);
 $arrHotJob = $this->CPanel_model->postList(0, true);
 $arrJobsMenu = $this->Website_model->getListJobMenu();
-//echo "<pre>";
-//var_dump($arrData[0]);
-//echo "</pre>";
+$arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
+
 ?>
 <!-- START FOOTER -->
 <div id="big_footer">
@@ -108,8 +107,8 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
                     <div class="message_success form_success"></div>
                     <script>
                         var urlSendEmail = "<?php echo $webUrl; ?>website/sendEmail";
-                        //var emailSender = 'ruxchuk@gmail.com';
-                        var emailSender = 'info@ideacorners.com';
+                        var emailSender = '<?php echo $arrData[0]->contact_email;?>';
+                        //var emailSender = 'info@ideacorners.com';
                     </script>
                     <form method="post" action="#" class="validateform" id="frmFooterSendEmail">
                         <ul class="forms">
@@ -132,7 +131,7 @@ $arrJobsMenu = $this->Website_model->getListJobMenu();
                             </li>
                             <li>
                                 <a id="send-comment" href="javascript:;" onclick="sendemail($(this),
-                                emailSender, 'Email Subject', 'Name Error', 'Email Error',
+                                emailSender, 'CONTACT FORM WIDGET', 'Name Error', 'Email Error',
                                 'Message Error', 'Message Sent', 'Message Failed',
                                 document.getElementById('frmFooterSendEmail'))"
                                    class="submit button small black round_corners">Send</a>

@@ -3,8 +3,18 @@ $arrHotJob = $this->CPanel_model->postList(0, true);
 ?>
 
 <!-- SEARCH WIDGET -->
+<script>
+    function ckSearch(frm) {
+        if (frm.s.value == "Find what you want..." || frm.s.value == "") {
+            frm.s.select();
+            return false;
+        }
+        return true;
+    }
+</script>
 <div id="search-2" class="widget widget_search">
-    <form role="search" method="get" id="searchform" action="<?php echo $webUrl; ?>website/search">
+    <form role="search" method="get" id="searchform" onsubmit="return ckSearch(this);"
+          action="<?php echo $webUrl; ?>website/search">
         <div>
             <label class="screen-reader-texts" for="s">Search for:</label>
             <input type="text" value="Find what you want..."

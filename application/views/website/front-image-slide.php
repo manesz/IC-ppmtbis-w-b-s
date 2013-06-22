@@ -18,8 +18,8 @@ $baseUrl = base_url();
 
                     <div class="text des_moveFromBottom"><?php echo $value->description; ?></div>
 
-                    <a class="button medium yellow des_moveFromBottom"
-                       href="#">Read more</a>
+<!--                    <a class="button medium yellow des_moveFromBottom"-->
+<!--                       href="#">Read more</a>-->
                 </div>
 
                 <div class="eight columns" style="height: 100%;">

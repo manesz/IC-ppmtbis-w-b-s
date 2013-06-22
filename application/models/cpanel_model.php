@@ -217,14 +217,18 @@ class CPanel_model extends CI_Model
      * get page data
      *
      * @param int $id
+     * @param int $navID
      * @return object
      */
-    function pageList($id = 0)
+    function pageList($id = 0, $navID = 0)
     {
-        if ($id == 0) {
-            $strAND = "";
-        } else {
+        $strAND = "";
+        if ($id != 0) {
             $strAND = " AND a.id = $id";
+        }
+
+        if ($navID != 0) {
+            $strAND .= " AND b.id = $navID";
         }
 
         $sql = "
@@ -461,6 +465,7 @@ class CPanel_model extends CI_Model
             'contact_fax' => trim($contact_fax),
             'contact_email' => trim($contact_email),
             'contact_address' => trim($contact_address),
+            'contact_image' => trim($contact_image),
         );
 
         return $this->db->update('wb_site_config', $data, array('id' => $id));

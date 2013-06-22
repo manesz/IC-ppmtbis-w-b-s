@@ -160,8 +160,8 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                     <form method="post" action="#" class="validateform" id="frmContactus">
                         <ul class="forms">
                             <li>
-                                <label for="name">Name</label>
-                                <input type="text" name="name"
+                                <label for="name-contactus">Name</label>
+                                <input type="text" name="name" id="name-contactus"
                                        class="yourname txt corner-input"
                                        onfocus="checkerror(this)"
                                        onblur="var v = $(this).val(); $('.yourname_val').html(v);">
@@ -169,8 +169,8 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                                 <div class="yourname_val" style="display:none"></div>
                             </li>
                             <li>
-                                <label for="email">Email</label>
-                                <input style="margin: 10px 0;" type="text"
+                                <label for="email-contactus">Email</label>
+                                <input style="margin: 10px 0;" type="text" id="email-contactus"
                                        name="email"
                                        class="youremail txt corner-input"
                                        onfocus="checkerror(this)"
@@ -179,8 +179,8 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                                 <div class="youremail_val" style="display:none"></div>
                             </li>
                             <li>
-                                <label for="message">Message</label>
-                                <textarea name="message"
+                                <label for="message-contactus">Message</label>
+                                <textarea name="message" id="message-contactus"
                                           class="yourmessage textarea message corner-input"
                                           rows=20 cols=30
                                           onfocus="checkerror(this)"
@@ -191,7 +191,7 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                             <li>
                                 <a style="font-family: Arial, sans-serif;" id="send-comment" href="javascript:;"
                                    onclick="sendemail($(this), emailSender,
-                                   'From Your Website', 'Please enter a name.', 'Please enter a valid email.',
+                                   'Drop us a line', 'Please enter a name.', 'Please enter a valid email.',
                                    'Please give us a message.', 'Thanks! We will back to you soon...',
                                    'Ups! Something wrong. Try again.', document.getElementById('frmContactus'))"
                                    class="submit button medium yellow">Send</a>

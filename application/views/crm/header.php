@@ -70,13 +70,13 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav">
-                    <li <?php echo $selectBar == "dashboard" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>crm/dashboard">Dashboard</a>
-                    </li>
-                    <li <?php echo $selectBar == "client" ? 'class="active"' : "" ?> >
-                        <a href="<?php echo $webUrl; ?>crm/client">Client</a>
-                    </li>
+<!--                <ul class="nav">-->
+<!--                    <li --><?php //echo $selectBar == "dashboard" ? 'class="active"' : "" ?><!-- >-->
+<!--                        <a href="--><?php //echo $webUrl; ?><!--crm/dashboard">Dashboard</a>-->
+<!--                    </li>-->
+<!--                    <li --><?php //echo $selectBar == "client" ? 'class="active"' : "" ?><!-- >-->
+<!--                        <a href="--><?php //echo $webUrl; ?><!--crm/client">Client</a>-->
+<!--                    </li>-->
                     <!--                    <li class="dropdown">-->
                     <!--                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Settings <b class="caret"></b>-->
                     <!---->
@@ -154,10 +154,29 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <!--                            </li>-->
                     <!--                        </ul>-->
                     <!--                    </li>-->
-                </ul>
+<!--                </ul>-->
             </div>
             <!--/.nav-collapse -->
         </div>
     </div>
 </div>
 <div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3" id="sidebar">
+            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                <li <?php echo $selectBar == "dashboard" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/dashboard">
+                        <i class="icon-chevron-right"></i> Dashboard</a>
+                </li>
+                <li <?php echo $selectBar == "client" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/client">
+                        <i class="icon-chevron-right"></i> Client</a>
+                </li>
+
+            </ul>
+        </div>
+        <!--/span-->
+        <div class="span9" id="content">
+
+        </div>
+    </div>

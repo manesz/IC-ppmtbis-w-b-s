@@ -49,7 +49,7 @@ extract((array)$arrData);
             },*/
             'swf': swfPath,
             'uploader': pathUploadify,
-            'fileSizeLimit': '500KB',
+            'fileSizeLimit': '2048KB',
             'fileTypeExts': '*.gif; *.jpg; *.png',
             'enctype': "multipart/form-data",
             'fileObjName': 'userfile',

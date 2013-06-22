@@ -1,6 +1,6 @@
 <?php
 $arrJobsMenu = $this->Website_model->getListJobMenu();
-$arrNavigator = $this->CPanel_model->navigatorList();
+$arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
 
 ?>
 
@@ -16,15 +16,15 @@ $arrNavigator = $this->CPanel_model->navigatorList();
         <a href="<?php echo $webUrl; ?>website/our_service" <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?> >Our
             Service</a>
         <ul class="sub-menu">
-            <?php foreach ($arrNavigator as $key => $value): ?>
+            <?php foreach ($arrPageTypeOurService as $key => $value): ?>
                 <li class="menu-item"><a
-                        href="#"><?php echo $value->name; ?></a></li>
+                        href="<?php echo $webUrl; ?>website/page/<?php echo $value->id; ?>"><?php echo $value->title; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </li>
 
     <li class="menu-item">
-        <a href="#">Jobs</a>
+        <a href="#" <?php echo $selectBar == "job" ? "class=\"selected\"" : ""; ?>>Jobs</a>
 
         <ul class="sub-menu">
             <?php $oldID = ""; ?>
@@ -37,7 +37,7 @@ $arrNavigator = $this->CPanel_model->navigatorList();
     <?php endif; ?>
     <?php $oldID = $value->type; ?>
     <li class="menu-item">
-        <a href="#"><?php echo $value->type_name; ?></a>
+        <a href="<?php echo $webUrl; ?>"><?php echo $value->type_name; ?></a>
         <ul class="sub-menu">
             <li class="menu-item">
                 <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>

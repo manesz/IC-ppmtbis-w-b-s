@@ -52,7 +52,7 @@ $baseUrl = base_url();
             },
             'swf': swfPath,
             'uploader': pathUploadify,
-            'fileSizeLimit': '500KB',
+            'fileSizeLimit': '2048KB',
             //'sizeLimit'   : 100*100,
             'fileTypeExts': '*.gif; *.jpg; *.png',
             'enctype': "multipart/form-data",
