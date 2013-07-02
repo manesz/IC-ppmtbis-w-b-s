@@ -30,17 +30,7 @@
         <div class="post-listing" style="border-right: 1px solid #EDEDED; padding-right: 40px;">
 <!--            <H4>--><?php //echo $arrData->title; ?><!--</H4>-->
 <!--            <div class='des-sc-dots-divider'></div>-->
-            <?php
-            //echo $arrData->description;
-            $description = $arrData->description;
-            if(!empty($description)){echo "<H4>Description :</H4>".$description;};
-            ?>
-            <H4>Salary : <?php echo $arrData->salary; ?></H4>
-            <H4>Workplace : <?php echo $arrData->workplace; ?></H4>
-            <H4>Responsibilities</H4>
-            <?php echo $arrData->responsibilities; ?>
-            <H4>Qualifications</H4>
-            <?php echo $arrData->qualification; ?>
+            <?php echo $arrData->description; ?>
             <br/><br/>
         </div>
     </div>

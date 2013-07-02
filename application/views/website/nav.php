@@ -17,42 +17,42 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
             Service</a>
         <ul class="sub-menu">
             <?php foreach ($arrPageTypeOurService as $key => $value): ?>
-                <li class="menu-item"><a
-                        href="<?php echo $webUrl; ?>website/page/<?php echo $value->id; ?>"><?php echo $value->title; ?></a></li>
+            <li class="menu-item"><a
+                    href="<?php echo $webUrl; ?>website/page/<?php echo $value->id; ?>"><?php echo $value->title; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </li>
 
-    <li class="menu-item">
-        <a href="#" <?php echo $selectBar == "job" ? "class=\"selected\"" : ""; ?>>Jobs</a>
+<li class="menu-item">
+    <a href="#" <?php echo $selectBar == "job" ? "class=\"selected\"" : ""; ?>>Jobs</a>
 
-        <ul class="sub-menu">
-            <?php $oldID = ""; ?>
-            <?php foreach ($arrJobsMenu as $key => $value) : ?>
-            <?php if ($value->type != $oldID): ?>
-            <?php if ($key > 0): ?>
+<ul class="sub-menu">
+    <?php $oldID = ""; ?>
+    <?php foreach ($arrJobsMenu as $key => $value) : ?>
+    <?php if ($value->type != $oldID): ?>
+        <?php if ($key > 0): ?>
         </ul>
     </li>
     <!--                        </ul>-->
-    <?php endif; ?>
-    <?php $oldID = $value->type; ?>
+            <?php endif; ?>
+        <?php $oldID = $value->type; ?>
     <li class="menu-item">
         <a href="<?php echo $webUrl; ?>"><?php echo $value->type_name; ?></a>
         <ul class="sub-menu">
             <li class="menu-item">
                 <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
             </li>
-            <?php else: ?>
-                <li class="menu-item">
-                    <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
-                </li>
-            <?php
-            endif;
-            ?>
-            <?php endforeach; ?>
-            <?php ?>
-        </ul>
-    </li>
+        <?php else: ?>
+        <li class="menu-item">
+            <a href="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>"><?php echo $value->title; ?></a>
+        </li>
+        <?php
+    endif;
+    ?>
+    <?php endforeach; ?>
+    <?php ?>
+</ul>
+</li>
 </ul>
 
 
@@ -283,165 +283,40 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
             Mobile menu
         </option>
 
-        <option value="<?php echo $webUrl; ?>">
-            Home
+        <!-- HOME -->
+        <option value="<?php echo $webUrl; ?>" <?php echo $selectBar == "home" ? "class=\"selected\"" : ""; ?>>
+            HOME
         </option>
-
-        <option value="home-boxed.html">
-            - Home - Boxed Style
+        <!-- #END HOME -->
+        <!-- OUR SERICE -->
+        <option value="<?php echo $webUrl; ?>website/our_service" <?php echo $selectBar == "our_service" ? "class=\"selected\"" : ""; ?>>
+            OUR SERVICE
         </option>
-
-        <option value="home-revslider.html">
-            - Home - Revolution Slider
+        <?php foreach ($arrPageTypeOurService as $key => $value): ?>
+        <option value="<?php echo $webUrl; ?>website/page/<?php echo $value->id; ?>">
+            - <?php echo $value->title; ?>
         </option>
-
-        <option value="index.html">
-            - Home - Designare Slider
-        </option>
-
-        <option value="home-flexslider.html">
-            - Home - Flexslider
-        </option>
-
+        <?php endforeach; ?>
+        <!-- #END OURSERVICE -->
+        <!-- JOB -->
         <option value="#">
-            Pages
+            JOBS
         </option>
-
-        <option value="aboutus.html">
-            - About Us
+        <?php
+        foreach ($arrJobsMenu as $key => $value) :
+            ?>
+            <option value="<?php echo $webUrl; ?>website/post/<?php echo $value->id; ?>">
+                - <?php echo $value->title; ?>
+            </option>
+            <?php
+        endforeach;
+        ?>
+        <!-- #END JOB -->
+        <!-- CONTACT US -->
+        <option value="<?php echo $webUrl; ?>website/contactus" <?php echo $selectBar == "contactus" ? "class=\"selected\"" : ""; ?>>
+            CONTACT US
         </option>
-
-        <option value="aboutus-boxed.html">
-            - About Us - Boxed
-        </option>
-
-        <option value="services.html">
-            - Services
-        </option>
-
-        <option value="page-leftsidebar.html">
-            - Page - Left Sidebar
-        </option>
-
-        <option value="page-rightsidebar.html">
-            - Page - Right Sidebar
-        </option>
-
-        <option value="#">
-            - Multilevel Menu
-        </option>
-
-        <option value="#">
-            - Create Awesome
-        </option>
-
-        <option value="#">
-            - Multilevel menus using
-        </option>
-
-        <option value="#">
-            - HTML menus
-        </option>
-
-        <option value="#">
-            - With 5 levels or more!
-        </option>
-
-        <option value="pricingtables.html">
-            - Pricing tables
-        </option>
-
-        <option value="elements.html">
-            Elements
-        </option>
-
-        <option value="#">
-            Portfolio
-        </option>
-
-        <option value="portfolio-2-columns.html">
-            - Portfolio 2 Columns
-        </option>
-
-        <option value="portfolio-3-columns.html">
-            - Portfolio 3 Columns
-        </option>
-
-        <option value="portfolio-3-col-boxed/">
-            - Portfolio 3 Col Boxed
-        </option>
-
-        <option value="portfolio-4-columns.html">
-            - Portfolio 4 Columns
-        </option>
-
-        <option value="portfolio-2-columns-style2.html">
-            - Portfolio 2 Columns (Style2)
-        </option>
-
-        <option value="portfolio-3-columns-style2.html">
-            - Portfolio 3 Columns (Style2)
-        </option>
-
-        <option value="portfolio-4-columns-style2.html">
-            - Portfolio 4 Columns (Style2)
-        </option>
-
-        <option value="portfolio-3-columns.html">
-            - Category Filter - Quicksand
-        </option>
-
-        <option value="portfolio-3-columns-style2.html">
-            - Category Filter - Opacity
-        </option>
-
-        <option value="single-project.html">
-            - Single Project - Fullwith
-        </option>
-
-        <option value="single-project-boxed.html">
-            - Single Project - Boxed
-        </option>
-
-        <option value="single-project-video-simple.html">
-            - Single Project - Video
-        </option>
-
-        <option value="single-project-video-overlay.html">
-            - Single Project - Video Overlay
-        </option>
-
-        <option value="#">
-            Blog
-        </option>
-
-        <option value="blog-right-sidebar.html">
-            - Blog - Right Sidebar
-        </option>
-
-        <option value="blog-left-sidebar.html">
-            - Blog - Left Sidebar
-        </option>
-
-        <option value="blog-full-width.html">
-            - Blog - Full Width
-        </option>
-
-        <option value="single-right.html">
-            - Blog - Single Post Right SB
-        </option>
-
-        <option value="single-left.html">
-            - Blog - Single Post Left SB
-        </option>
-
-        <option value="single-none.html">
-            - Blog - Single Post Without SB
-        </option>
-
-        <option value="contactus.html">
-            Contacts
-        </option>
+        <!-- #END CONTACT US -->
     </select>
 </div>
 <!-- End Menu -->

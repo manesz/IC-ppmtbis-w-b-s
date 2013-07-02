@@ -207,6 +207,10 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <a href="<?php echo $webUrl; ?>cpanel/site_config">
                         <i class="icon-chevron-right"></i> Site Config</a>
                 </li>
+                <li>
+                    <a href="<?php echo $webUrl; ?>crm/dashboard">
+                        <i class="icon-chevron-right"></i> CRM</a>
+                </li>
                 <!--<li class="subMenuClick">
                     <a href="#"><i class="icon-chevron-right"></i> Statistics</a>
                 </li>

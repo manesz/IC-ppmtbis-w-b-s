@@ -27,6 +27,7 @@ class Upload extends CI_Controller
         //ตั้งชื่อใหม่ date-time-fileType-fileName.xxx
 //        $fileName = pathinfo($_FILES['userfile']['name']);
         $fileName = @$_FILES['userfile']['name'];
+        $fileName = str_replace(' ', '_', $fileName);
         $newName = date("Ymd") . "-" . date('His') . "-$fileType-" . $fileName;
         $_FILES['userfile']['name'] = $newName;
 

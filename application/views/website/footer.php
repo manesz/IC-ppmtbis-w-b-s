@@ -11,6 +11,13 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
     seta
 </div>
 
+
+<!-- Lightbox2 JS -->
+<script src="<?php echo $assetUrl; ?>plugin/lightbox/js/jquery-1.7.2.min.js"></script>
+<script src="<?php echo $assetUrl; ?>plugin/lightbox/js/jquery-ui-1.8.18.custom.min.js"></script>
+<script src="<?php echo $assetUrl; ?>plugin/lightbox/js/jquery.smooth-scroll.min.js"></script>
+<script src="<?php echo $assetUrl; ?>plugin/lightbox/js/lightbox.js"></script>
+
 <!-- TWITTER SCROLLER SCRIPT -->
 <script type="text/javascript">
     jQuery(function($){
@@ -33,6 +40,19 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
                     ticker();
                 });
     });
+
+    jQuery(document).ready(function($) {
+        $('a').smoothScroll({
+            speed: 1000,
+            easing: 'easeInOutCubic'
+        });
+
+        $('.showOlderChanges').on('click', function(e){
+            $('.changelog .old').slideDown('slow');
+            $(this).fadeOut();
+            e.preventDefault();
+        })
+    });
 </script>
 
 <!-- TWITTER SCROLLER -->
@@ -52,7 +72,7 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
                 <!-- SOCIAL ICONS -->
                 <div class="textwidget">
                     <div>
-                        <?php echo $arrData[0]->contact_content;?><br/>
+                        <?php echo $arrData[0]->contact_address;?><br/>
                         Phone : <?php echo $arrData[0]->contact_phone;?><br/>
                         Fax : <?php echo $arrData[0]->contact_fax;?><br/>
                         Email : <?php echo $arrData[0]->contact_email;?><br/>
@@ -196,22 +216,7 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
 <!-- GENERAL COLOR TO BE APPLIED -->
 <div id="styleColor" style="display:none;">#7AB317</div>
 
-<!-- BLOG PAGINATION RELATED OPTIONS -->
-<div style="display:none;" id="loader-startPage">0</div>
 
-<div style="display:none;" id="loader-maxPages"></div>
-
-<div style="display:none;" id="loader-nextLink">http://designarethemes.com/themes/freshlookwp/page/2/</div>
-
-<div style="display:none;" id="reading_option"></div>
-
-<div style="display:none;" id="freshlook_no_more_posts_text">No more posts to load.</div>
-
-<div style="display:none;" id="freshlook_load_more_posts_text">Load More Posts</div>
-
-<div style="display:none;" id="freshlook_loading_posts_text">Loading posts...</div>
-
-<div style="display:none;" id="freshlook_links_color_hover"></div>
 
 <!-- IMAGE LOADER -->
 <div style="display:none;" class="loadinger"><img alt="loading" src="img/ajx_loading.gif"></div>

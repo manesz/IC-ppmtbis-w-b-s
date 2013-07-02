@@ -1,5 +1,6 @@
 <?php //require_once("header.php");
 $this->load->view("website/header");
+$mapImageUrl = base_url("upload/images/site_config/1/");
 ?>
 
 <div class="everything">
@@ -71,7 +72,11 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                     <p>&nbsp;</p>
                     <!--<p>PROMPT has been established by a team of professionals highly experienced in many fields of expertise i.e. human resources, accounting, finance, asset management, logistics and information technology, etc.   The company aims to provide one-stop services of business consultations and solutions on the principles of highly quality, punctually, customer satisfaction and cost effectiveness.   To maximize customers' satisfaction and return on investment, we continuously maintain our standardization and develop our organization to serve the better in the future.</p><br/>-->
                     <p><?php echo $arrData->contact_content; ?></p><br/>
-
+                    <ul class="slides">
+                        <li>
+                            <a href='javascript:;'><img src='<?php echo $mapImageUrl.$arrData->contact_image?>' alt=''></a>
+                        </li>
+                    </ul>
                     <div class="eight columns">
                         <h4>Additional Information</h4>
 
@@ -122,7 +127,7 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
 
                 </div>
                 <script type="text/javascript">
-                    /*$(document).ready(function () {
+                    $(document).ready(function () {
                         $('#myslider-1').flexslider({
                             animation: "fade",
                             slideDirection: "vertical",
@@ -147,7 +152,7 @@ $expStrGmap = explode(',', $arrData->contact_lat_long);
                                 $("#myslider-1 .slides li").eq(slider.currentSlide).find(".flex-caption").animate({'bottom': '0'}, 500);
                             }
                         });
-                    });*/
+                    });
                 </script>
 
             </div>
