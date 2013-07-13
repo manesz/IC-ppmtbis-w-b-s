@@ -96,6 +96,15 @@ class Website_model extends CI_Model
         );
         $config = Array(
             'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'mail@ideacorners.com',
+            'smtp_pass' => 'p@ssw0rd',
+            'mailtype'  => 'html',
+            'charset'   => 'iso-8859-1'
+        );
+        $config = Array(
+            'protocol' => 'smtp',
             'smtp_host' => 'mail.latendahouse.com',
             'smtp_port' => 25,
             'smtp_user' => 'ruxchuk@latendahouse.com',
