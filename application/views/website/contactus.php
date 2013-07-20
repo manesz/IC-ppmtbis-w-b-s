@@ -1,6 +1,7 @@
 <?php //require_once("header.php");
 $this->load->view("website/header");
 $mapImageUrl = base_url("upload/images/site_config/1/");
+
 ?>
 
 <div class="everything">
