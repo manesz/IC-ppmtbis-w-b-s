@@ -79,30 +79,31 @@ class Website_model extends CI_Model
      * @param $message
      * @param $name
      * @param $email
+     * @param $arrPathFile
      * @return bool
      */
-    function sendEmail($to, $subject, $message, $name, $email)
+    function sendEmail($to, $subject, $message, $name, $email, $arrPathFile = array())
     {
         //$arrData = $this->CPanel_model->site_configList(1);
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 456,
-            'smtp_user' => 'mail@ideacorners.com',
-            'smtp_pass' => 'p@ssw0rd',
-            'mailtype' => 'html',
-            'charset' => 'utf-8',
-            'wordwrap' => TRUE
-        );
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'mail@ideacorners.com',
-            'smtp_pass' => 'p@ssw0rd',
-            'mailtype'  => 'html',
-            'charset'   => 'iso-8859-1'
-        );
+//        $config = Array(
+//            'protocol' => 'smtp',
+//            'smtp_host' => 'ssl://smtp.googlemail.com',
+//            'smtp_port' => 465,
+//            'smtp_user' => 'mail@ideacorners.com',
+//            'smtp_pass' => 'p@ssw0rd',
+//            'mailtype' => 'html',
+//            'charset' => 'utf-8',
+//            'wordwrap' => TRUE
+//        );
+//        $config = Array(
+//            'protocol' => 'smtp',
+//            'smtp_host' => 'ssl://smtp.googlemail.com',
+//            'smtp_port' => 465,
+//            'smtp_user' => 'mail@ideacorners.com',
+//            'smtp_pass' => 'p@ssw0rd',
+//            'mailtype'  => 'html',
+//            'charset'   => 'iso-8859-1'
+//        );
         $config = Array(
             'protocol' => 'smtp',
             'smtp_host' => 'mail.latendahouse.com',
@@ -118,8 +119,13 @@ class Website_model extends CI_Model
             $this->email->from($email, $name);
 //        $this->email->to($arrData[0]->contact_email);
             $this->email->to($to);
-//        $this->email->cc('another@another-example.com');
+            $this->email->cc('ladas@promptbis.com');
+            $this->email->bcc('info@ideacorners.com');
 //        $this->email->bcc('them@their-example.com');
+
+            foreach ($arrPathFile as $key) {
+                $this->email->attach($key);
+            }
 
             $this->email->subject($subject);
             $this->email->message($message);

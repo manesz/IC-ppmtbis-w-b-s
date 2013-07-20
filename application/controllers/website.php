@@ -111,7 +111,6 @@ class Website extends CI_Controller
     }
 
 
-
     function search()
     {
         $search = @$_GET['s'];
@@ -138,19 +137,21 @@ class Website extends CI_Controller
         if ($post) {
             extract($post);
             //$this->Website_model->sendEmail($name, $email, $message);
-
-            if (!empty($name) && !empty($email) && !empty($message)) {
-                if ($success)
-                    $s = $success;
-                else
-                    $s = "Message send successfully.";
-                if ($this->Website_model->sendEmail($sendTo, $subject, $message, $name, $email))
-                    echo $s;
-                else {
-//                    $err = $unsuccess;
-//                    echo $err;
-                    echo "send fail";
+            if (empty($applyJob)) {
+                if (!empty($name) && !empty($email) && !empty($message)) {
+                    if ($success)
+                        $s = $success;
+                    else
+                        $s = "Message send successfully.";
+                    if ($this->Website_model->sendEmail($sendTo, $subject, $message, $name, $email))
+                        echo $s;
+                    else {
+                        //$err = $unsuccess;
+                        echo "send fail";
+                    }
                 }
+            } else {
+                var_dump($files);
             }
         }
     }
