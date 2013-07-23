@@ -8,10 +8,13 @@
 //$this->load->view("website/title");
 $baseUrl = base_url();
 $jqueryUpload = $baseUrl . "assets/plugin/jquery-upload/";
+$jqueryUpload2 = $baseUrl . "assets/plugin/j-upload/";
 ?>
 
     <!-- Bootstrap CSS Toolkit styles -->
-    <link rel="stylesheet" href="<?php echo $jqueryUpload; ?>css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="--><?php //echo $jqueryUpload; ?><!--css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="http://blueimp.github.io/cdn/css/bootstrap.min.css"
+          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <!-- Generic page styles -->
     <!--    <link rel="stylesheet" href="--><?php //echo $jqueryUpload; ?><!--css/style.css">-->
     <!-- Bootstrap styles for responsive website layout, supporting different screen sizes -->
@@ -28,7 +31,20 @@ $jqueryUpload = $baseUrl . "assets/plugin/jquery-upload/";
     <noscript>
         <link rel="stylesheet" href="<?php echo $jqueryUpload; ?>css/jquery.fileupload-ui-noscript.css">
     </noscript>
+    <!--<script  src="http://code.jquery.com/jquery-1.7.min.js" ></script>-->
+    <script  type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" ></script>
 
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/tmpl.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/load-image.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/canvas-to-blob.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/bootstrap.min.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/bootstrap-image-gallery.min.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/jquery.iframe-transport.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/jquery.fileupload.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/jquery.fileupload-ip.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/jquery.fileupload-ui.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/locale.js" ></script>
+    <script  type="text/javascript" src="<?php echo $jqueryUpload2; ?>js/fileupload/main.js" ></script>
 
     <!-- TITLE -->
     <div class="fullwidth-container"
@@ -77,164 +93,164 @@ $jqueryUpload = $baseUrl . "assets/plugin/jquery-upload/";
                             <br/><br/>
 
                             <div>
-                                <form method="post" action="#" class="validateform" id="frm-apply-job">
-                                    <input type="hidden" value="true" name="applyJob" id="applyJob">
-                                    <div>
-                                        Message: <textarea></textarea>
-                                    </div>
-                                    <span class="btn btn-success fileinput-button">
-                                        <i class="icon-plus icon-white"></i>
-                                        <span>Add files...</span>
-                                        <!-- The file input field used as target for the file upload widget -->
-                                        <input id="fileupload" type="file" name="files[]" multiple>
-                                    </span>
-                                    <!-- The global progress bar -->
-                                    <div id="progress" class="progress progress-success progress-striped">
-                                        <div class="bar"></div>
-                                    </div>
-                                    <!-- The container for the uploaded files -->
-                                    <div id="files" class="files"></div>
-
-                                    <div>
-                                        <input value="Send" type="button">
-                                    </div>
+                                <form id="frmApplyJob" action="" method="post">
+                                    <input type="hidden" name="typeJob" value="<?php echo $arrData->title; ?>"/>
+                                    <label>Name: <input name="name" id="name" type="text" class="yourname txt corner-input"/></label>
+                                    <label>Email: <input name="email" id="email" type="text" class="yourname txt corner-input"/></label>
+                                    <label>Mobile: <input name="email" id="email" type="text" class="yourname txt corner-input"/></label>
+                                    <label>Description: <textarea class="yourmessage textarea message corner-input"></textarea></label>
                                 </form>
-                                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-                                <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-                                <script src="<?php echo $jqueryUpload; ?>js/vendor/jquery.ui.widget.js"></script>
-                                <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-                                <script src="<?php echo $jqueryUpload; ?>js/load-image.min.js"></script>
-                                <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-                                <script src="<?php echo $jqueryUpload; ?>js/canvas-to-blob.min.js"></script>
-                                <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-                                <script src="<?php echo $jqueryUpload; ?>js/jquery.iframe-transport.js"></script>
-                                <!-- The basic File Upload plugin -->
-                                <script src="<?php echo $jqueryUpload; ?>js/jquery.fileupload.js"></script>
-                                <!-- The File Upload processing plugin -->
-                                <script src="<?php echo $jqueryUpload; ?>js/jquery.fileupload-process.js"></script>
-                                <!-- The File Upload image preview & resize plugin -->
-                                <script src="<?php echo $jqueryUpload; ?>s/jquery.fileupload-image.js"></script>
-                                <!-- The File Upload audio preview plugin -->
-                                <script src="<?php echo $jqueryUpload; ?>js/jquery.fileupload-audio.js"></script>
-                                <!-- The File Upload video preview plugin -->
-                                <script src="<?php echo $jqueryUpload; ?>js/jquery.fileupload-video.js"></script>
-                                <!-- The File Upload validation plugin -->
-                                <script src="<?php echo $jqueryUpload; ?>js/jquery.fileupload-validate.js"></script>
-                                <script>
-                                    /*jslint unparam: true, regexp: true */
-                                    /*global window, $ */
-                                    $(function () {
-                                        'use strict';
-                                        // Change this to the location of your server-side upload handler:
-                                        var url = window.location.hostname === 'blueimp.github.io' ?
-                                                '//jquery-file-upload.appspot.com/' : 'server/php/',
-                                            uploadButton = $('<button/>')
-                                                .addClass('btn')
-                                                .prop('disabled', true)
-                                                .text('Processing...')
-                                                .on('click', function () {
-                                                    var $this = $(this),
-                                                        data = $this.data();
-                                                    $this
-                                                        .off('click')
-                                                        .text('Abort')
-                                                        .on('click', function () {
-                                                            $this.remove();
-                                                            data.abort();
-                                                        });
-                                                    data.submit().always(function () {
-                                                        $this.remove();
-                                                    });
-                                                });
-                                        $('#fileupload').fileupload({
-                                            url: url,
-                                            dataType: 'json',
-                                            autoUpload: false,
-                                            //acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-                                            acceptFileTypes: /(\.|\/)(txt|pdf|doc|docx)$/i,
-                                            //maxFileSize: 5000000, // 5 MB
-                                            maxFileSize: 3000000, // 3 MB
-                                            // Enable image resizing, except for Android and Opera,
-                                            // which actually support image resizing, but fail to
-                                            // send Blob objects via XHR requests:
-                                            disableImageResize: /Android(?!.*Chrome)|Opera/
-                                                .test(window.navigator.userAgent),
-                                            previewMaxWidth: 100,
-                                            previewMaxHeight: 100,
-                                            previewCrop: true
-                                        }).on('fileuploadadd',function (e, data) {
-                                                data.context = $('<div/>').appendTo('#files');
-                                                $.each(data.files, function (index, file) {
-                                                    var node = $('<p/>')
-                                                        .append($('<span/>').text(file.name));
-                                                    if (!index) {
-                                                        node
-                                                            .append('<br>')
-                                                            .append(uploadButton.clone(true).data(data));
-                                                    }
-                                                    node.appendTo(data.context);
-                                                });
-                                            }).on('fileuploadprocessalways',function (e, data) {
-                                                var index = data.index,
-                                                    file = data.files[index],
-                                                    node = $(data.context.children()[index]);
-                                                if (file.preview) {
-                                                    node
-                                                        .prepend('<br>')
-                                                        .prepend(file.preview);
-                                                }
-                                                if (file.error) {
-                                                    node
-                                                        .append('<br>')
-                                                        .append(file.error);
-                                                }
-                                                if (index + 1 === data.files.length) {
-                                                    data.context.find('button')
-                                                        .text('Upload')
-                                                        .prop('disabled', !!data.files.error);
-                                                }
-                                            }).on('fileuploadprogressall',function (e, data) {
-                                                var progress = parseInt(data.loaded / data.total * 100, 10);
-                                                $('#progress .bar').css(
-                                                    'width',
-                                                    progress + '%'
-                                                );
-                                            }).on('fileuploaddone',function (e, data) {
-                                                $.each(data.result.files, function (index, file) {
-                                                    var link = $('<a>')
-                                                        .attr('target', '_blank')
-                                                        .prop('href', file.url);
-                                                    $(data.context.children()[index])
-                                                        .wrap(link);
-                                                });
-                                            }).on('fileuploadfail',function (e, data) {
-                                                $.each(data.result.files, function (index, file) {
-                                                    var error = $('<span/>').text(file.error);
-                                                    $(data.context.children()[index])
-                                                        .append('<br>')
-                                                        .append(error);
-                                                });
-                                            }).prop('disabled', !$.support.fileInput)
-                                            .parent().addClass($.support.fileInput ? undefined : 'disabled');
-                                    });
+                                <form id="fileupload" action="<?php echo $webUrl; ?>apply_job/upload_img" method="POST"
+                                      enctype="multipart/form-data">
+                                    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                                    <div class="row fileupload-buttonbar">
+                                        <div class="span7">
+                                            <!-- The fileinput-button span is used to style the file input field as button -->
+                                        <span class="btn btn-success fileinput-button">
+                                            <span><i class="icon-plus icon-white"></i> Add files...</span>
+                                            <input type="file" name="userfile" multiple>
+                                        </span>
+                                            <button type="submit" class="btn btn-primary start">
+                                                <i class="icon-upload icon-white"></i> Start upload
+                                            </button>
+                                            <button type="reset" class="btn btn-warning cancel">
+                                                <i class="icon-ban-circle icon-white"></i> Cancel upload
+                                            </button>
+                                            <button type="button" class="btn btn-danger delete">
+                                                <i class="icon-trash icon-white"></i> Delete
+                                            </button>
+                                            <input type="checkbox" class="toggle">
+                                        </div>
+                                        <div class="span5">
+                                            <!-- The global progress bar -->
+                                            <div class="progress progress-success progress-striped active fade">
+                                                <div class="bar" style="width:0%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- The loading indicator is shown during image processing -->
+                                    <div class="fileupload-loading"></div>
+                                    <br>
+                                    <!-- The table listing the files available for upload/download -->
+                                    <table class="table table-striped">
+                                        <tbody class="files" data-toggle="modal-gallery"
+                                               data-target="#modal-gallery"></tbody>
+                                    </table>
+                                </form>
+                                <script id="template-upload" type="text/x-tmpl">
+                                    {% for (var i=0, files=o.files, l=files.length, file=files[0]; i< l;
+                                    file=files[++i]) { %}
+                                    <tr class="template-upload fade">
+                                        <td class="preview"><span class="fade"></span></td>
+                                        <td class="name">{%=file.name%}</td>
+                                        <td class="size">{%=o.formatFileSize(file.size)%}</td>
+                                        {% if (file.error) { %}
+                                        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span>
+                                            {%=locale.fileupload.errors[file.error] || file.error%}
+                                        </td>
+                                        {% } else if (o.files.valid && !i) { %}
+                                        <td>
+                                            <div class="progress progress-success progress-striped active">
+                                                <div class="bar" style="width:0%;"></div>
+                                            </div>
+                                        </td>
+                                        <td class="start">{% if (!o.options.autoUpload) { %}
+                                            <button class="btn btn-primary">
+                                                <i class="icon-upload icon-white"></i> {%=locale.fileupload.start%}
+                                            </button>
+                                            {% } %}
+                                        </td>
+                                        {% } else { %}
+                                        <td colspan="2"></td>
+                                        {% } %}
+                                        <td class="cancel">{% if (!i) { %}
+                                            <button class="btn btn-warning">
+                                                <i class="icon-ban-circle icon-white"></i> {%=locale.fileupload.cancel%}
+                                            </button>
+                                            {% } %}
+                                        </td>
+                                    </tr>
+                                    {% } %}
                                 </script>
+
+                                <div id="download-files">
+                                    <!-- The template to display files available for download -->
+                                    <script id="template-download" type="text/x-tmpl">
+                                        {% for (var i=0, files=o.files, l=files.length, file=files[0]; i< l;
+                                        file=files[++i]) { %}
+                                        <tr class="template-download fade">
+                                            {% if (file.error) { %}
+                                            <td></td>
+                                            <td class="name">{%=file.name%}</td>
+                                            <td class="size">{%=o.formatFileSize(file.size)%}</td>
+                                            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span>
+                                                {%=locale.fileupload.errors[file.error] || file.error%}
+                                            </td>
+                                            {% } else { %}
+                                            <td class="preview">
+                                                {% if (file.thumbnail_url) { %}
+                                                    <a href="<?php echo $baseUrl; ?>{%=file.url%}" title="{%=file.name%}"
+                                                       download="{%=file.name%}" data-gallery>
+                                                        <img width="100px" src="<?php echo $baseUrl; ?>{%=file.thumbnail_url%}">
+                                                    </a>
+                                                {% } %}
+                                            </td>
+                                            <td class="name">
+                                                <a href="<?php echo $baseUrl; ?>{%=file.url%}" title="{%=file.name%}"
+                                                   rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+                                                <input type="hidden" id="fileUp" name="fileUp[]" value="<?php echo $baseUrl; ?>{%=file.url%}">
+                                            </td>
+                                            <td class="size">{%=o.formatFileSize(file.size)%}</td>
+                                            <td colspan="2"></td>
+                                            {% } %}
+                                            <td class="delete">
+                                                <button class="btn btn-danger"
+                                                    onclick="return clickDelete('{%=file.delete_url%}');">
+                                                    <i class="icon-trash icon-white"></i> {%=locale.fileupload.destroy%}
+                                                </button>
+                                                <input type="checkbox" name="delete" value="1">
+                                            </td>
+
+                                            <td class="add">
+<!--                                                <button class="btn btn-success add-article" title="{%=file.name%}"-->
+<!--                                                        data-type="PRIMARYIMAGE" data-url="{%=file.url%}">-->
+<!--                                                    <i class="icon-plus icon-white"></i> Add-->
+<!--                                                </button>-->
+
+                                            </td>
+                                        </tr>
+                                        {% } %}
+                                    </script>
+                                    <script>
+                                        function clickDelete(url)
+                                        {
+                                            $.post(url, {data:""},
+                                                function (result) {
+                                                }
+                                            );
+                                            return false;
+                                        }
+                                    </script>
+                                </div>
 
                             </div>
                         </div>
                     </div>
-                </section>
-
-                <section class="one column"></section>
-                <div id="secondary" class="widget-area four columns" style="position: relative; float: right;">
-
-                    <?php $this->load->view("website/sidebar"); ?>
-
-                </div>
-                <!-- #secondary .widget-area -->
             </div>
-            <!-- #primary -->
         </div>
-        <!-- enf of .container -->
+        </section>
+
+        <section class="one column"></section>
+        <div id="secondary" class="widget-area four columns" style="position: relative; float: right;">
+
+            <?php $this->load->view("website/sidebar"); ?>
+
+        </div>
+        <!-- #secondary .widget-area -->
+    </div>
+    <!-- #primary -->
+    </div>
+    <!-- enf of .container -->
     </div><!-- end of wrapper -->
 
 <?php $this->load->view("website/footer"); ?>
