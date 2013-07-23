@@ -106,3 +106,6 @@
     }
 
 
+/* ### Customs Style ### */
+.post-listing ul li{list-style: square; !important; list-style-position: inside;}
+/* ### END : Custom Style ### */

@@ -27,7 +27,7 @@
 	border: 1px solid #e2e2e2;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
-	
+	margin-bottom: 30px;
 }
 .fancyborder{
 	padding: 20px;
@@ -154,11 +154,11 @@ a.des-sc-button.xl { padding:30px 40px; font-size:1.5em;-webkit-border-radius: 8
 a.des-sc-button.dark span { color:#212121;}
 
 a.des-sc-button span { line-height:22px; min-height: 16px; }
-a.des-sc-button span.des-info { background:url("../images/ico-info.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
-a.des-sc-button span.des-download { background:url("../images/ico-download.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
-a.des-sc-button span.des-tick { background:url("../images/ico-tick.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
-a.des-sc-button span.des-note { background:url("../images/ico-note.png") no-repeat 0 35%; padding-left:25px; display:block; margin-left: -4px;}
-a.des-sc-button span.des-alert { background:url("../images/ico-alert.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
+a.des-sc-button span.des-info { background:url( "../images/ico-info.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
+a.des-sc-button span.des-download { background:url( "../images/ico-download.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
+a.des-sc-button span.des-tick { background:url( "../images/ico-tick.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
+a.des-sc-button span.des-note { background:url( "../images/ico-note.png") no-repeat 0 35%; padding-left:25px; display:block; margin-left: -4px;}
+a.des-sc-button span.des-alert { background:url( "../images/ico-alert.png") no-repeat 0 35%; padding-left:25px; display:block;margin-left: -4px; }
 
 /* =============================================================== */
 /* Buttons

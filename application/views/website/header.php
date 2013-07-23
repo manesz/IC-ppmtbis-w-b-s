@@ -52,8 +52,8 @@ $assetUrl = base_url("assets/");
     <![endif]-->
 
     <!-- Lightbox2 CSS -->
-    <link rel="stylesheet" href="<?php echo $assetUrl; ?>plugin/lightbox/css/screen.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<?php echo $assetUrl; ?>plugin/lightbox/css/lightbox.css" type="text/css" media="screen" />
+<!--    <link rel="stylesheet" href="--><?php //echo $assetUrl; ?><!--plugin/lightbox/css/screen.css" type="text/css" media="screen" />-->
+<!--    <link rel="stylesheet" href="--><?php //echo $assetUrl; ?><!--plugin/lightbox/css/lightbox.css" type="text/css" media="screen" />-->
 
     <!-- Freshlook CSS -->
     <link rel='stylesheet' href='<?php echo $baseUrl; ?>css/skeleton.css' type='text/css' media='all' />

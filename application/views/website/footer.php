@@ -42,10 +42,10 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
     });
 
     jQuery(document).ready(function($) {
-        $('a').smoothScroll({
-            speed: 1000,
-            easing: 'easeInOutCubic'
-        });
+//        $('a').smoothScroll({
+//            speed: 1000,
+//            easing: 'easeInOutCubic'
+//        });
 
         $('.showOlderChanges').on('click', function(e){
             $('.changelog .old').slideDown('slow');
@@ -219,6 +219,6 @@ $arrPageTypeOurService = $this->CPanel_model->pageList(0, 2);
 
 
 <!-- IMAGE LOADER -->
-<div style="display:none;" class="loadinger"><img alt="loading" src="img/ajx_loading.gif"></div>
+<div style="display:none;" class="loadinger"><img alt="loading" src="<?php echo base_url(); ?>assets/img/ajx_loading.gif"></div>
 </body>
 </html>

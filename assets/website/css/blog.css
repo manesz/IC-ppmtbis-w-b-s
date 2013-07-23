@@ -622,6 +622,7 @@ pre{word-wrap: break-word;}
 	position: relative;
 	float: left;
 	margin: 20px 0;
+    width: 100%;
 }
 #footer_widget .recentPostsSidebar_widget{
 	margin: 0 !important;
