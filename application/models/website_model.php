@@ -17,8 +17,9 @@ class Website_model extends CI_Model
         parent::__construct();
     }
 
-    function getListJobMenu()
+    function getListJobMenu($id = 0)
     {
+        $strAnd = $id == 0 ? "" : "a.id = $id";
         $sql = "
             SELECT
               a.*,
@@ -32,6 +33,7 @@ class Website_model extends CI_Model
                 )
             WHERE 1
               AND a.`publish` = 1
+              $strAnd
                 ORDER BY a.`type`,
                   a.`create_time`
         ";
@@ -117,18 +119,29 @@ class Website_model extends CI_Model
         try {
             $this->load->library('email', $config);
             $this->email->from($email, $name);
-//        $this->email->to($arrData[0]->contact_email);
-            $this->email->to($to);
-            $this->email->cc('ladas@promptbis.com');
+            //$this->email->to($to);
+            $this->email->to("ruxchuk@gmail.com");
+            //$this->email->cc('ladas@promptbis.com');
             $this->email->bcc('info@ideacorners.com');
-//        $this->email->bcc('them@their-example.com');
 
-            foreach ($arrPathFile as $key) {
-                $this->email->attach($key);
+            if (!empty($arrPathFile)) {
+                $count = 1;
+                $message .= "<p>Link Attachment :</p>";
+                $dateNow = date("Ymd");
+                foreach ($arrPathFile as $value) {
+                    $fileName = urldecode($value);
+                    //$fileName = iconv("UTF-8", "TIS-620", $fileName);
+                    //$path = realpath(APPPATH . 'upload/files/apply-job/$dateNow/');
+                    //$this->email->attach($path . $fileName);
+                    $message .= "<p><a href='$fileName'>File$count</a></p>";
+                    //$message .= "<p>$path/$fileName</p>";
+                    $count++;
+                }
             }
-
             $this->email->subject($subject);
             $this->email->message($message);
+
+
             $result = $this->email->send();
         } catch (Exception $e) {
             return false;
@@ -139,5 +152,44 @@ class Website_model extends CI_Model
             return false;
         }
         //echo $this->email->print_debugger();
+    }
+
+    /**
+     * @param $category
+     * @param $jobID
+     * @param $nameSender
+     * @param $emailSender
+     * @param $mobileSender
+     * @param null $arrPath
+     * @return mixed
+     */
+    function addApplyJobLog($category, $jobID, $nameSender, $emailSender, $mobileSender, $arrPath = null)
+    {
+        if (empty($arrPath)) {
+            $strPathFile = "";
+            $is_attachment = 0;
+        } else {
+            $strPathFile = "";
+            $dateNow = date("Ymd");
+            foreach ($arrPath as $value) {
+                $pathFile = urldecode($value);
+                $strPathFile .= "/$dateNow/$pathFile\n";
+            }
+            $is_attachment = 1;
+        }
+
+        $data = array(
+            'category' => trim($category),
+            'job_id' => $jobID,
+            'name_sender' => trim($nameSender),
+            'email_sender' => trim($emailSender),
+            'mobile_sender' => trim($mobileSender),
+            'path_attachment' => $strPathFile,
+            'is_attachment' => $is_attachment,
+            'create_datetime' => date("Y-m-d H:i:s"),
+            'publish' => 1
+        );
+        $this->db->insert('wb_apply_job', $data);
+        return $id = $this->db->insert_id('wb_apply_job');
     }
 }

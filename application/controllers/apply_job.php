@@ -324,4 +324,33 @@ class Apply_Job extends CI_Controller
     {
         $this->delete_img_url = $delete_img_url;
     }
+
+    function sendEmail()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            extract($post);
+            $subject = "Apply $category/$jobName From $nameAJ";
+            $message = "
+            <p><strong>Apply Job From Website</strong></p>
+            <p>Category : $category</p>
+            <p>Job Name : $jobName</p>
+            <p><STRONG>Apply From :</STRONG> $nameAJ</p>
+            <p>Description : $descAJ</p>
+            <p>Email : $emailAJ</p>
+            <p>Mobile : $mobileAJ</p>
+            ";
+            $resultSendEmail = $this->Website_model->sendEmail($sendTo, $subject, $message, $nameAJ, $emailAJ, $file);
+            if ($resultSendEmail) {
+                $resultAddLog = $this->Website_model->addApplyJobLog($jobName, $jobID, $nameAJ, $emailAJ, $mobileAJ, $file);
+                if ($resultAddLog) {
+                    echo 'send success';
+                    exit();
+                }
+            }
+            echo 'error';
+
+        }
+
+    }
 }
