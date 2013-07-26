@@ -9,6 +9,7 @@
 
 $baseUrl = base_url();
 extract((array)$arrData);
+$pathUploadFile = $baseUrl. "upload/files/company/$id/";
 ?>
 
 <link rel="stylesheet" type="text/css"
@@ -334,7 +335,8 @@ extract((array)$arrData);
                                 ?>
                                 <p>
                                     File<?php echo $key + 1 . ": ";
-                                    echo $strFileName; ?>
+                                    ?>
+                                    <a href="<?php echo $pathUploadFile . $strFileName; ?>" title="<?php echo $strFileName; ?>" download="<?php echo $strFileName; ?>"><?php echo $strFileName; ?></a>
                                     <a class="file-delete" href="#<?php echo $value; ?>">
                                         <img title="Delete file<?php echo $key + 1?>"
                                             src="<?php echo $baseUrl; ?>assets/plugin/uploadify/uploadify-cancel.png"/>
