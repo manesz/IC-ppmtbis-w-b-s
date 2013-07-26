@@ -94,7 +94,7 @@ class Crm extends CI_Controller
             "message" => $message,
             "selectBar" => $strSelectBar
         );
-        $this->load->view("crm/client_view", $data);
+        $this->load->view("crm/client/client_view", $data);
     }
 
     function clientList()
@@ -111,7 +111,7 @@ class Crm extends CI_Controller
             "webUrl" => $this->webUrl,
             'message' => ""
         );
-        $this->load->view('crm/client_list_view', $data);
+        $this->load->view('crm/client/client_list_view', $data);
     }
 
     function clientNew()
@@ -135,7 +135,7 @@ class Crm extends CI_Controller
             "webUrl" => $this->webUrl,
             'message' => ""
         );
-        $this->load->view('crm/client_new_view', $data);
+        $this->load->view('crm/client/client_new_view', $data);
     }
 
     function clientEdit($id)
@@ -166,7 +166,7 @@ class Crm extends CI_Controller
             'message' => $message,
             "arrFileName" => $arrFileName
         );
-        $this->load->view('crm/client_edit_view', $data);
+        $this->load->view('crm/client/client_edit_view', $data);
     }
 
     function clientDelete($id)
@@ -224,7 +224,7 @@ class Crm extends CI_Controller
             "message" => $message,
             "selectBar" => $strSelectBar
         );
-        $this->load->view("crm/job_view", $data);
+        $this->load->view("crm/job/job_view", $data);
     }
 
     function jobList()
@@ -241,7 +241,7 @@ class Crm extends CI_Controller
             "webUrl" => $this->webUrl,
             'message' => ""
         );
-        $this->load->view('crm/job_list_view', $data);
+        $this->load->view('crm/job/job_list_view', $data);
     }
 
     function jobNew()
@@ -265,7 +265,7 @@ class Crm extends CI_Controller
             "webUrl" => $this->webUrl,
             'message' => ""
         );
-        $this->load->view('crm/job_new_view', $data);
+        $this->load->view('crm/job/job_new_view', $data);
     }
 
     function jobEdit($id)
@@ -296,7 +296,7 @@ class Crm extends CI_Controller
             'message' => $message,
             "arrFileName" => $arrFileName
         );
-        $this->load->view('crm/job_edit_view', $data);
+        $this->load->view('crm/job/job_edit_view', $data);
     }
 
     function jobDelete($id)
