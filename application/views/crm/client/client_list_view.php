@@ -9,6 +9,8 @@
 $baseUrl = base_url();
 $this->load->view('header_datatable_view');
 ?>
+<script src="<?php echo $baseUrl; ?>assets/plugin/date-picker/js/jquery-ui-1.10.3.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script>
     //var $jConflict = jQuery.noConflict();
 //    $jConflict(function () {
@@ -16,7 +18,7 @@ $this->load->view('header_datatable_view');
 //    });
 
     $(document).ready(function () {
-        $('#clientList').dataTable();
+       $('#clientList').dataTable();
 
         $('#clientNew').click(function(){
             innerHtml("#content", this.href);
@@ -33,7 +35,9 @@ $this->load->view('header_datatable_view');
 //            return false;
 //        });
 
-
+        $( ".datePicker" ).datepicker({
+            dateFormat: "yy-mm-dd"
+        });
     });
 
     function loadEditData(url)
@@ -86,6 +90,16 @@ $this->load->view('header_datatable_view');
                         class="badge badge-info">add</span></a></div>
         </div>
         <div class="block-content collapse in">
+            <div>
+                <form action="" method="get">
+                    ชื่อบริษัท <input type="text" id="companyName" name="companyName"> ประเภทบริษัท <select></select><br>
+                    ผู้ติดต่อประสานงาน <select name=""></select> วันที่สร้างข้อมูล
+                    <input class="datePicker" type="text" id="dateCreate" />
+                    <br>
+                    วันที่แก้ไขข้อมูล
+                    <input class="datePicker" type="text" id="dateEdit" />
+                </form>
+            </div>
             <table cellpadding="0" cellspacing="0" border="0" class="display" id="clientList">
                 <thead>
                 <tr>

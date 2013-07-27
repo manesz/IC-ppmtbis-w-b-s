@@ -219,7 +219,7 @@ $siteConfig = $this->CPanel_model->site_configList(1);
                                     onclick="return clickDelete('{%=file.delete_url%}');">
                                     <i class="icon-trash icon-white"></i> {%=locale.fileupload.destroy%}
                                 </button>
-                                <input type="checkbox" name="delete" value="1">
+<!--                                <input type="checkbox" name="delete" value="1">-->
                             </td>
 
                             <td class="add">

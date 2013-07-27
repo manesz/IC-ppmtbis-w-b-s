@@ -167,8 +167,8 @@ class Apply_Job extends CI_Controller
 
             // the display_errors() function wraps error messages in <p> by default and these html chars don't parse in
             // default view on the forum so either set them to blank, or decide how you want them to display.  null is passed.
-//            $error = array('error' => $this->upload->display_errors('', ''));
-//            echo json_encode(array($error));
+            $error = array('error' => $this->upload->display_errors('', ''));
+            echo json_encode(array($error));
         }
 
 
