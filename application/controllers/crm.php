@@ -602,8 +602,10 @@ class Crm extends CI_Controller
             }
             exit();
         }
+        $arrJobGroup = $this->CRM_model->jobGroupList();
         $data = array(
             "webUrl" => $this->webUrl,
+            "arrJobGroup" => $arrJobGroup,
             'message' => ""
         );
         $this->load->view('crm/other/position_new_view', $data);
@@ -623,9 +625,11 @@ class Crm extends CI_Controller
             exit();
         }
         $arrData = $this->CRM_model->positionList($id);
+        $arrJobGroup = $this->CRM_model->jobGroupList();
         $data = array(
             'arrData' => $arrData[0],
             "webUrl" => $this->webUrl,
+            "arrJobGroup" => $arrJobGroup,
             'message' => $message,
         );
         $this->load->view('crm/other/position_edit_view', $data);
@@ -633,7 +637,11 @@ class Crm extends CI_Controller
 
     function positionDelete($id)
     {
-        $result = $this->CRM_model->setPublish($id, 'crm_position');
+        $data = array(
+            'publish' => 0
+        );
+        $result = $this->db->update('crm_position', $data, array('int' => $id));
+        //$result = $this->CRM_model->setPublish($id, 'crm_position');
         if ($result) {
             echo "delete success";
         } else {

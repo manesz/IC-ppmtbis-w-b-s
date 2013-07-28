@@ -3,7 +3,7 @@
  * Created by JetBrains PhpStorm.
  * User: Administrator
  * Date: 28/7/2556
- * Time: 16:14 น.
+ * Time: 18:46 น.
  * To change this template use File | Settings | File Templates.
  */
 
@@ -12,7 +12,7 @@ extract((array)$arrData);
 ?>
 
 <script>
-    var url_edit_data = "<?php echo $webUrl; ?>crm/businessTypeEdit/<?php echo $int; ?>";
+    var url_edit_data = "<?php echo $webUrl; ?>crm/positionEdit/<?php echo $int; ?>";
     $(document).ready(function () {
         $("#buttonSave").click(function () {
             if (validateFrom(document.getElementById('formPost'))) {
@@ -39,7 +39,7 @@ extract((array)$arrData);
     });
 </script>
 <div class="navbar navbar-inner block-header">
-    <div class="muted pull-left">Business Type Edit</div>
+    <div class="muted pull-left">Position Edit</div>
     <!--            <div class="pull-right"><span class="badge badge-info">1,234</span></div>-->
 </div>
 <div class="block-content collapse in">
@@ -56,6 +56,18 @@ extract((array)$arrData);
             <div class="span8">
                 <textarea name="description" id="description" class="input-block-level"
                           rows="10"><?php echo $description; ?></textarea>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span4">ประเภทพนักงาน</div>
+            <div class="span8">
+                <select name="job_group_id" id="job_group_id" class="input-block-level">
+                    <option value="0"></option>
+                    <?php foreach ($arrJobGroup as $key => $value): ?>
+                        <option <?php echo $value->id == $int? 'selected':''; ?>
+                            value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
         <div class="row-fluid">

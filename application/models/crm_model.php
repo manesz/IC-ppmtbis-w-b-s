@@ -320,6 +320,7 @@ class CRM_model extends CI_Model
         $data = array(
             'name' => trim($name),
             'description' => trim($description),
+            'job_group_id' => intval($job_group_id),
             'create_time' => date("Y-m-d H:i:s"),
             "update_time" => '0000-00-00 00:00:00'
         );
@@ -333,9 +334,10 @@ class CRM_model extends CI_Model
         $data = array(
             'name' => trim($name),
             'description' => trim($description),
+            'job_group_id' => intval($job_group_id),
             'update_time' => date("Y-m-d H:i:s")
         );
-        return $this->db->update('crm_position', $data, array('id' => $id));
+        return $this->db->update('crm_position', $data, array('int' => $id));
     }
 
     /**
@@ -344,14 +346,17 @@ class CRM_model extends CI_Model
      */
     function positionList($id = 0)
     {
-        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $strAnd = $id == 0 ? "" : "AND a.int = $id";
         $sql = "
             SELECT
-              a.*
+              a.*,
+              b.name AS job_group_name
             FROM
-              `crm_position` a
+              `crm_position` a,
+              `crm_job_group` b
             WHERE 1
               AND a.`publish` = 1
+              AND a.job_group_id = b.id
               $strAnd
         ";
         $query = $this->db->query($sql);
