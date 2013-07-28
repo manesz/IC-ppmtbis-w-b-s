@@ -978,4 +978,83 @@ class Crm extends CI_Controller
         exit();
     }
 
+    //-----------------------------------Other Data Rang Salary------------------------------------------//
+
+    function rangSalary()
+    {
+        $message = "";
+        $strSelectBar = "rang_salary";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/rang_salary_view", $data);
+    }
+
+    function rangSalaryList()
+    {
+        $arrData = $this->CRM_model->rangSalaryList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/rang_salary_list_view', $data);
+    }
+
+    function rangSalaryNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->rangSalaryNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/rang_salary_new_view', $data);
+    }
+
+    function rangSalaryEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->rangSalaryEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->rangSalaryList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/rang_salary_edit_view', $data);
+    }
+
+    function rangSalaryDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_rang_salary');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }
