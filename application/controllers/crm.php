@@ -812,4 +812,87 @@ class Crm extends CI_Controller
         exit();
     }
 
+    //-----------------------------------Other Data Major------------------------------------------//
+
+    function major()
+    {
+        $message = "";
+        $strSelectBar = "major";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/major_view", $data);
+    }
+
+    function majorList()
+    {
+        $arrData = $this->CRM_model->majorList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/major_list_view', $data);
+    }
+
+    function majorNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->majorNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $arrInstitute = $this->CRM_model->instituteList();
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrInstitute" => $arrInstitute,
+            'message' => ""
+        );
+        $this->load->view('crm/other/major_new_view', $data);
+    }
+
+    function majorEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->majorEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->majorList($id);
+        $arrInstitute = $this->CRM_model->instituteList();
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            "arrInstitute" => $arrInstitute,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/major_edit_view', $data);
+    }
+
+    function majorDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_major');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }

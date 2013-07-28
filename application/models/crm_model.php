@@ -356,6 +356,7 @@ class CRM_model extends CI_Model
               `crm_job_group` b
             WHERE 1
               AND a.`publish` = 1
+              AND b.`publish` = 1
               AND a.job_group_id = b.id
               $strAnd
         ";
@@ -463,6 +464,64 @@ class CRM_model extends CI_Model
               `crm_education_level` a
             WHERE 1
               AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------------------Major------------------------------------------//
+    function majorNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'institute_id' => intval($institute_id),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00',
+            "publish" => 1
+        );
+        $this->db->insert('crm_major', $data);
+        return $id = $this->db->insert_id('crm_major');
+    }
+
+    function majorEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'institute_id' => intval($institute_id),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_major', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function majorList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*,
+              b.name_th AS institute_name_th,
+              b.name_en AS institute_name_en
+            FROM
+              `crm_major` a,
+              crm_institute b
+            WHERE 1
+              AND a.institute_id = b.id
+              AND a.`publish` = 1
+              AND b.`publish` = 1
               $strAnd
         ";
         $query = $this->db->query($sql);
