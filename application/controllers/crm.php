@@ -1057,4 +1057,83 @@ class Crm extends CI_Controller
         exit();
     }
 
+    //-----------------------------------Other Data Rang Experience Year------------------------------------------//
+
+    function rangExperienceYear()
+    {
+        $message = "";
+        $strSelectBar = "rang_experience_year";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/rang_experience_year_view", $data);
+    }
+
+    function rangExperienceYearList()
+    {
+        $arrData = $this->CRM_model->rangExperienceYearList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/rang_experience_year_list_view', $data);
+    }
+
+    function rangExperienceYearNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->rangExperienceYearNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/rang_experience_year_new_view', $data);
+    }
+
+    function rangExperienceYearEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->rangExperienceYearEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->rangExperienceYearList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/rang_experience_year_edit_view', $data);
+    }
+
+    function rangExperienceYearDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_rang_experience_year');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }

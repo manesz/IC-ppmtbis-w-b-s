@@ -641,6 +641,57 @@ class CRM_model extends CI_Model
         }
     }
 
+    //-----------------------------------Rang Experience Year------------------------------------------//
+    function rangExperienceYearNew($post)
+    {
+        extract($post);
+        $data = array(
+            'rang' => trim($rang),
+            'description' => trim($description),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00',
+            "publish" => 1
+        );
+        $this->db->insert('crm_rang_experience_year', $data);
+        return $id = $this->db->insert_id('crm_rang_experience_year');
+    }
+
+    function rangExperienceYearEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'rang' => trim($rang),
+            'description' => trim($description),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_rang_experience_year', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function rangExperienceYearList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_rang_experience_year` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------------------Company Type------------------------------------------//
     /**
      * get รายชื่อประเภทบริษัท
