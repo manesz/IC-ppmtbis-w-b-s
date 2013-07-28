@@ -98,7 +98,7 @@ $this->load->view('header_datatable_view');
                         <td class="center"><?php echo $value->email; ?></td>
                         <td class="center">
                             <a class="editData" onclick="innerHtml('#add', '<?php echo $webUrl; ?>crm/employeeEdit/<?php echo $value->id; ?>');return false;"
-                               href="<?php echo $webUrl; ?>cpanel/navigatorEdit/<?php echo $value->id; ?>">
+                               href="<?php echo $webUrl; ?>crm/employeeEdit/<?php echo $value->id; ?>">
                                 แก้ไข</a> /
                             <a class="deleteData" href="#"
                                onclick="return deleteClick('<?php echo $webUrl; ?>crm/employeeDelete/<?php echo $value->id; ?>')">ลบ</a>

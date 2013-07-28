@@ -37,7 +37,7 @@ $baseUrl = base_url();
     </div>
     <div class="block-content collapse in">
         <form id="formPost" name="formPost" method="post" action="">
-            <input type="hidden" name="typeFrm" id="typeFrm" value="edit">
+            <input type="hidden" name="typeFrm" id="typeFrm" value="add">
             <input type="hidden" name="permission" id="permission" value="0">
 
             <div class="row-fluid">
