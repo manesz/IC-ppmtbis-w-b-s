@@ -692,6 +692,46 @@ class CRM_model extends CI_Model
         }
     }
 
+    //-----------------------------------Log------------------------------------------//
+    function logNew($older_data, $new_data, $field, $table)
+    {
+        $data = array(
+            'older_data' => trim($older_data),
+            'new_data' => trim($new_data),
+            'field' => trim($field),
+            'table' => trim($table),
+            'create_time' => date("Y-m-d H:i:s"),
+            "publish" => 1
+        );
+        $this->db->insert('crm_log', $data);
+        return $id = $this->db->insert_id('crm_log');
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function logList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_log` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------------------Company Type------------------------------------------//
     /**
      * get รายชื่อประเภทบริษัท

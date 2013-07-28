@@ -1136,4 +1136,61 @@ class Crm extends CI_Controller
         exit();
     }
 
+    //-----------------------------------Other Data Log------------------------------------------//
+
+    function log()
+    {
+        $message = "";
+        $strSelectBar = "log";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/log_view", $data);
+    }
+
+    function logList()
+    {
+        $arrData = $this->CRM_model->logList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/log_list_view', $data);
+    }
+
+    function logNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->logNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/log_new_view', $data);
+    }
+
+    function logDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_log');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }
