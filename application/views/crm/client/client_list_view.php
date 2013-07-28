@@ -92,7 +92,13 @@ $this->load->view('header_datatable_view');
         <div class="block-content collapse in">
             <div>
                 <form action="" method="get">
-                    ชื่อบริษัท <input type="text" id="companyName" name="companyName"> ประเภทบริษัท <select></select><br>
+                    ชื่อบริษัท <input type="text" id="companyName" name="companyName"> ประเภทบริษัท
+                    <select>
+                        <option value="0"></option>
+                        <?php foreach($company_type as $key => $value):?>
+                        <option value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
+                        <?php endforeach; ?>
+                    </select><br>
                     ผู้ติดต่อประสานงาน <select name=""></select> วันที่สร้างข้อมูล
                     <input class="datePicker" type="text" id="dateCreate" />
                     <br>
