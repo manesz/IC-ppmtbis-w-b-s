@@ -327,7 +327,7 @@ class Crm extends CI_Controller
     function employee()
     {
         $message = "";
-        $strSelectBar = "other";
+        $strSelectBar = "employee";
 
         $data = array(
             "webUrl" => $this->webUrl,
@@ -393,6 +393,164 @@ class Crm extends CI_Controller
     function employeeDelete($id)
     {
         $result = $this->CRM_model->setPublish($id, 'crm_employee');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    //-----------------------------------Other Data Business Type------------------------------------------//
+
+    function businessType()
+    {
+        $message = "";
+        $strSelectBar = "business_type";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/business_type_view", $data);
+    }
+
+    function businessTypeList()
+    {
+        $arrData = $this->CRM_model->businessTypeList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/business_type_list_view', $data);
+    }
+
+    function businessTypeNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->businessTypeNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/business_type_new_view', $data);
+    }
+
+    function businessTypeEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->businessTypeEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->businessTypeList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/business_type_edit_view', $data);
+    }
+
+    function businessTypeDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_business_type');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    //-----------------------------------Other Data Job Group------------------------------------------//
+
+    function jobGroup()
+    {
+        $message = "";
+        $strSelectBar = "job_group";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/job_group_view", $data);
+    }
+
+    function jobGroupList()
+    {
+        $arrData = $this->CRM_model->jobGroupList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/job_group_list_view', $data);
+    }
+
+    function jobGroupNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->jobGroupNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/job_group_new_view', $data);
+    }
+
+    function jobGroupEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->jobGroupEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->jobGroupList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/job_group_edit_view', $data);
+    }
+
+    function jobGroupDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_job_group');
         if ($result) {
             echo "delete success";
         } else {

@@ -172,9 +172,17 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <a href="<?php echo $webUrl; ?>crm/client">
                         <i class="icon-chevron-right"></i> Client</a>
                 </li>
-                <li <?php echo $selectBar == "other" ? 'class="active"' : "" ?>>
+                <li <?php echo $selectBar == "employee" ? 'class="active"' : "" ?>>
                     <a href="<?php echo $webUrl; ?>crm/employee">
-                        <i class="icon-chevron-right"></i> Other Data</a>
+                        <i class="icon-chevron-right"></i> Employee</a>
+                </li>
+                <li <?php echo $selectBar == "business_type" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/businessType">
+                        <i class="icon-chevron-right"></i> Business Type</a>
+                </li>
+                <li <?php echo $selectBar == "job_group" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/jobGroup">
+                        <i class="icon-chevron-right"></i> Job Group</a>
                 </li>
                 <li>
                     <a href="<?php echo $webUrl; ?>cpanel/dashboard">

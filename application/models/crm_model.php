@@ -168,7 +168,7 @@ class CRM_model extends CI_Model
             'password' => md5(trim($password)),
             'employer_level_id' => intval($employer_level_id),
             'update_time' => date("Y-m-d H:i:s")
-        ): array(
+        ) : array(
             'name' => trim($name),
             'description' => trim($description),
             'permission' => intval($permission),
@@ -189,12 +189,122 @@ class CRM_model extends CI_Model
      */
     function employeeList($id = 0)
     {
-        if ($id == 0) {
-            $arrWhere = array('publish' => 1);
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*,
+              b.name AS `employee_level_name`
+            FROM
+              `crm_employee` a,
+              `crm_employee_level` b
+            WHERE 1
+              AND a.`employer_level_id` = b.`id`
+              AND a.`publish` = 1
+              AND b.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
         } else {
-            $arrWhere = array('id' => $id, 'publish' => 1);
+            return (object)array();
         }
-        $query = $this->db->get_where('crm_employee', $arrWhere);
+    }
+
+    //-----------------------------------Business Type------------------------------------------//
+    function businessTypeNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00'
+        );
+        $this->db->insert('crm_business_type', $data);
+        return $id = $this->db->insert_id('crm_business_type');
+    }
+
+    function businessTypeEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_business_type', $data, array('int' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function businessTypeList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.int = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_business_type` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------------------Job Group------------------------------------------//
+    function jobGroupNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00',
+            "publish" => 1
+        );
+        $this->db->insert('crm_job_group', $data);
+        return $id = $this->db->insert_id('crm_job_group');
+    }
+
+    function jobGroupEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_job_group', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function jobGroupList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_job_group` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
         if ($query->num_rows()) {
             $result = $query->result();
             return $result;
@@ -204,8 +314,6 @@ class CRM_model extends CI_Model
     }
 
     //-----------------------------------Company Type------------------------------------------//
-
-
     /**
      * get รายชื่อประเภทบริษัท
      *
