@@ -110,9 +110,11 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array(
-    'Website_model',
+    'Auth_model',
     'CPanel_model',
-    'Client_model',
+    'CRM_model',
+    'Upload_model',
+    'Website_model',
 );
 
 

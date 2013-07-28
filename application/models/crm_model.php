@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by JetBrains PhpStorm.
- * User: Rux
- * Date: 20/5/2556
- * Time: 17:02 น.
+ * User: Administrator
+ * Date: 28/7/2556
+ * Time: 11:56 น.
  * To change this template use File | Settings | File Templates.
  */
 
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Client_model extends CI_Model
+class CRM_model extends CI_Model
 {
 
     function __construct()
@@ -133,8 +133,103 @@ class Client_model extends CI_Model
         return $this->db->update('crm_company', $this, array('id' => $id));
     }
 
-    function updatePathFiles($id, $path)
+    //-----------------------------------Employee------------------------------------------//
+    function employeeNew($post)
     {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'permission' => intval($permission),
+            'phone_number' => trim($phone_number),
+            'email' => trim($email),
+            'address' => trim($address),
+            'username' => trim($username),
+            'password' => md5(trim($password)),
+            'employer_level_id' => intval($employer_level_id),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00'
+        );
+        $this->db->insert('crm_employee', $data);
+        return $id = $this->db->insert_id('crm_employee');
+    }
 
+    function employeeEdit($id, $post)
+    {
+        extract($post);
+        $data = $password != "" ? array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'permission' => intval($permission),
+            'phone_number' => trim($phone_number),
+            'email' => trim($email),
+            'address' => trim($address),
+            //'username' => trim($username),
+            'password' => md5(trim($password)),
+            'employer_level_id' => intval($employer_level_id),
+            'update_time' => date("Y-m-d H:i:s")
+        ): array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'permission' => intval($permission),
+            'phone_number' => trim($phone_number),
+            'email' => trim($email),
+            'address' => trim($address),
+            //'username' => trim($username),
+            //'password' => md5(trim($password)),
+            'employer_level_id' => intval($employer_level_id),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_employee', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function employeeList($id = 0)
+    {
+        if ($id == 0) {
+            $arrWhere = array('publish' => 1);
+        } else {
+            $arrWhere = array('id' => $id, 'publish' => 1);
+        }
+        $query = $this->db->get_where('crm_employee', $arrWhere);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------------------Company Type------------------------------------------//
+
+
+    /**
+     * get รายชื่อประเภทบริษัท
+     *
+     * @param $id
+     * @return object
+     */
+    function getListCompanyType($id = "")
+    {
+        $strAnd = $id != "" ? "AND id = $id" : "";
+        $sql = "
+            SELECT
+              *
+            FROM
+              `crm_company_type`
+            WHERE 1
+              AND publish = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+        } else {
+            $result = (object)array();
+        }
+        return $result;
     }
 }

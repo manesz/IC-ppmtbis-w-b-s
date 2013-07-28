@@ -37,7 +37,6 @@ class Crm extends CI_Controller
         $post = $this->input->post();
         $message = "";
         if ($post) {
-            $this->load->model('Auth_model');
             $resultLogin = $this->Auth_model->signIn($post);
             if ($resultLogin) {
                 redirect($this->webUrl . "crm/dashboard");
@@ -99,11 +98,9 @@ class Crm extends CI_Controller
 
     function clientList()
     {
-        $this->load->model('Client_model');
-        $arrClient = $this->Client_model->getListClient();
+        $arrClient = $this->CRM_model->getListClient();
 
-        $this->load->model('Company_type_model');
-        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
         $data = array(
             'arrClientList' => $arrClient,
@@ -116,13 +113,11 @@ class Crm extends CI_Controller
 
     function clientNew()
     {
-        $this->load->model('Company_type_model');
-        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
         $post = $this->input->post();
         if ($post) {//var_dump($this->session);exit();
-            $this->load->model('Client_model');
-            $result = $this->Client_model->clientNew($post);
+            $result = $this->CRM_model->clientNew($post);
             if ($result){
                 echo $result;
             } else {
@@ -141,10 +136,9 @@ class Crm extends CI_Controller
     function clientEdit($id)
     {
         $message = "";
-        $this->load->model('Client_model');
         $post = $this->input->post();
         if ($post) {
-            $result = $this->Client_model->clientEdit($id, $post);
+            $result = $this->CRM_model->clientEdit($id, $post);
             if ($result) {
                 echo "edit success";
             } else {
@@ -152,12 +146,10 @@ class Crm extends CI_Controller
             }
             exit();
         }
-        $arrClient = $this->Client_model->getListClient($id);
+        $arrClient = $this->CRM_model->getListClient($id);
 
-        $this->load->model('Company_type_model');
-        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
-        $this->load->model('Upload_model');
         $arrFileName = $this->Upload_model->getFileFromFolder("company", $id);
         $data = array(
             'arrData' => $arrClient[0],
@@ -171,8 +163,7 @@ class Crm extends CI_Controller
 
     function clientDelete($id)
     {
-        $this->load->model('Client_model');
-        $result = $this->Client_model->setPublish($id, 'crm_company');
+        $result = $this->CRM_model->setPublish($id, 'crm_company');
         if ($result) {
             echo "delete success";
         } else {
@@ -186,8 +177,7 @@ class Crm extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
-            $this->load->model('Client_model');
-            $result = $this->Client_model->clientUpdatePathImage($id, $path);
+            $result = $this->CRM_model->clientUpdatePathImage($id, $path);
             if ($result) {
                 echo "update success";
             } else {
@@ -202,7 +192,6 @@ class Crm extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
-            $this->load->model('Upload_model');
             $result = $this->Upload_model->deleteFile("company", $id, $fileName);
             if ($result){
                 echo "delete file finish";
@@ -229,11 +218,9 @@ class Crm extends CI_Controller
 
     function jobList()
     {
-        $this->load->model('job_model');
-        $arrjob = $this->job_model->getListjob();
+        $arrjob = $this->CRM_model->getListjob();
 
-        $this->load->model('Company_type_model');
-        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
         $data = array(
             'arrjobList' => $arrjob,
@@ -246,13 +233,11 @@ class Crm extends CI_Controller
 
     function jobNew()
     {
-        $this->load->model('Company_type_model');
-        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
         $post = $this->input->post();
-        if ($post) {//var_dump($this->session);exit();
-            $this->load->model('job_model');
-            $result = $this->job_model->jobNew($post);
+        if ($post) {
+            $result = $this->CRM_model->jobNew($post);
             if ($result){
                 echo $result;
             } else {
@@ -271,10 +256,9 @@ class Crm extends CI_Controller
     function jobEdit($id)
     {
         $message = "";
-        $this->load->model('job_model');
         $post = $this->input->post();
         if ($post) {
-            $result = $this->job_model->jobEdit($id, $post);
+            $result = $this->CRM_model->jobEdit($id, $post);
             if ($result) {
                 echo "edit success";
             } else {
@@ -282,12 +266,10 @@ class Crm extends CI_Controller
             }
             exit();
         }
-        $arrjob = $this->job_model->getListjob($id);
+        $arrjob = $this->CRM_model->getListjob($id);
 
-        $this->load->model('Company_type_model');
-        $arrCompanyType = $this->Company_type_model->getListCompanyType();
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
-        $this->load->model('Upload_model');
         $arrFileName = $this->Upload_model->getFileFromFolder("company", $id);
         $data = array(
             'arrData' => $arrjob[0],
@@ -301,8 +283,7 @@ class Crm extends CI_Controller
 
     function jobDelete($id)
     {
-        $this->load->model('job_model');
-        $result = $this->job_model->setPublish($id, 'crm_company');
+        $result = $this->CRM_model->setPublish($id, 'crm_company');
         if ($result) {
             echo "delete success";
         } else {
@@ -316,8 +297,7 @@ class Crm extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
-            $this->load->model('job_model');
-            $result = $this->job_model->jobUpdatePathImage($id, $path);
+            $result = $this->CRM_model->jobUpdatePathImage($id, $path);
             if ($result) {
                 echo "update success";
             } else {
@@ -332,7 +312,6 @@ class Crm extends CI_Controller
         $post = $this->input->post();
         if ($post) {
             extract($post);
-            $this->load->model('Upload_model');
             $result = $this->Upload_model->deleteFile("company", $id, $fileName);
             if ($result){
                 echo "delete file finish";
@@ -342,4 +321,84 @@ class Crm extends CI_Controller
         }
         exit();
     }
+
+    //-----------------------------------Other Data Employee------------------------------------------//
+
+    function employee()
+    {
+        $message = "";
+        $strSelectBar = "other";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/employee_view", $data);
+    }
+
+    function employeeList()
+    {
+        $arrData = $this->CRM_model->employeeList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/employee_list_view', $data);
+    }
+
+    function employeeNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->employeeNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/employee_new_view', $data);
+    }
+
+    function employeeEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->employeeEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->employeeList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/employee_edit_view', $data);
+    }
+
+    function employeeDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_employee');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }

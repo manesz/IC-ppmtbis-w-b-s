@@ -172,6 +172,10 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <a href="<?php echo $webUrl; ?>crm/client">
                         <i class="icon-chevron-right"></i> Client</a>
                 </li>
+                <li <?php echo $selectBar == "other" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/employee">
+                        <i class="icon-chevron-right"></i> Other Data</a>
+                </li>
                 <li>
                     <a href="<?php echo $webUrl; ?>cpanel/dashboard">
                         <i class="icon-chevron-right"></i> Backend Website</a>
