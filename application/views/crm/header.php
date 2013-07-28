@@ -184,6 +184,38 @@ $selectBar = empty($selectBar) ? "" : $selectBar;
                     <a href="<?php echo $webUrl; ?>crm/jobGroup">
                         <i class="icon-chevron-right"></i> Job Group</a>
                 </li>
+                <li <?php echo $selectBar == "position" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/position">
+                        <i class="icon-chevron-right"></i> Position</a>
+                </li>
+                <li <?php echo $selectBar == "institute" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/institute">
+                        <i class="icon-chevron-right"></i> Institute</a>
+                </li>
+                <li <?php echo $selectBar == "education_level" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/educationLevel">
+                        <i class="icon-chevron-right"></i> Education Level</a>
+                </li>
+                <li <?php echo $selectBar == "major" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/major">
+                        <i class="icon-chevron-right"></i> Major</a>
+                </li>
+                <li <?php echo $selectBar == "skill" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/skill">
+                        <i class="icon-chevron-right"></i> Skill</a>
+                </li>
+                <li <?php echo $selectBar == "rang_salary" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/rangSalary">
+                        <i class="icon-chevron-right"></i> Rang Salary</a>
+                </li>
+                <li <?php echo $selectBar == "rang_experience_year" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/rangExperienceYear">
+                        <i class="icon-chevron-right"></i> Rang Experience Year</a>
+                </li>
+                <li <?php echo $selectBar == "log" ? 'class="active"' : "" ?>>
+                    <a href="<?php echo $webUrl; ?>crm/log">
+                        <i class="icon-chevron-right"></i> Log</a>
+                </li>
                 <li>
                     <a href="<?php echo $webUrl; ?>cpanel/dashboard">
                         <i class="icon-chevron-right"></i> Backend Website</a>
