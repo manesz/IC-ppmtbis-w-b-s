@@ -895,4 +895,87 @@ class Crm extends CI_Controller
         exit();
     }
 
+    //-----------------------------------Other Data Skill------------------------------------------//
+
+    function skill()
+    {
+        $message = "";
+        $strSelectBar = "skill";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/skill_view", $data);
+    }
+
+    function skillList()
+    {
+        $arrData = $this->CRM_model->skillList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/skill_list_view', $data);
+    }
+
+    function skillNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->skillNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $arrJobGroup = $this->CRM_model->jobGroupList();
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "arrJobGroup" => $arrJobGroup,
+            'message' => ""
+        );
+        $this->load->view('crm/other/skill_new_view', $data);
+    }
+
+    function skillEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->skillEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->skillList($id);
+        $arrJobGroup = $this->CRM_model->jobGroupList();
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            "arrJobGroup" => $arrJobGroup,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/skill_edit_view', $data);
+    }
+
+    function skillDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_skill');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }

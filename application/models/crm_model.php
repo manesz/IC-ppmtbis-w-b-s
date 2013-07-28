@@ -533,6 +533,63 @@ class CRM_model extends CI_Model
         }
     }
 
+    //-----------------------------------Skill------------------------------------------//
+    function skillNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'job_group_id' => intval($job_group_id),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00',
+            "publish" => 1
+        );
+        $this->db->insert('crm_skill', $data);
+        return $id = $this->db->insert_id('crm_skill');
+    }
+
+    function skillEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'job_group_id' => intval($job_group_id),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_skill', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function skillList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*,
+              b.name AS job_group_name
+            FROM
+              `crm_skill` a,
+              crm_job_group b
+            WHERE 1
+              AND a.job_group_id = b.id
+              AND a.`publish` = 1
+              AND b.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------------------Company Type------------------------------------------//
     /**
      * get รายชื่อประเภทบริษัท
