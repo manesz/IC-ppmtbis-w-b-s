@@ -45,6 +45,7 @@ extract((array)$arrData);
 <div class="block-content collapse in">
     <form id="formPost" name="formPost" method="post" action="">
         <input type="hidden" name="typeFrm" id="typeFrm" value="edit">
+
         <div class="row-fluid">
             <div class="span4">ชื่อ</div>
             <div class="span8">
@@ -64,7 +65,7 @@ extract((array)$arrData);
                 <select name="job_group_id" id="job_group_id" class="input-block-level">
                     <option value="0"></option>
                     <?php foreach ($arrJobGroup as $key => $value): ?>
-                        <option <?php echo $value->id == $int? 'selected':''; ?>
+                        <option <?php echo "$value->id" == "$job_group_id" ? 'selected' : ''; ?>
                             value="<?php echo $value->id; ?>"><?php echo $value->name; ?></option>
                     <?php endforeach; ?>
                 </select>
