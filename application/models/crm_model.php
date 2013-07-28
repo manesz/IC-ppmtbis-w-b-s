@@ -313,6 +313,162 @@ class CRM_model extends CI_Model
         }
     }
 
+    //-----------------------------------Position------------------------------------------//
+    function positionNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00'
+        );
+        $this->db->insert('crm_position', $data);
+        return $id = $this->db->insert_id('crm_position');
+    }
+
+    function positionEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_position', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function positionList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_position` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------------------Institute------------------------------------------//
+    function instituteNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name_th' => trim($name_th),
+            'name_en' => trim($name_en),
+            'name_short' => trim($name_short),
+            'description' => trim($description),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00',
+            "publish" => 1
+        );
+        $this->db->insert('crm_institute', $data);
+        return $id = $this->db->insert_id('crm_institute');
+    }
+
+    function instituteEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name_th' => trim($name_th),
+            'name_en' => trim($name_en),
+            'name_short' => trim($name_short),
+            'description' => trim($description),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_institute', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function instituteList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_institute` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
+    //-----------------------------------Education Level------------------------------------------//
+    function educationLevelNew($post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'create_time' => date("Y-m-d H:i:s"),
+            "update_time" => '0000-00-00 00:00:00',
+            "publish" => 1
+        );
+        $this->db->insert('crm_education_level', $data);
+        return $id = $this->db->insert_id('crm_education_level');
+    }
+
+    function educationLevelEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'name' => trim($name),
+            'description' => trim($description),
+            'update_time' => date("Y-m-d H:i:s")
+        );
+        return $this->db->update('crm_education_level', $data, array('int' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @return object
+     */
+    function educationLevelList($id = 0)
+    {
+        $strAnd = $id == 0 ? "" : "AND a.int = $id";
+        $sql = "
+            SELECT
+              a.*
+            FROM
+              `crm_education_level` a
+            WHERE 1
+              AND a.`publish` = 1
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------------------Company Type------------------------------------------//
     /**
      * get รายชื่อประเภทบริษัท

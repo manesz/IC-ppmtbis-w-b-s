@@ -471,7 +471,11 @@ class Crm extends CI_Controller
 
     function businessTypeDelete($id)
     {
-        $result = $this->CRM_model->setPublish($id, 'crm_business_type');
+        $data = array(
+            'publish' => 0
+        );
+        $result = $this->db->update('crm_business_type', $data, array('int' => $id));
+        //$result = $this->CRM_model->setPublish($id, 'crm_business_type');
         if ($result) {
             echo "delete success";
         } else {
@@ -551,6 +555,247 @@ class Crm extends CI_Controller
     function jobGroupDelete($id)
     {
         $result = $this->CRM_model->setPublish($id, 'crm_job_group');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    //-----------------------------------Other Data Position------------------------------------------//
+
+    function position()
+    {
+        $message = "";
+        $strSelectBar = "position";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/position_view", $data);
+    }
+
+    function positionList()
+    {
+        $arrData = $this->CRM_model->positionList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/position_list_view', $data);
+    }
+
+    function positionNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->positionNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/position_new_view', $data);
+    }
+
+    function positionEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->positionEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->positionList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/position_edit_view', $data);
+    }
+
+    function positionDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_position');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    //-----------------------------------Other Data Institute------------------------------------------//
+
+    function institute()
+    {
+        $message = "";
+        $strSelectBar = "institute";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/institute_view", $data);
+    }
+
+    function instituteList()
+    {
+        $arrData = $this->CRM_model->instituteList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/institute_list_view', $data);
+    }
+
+    function instituteNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->instituteNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/institute_new_view', $data);
+    }
+
+    function instituteEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->instituteEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->instituteList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/institute_edit_view', $data);
+    }
+
+    function instituteDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_institute');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    //-----------------------------------Other Data Education Level------------------------------------------//
+
+    function educationLevel()
+    {
+        $message = "";
+        $strSelectBar = "education_level";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/other/education_level_view", $data);
+    }
+
+    function educationLevelList()
+    {
+        $arrData = $this->CRM_model->educationLevelList();
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/education_level_list_view', $data);
+    }
+
+    function educationLevelNew()
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->educationLevelNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => ""
+        );
+        $this->load->view('crm/other/education_level_new_view', $data);
+    }
+
+    function educationLevelEdit($id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->educationLevelEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->educationLevelList($id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+        );
+        $this->load->view('crm/other/education_level_edit_view', $data);
+    }
+
+    function educationLevelDelete($id)
+    {
+        $data = array(
+            'publish' => 0
+        );
+        $result = $this->db->update('crm_education_level', $data, array('int' => $id));
+        //$result = $this->CRM_model->setPublish($id, 'crm_education_level');
         if ($result) {
             echo "delete success";
         } else {
