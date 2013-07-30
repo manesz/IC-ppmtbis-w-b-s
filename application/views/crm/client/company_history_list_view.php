@@ -13,6 +13,15 @@ $this->load->view('header_datatable_view');
 <script>
     $(document).ready(function () {
         $('#tbDataHistory').dataTable();
+        $(".deleteCompanyHistory").click(function(){
+            $.post(this.href, {},
+                function (result) {
+                    alert(result);
+                    innerHtml("#companyHistory", url_company_history_list);
+                }
+            );
+            return false;
+        });
     });
 
     function showFancy(url) {
@@ -66,8 +75,8 @@ $this->load->view('header_datatable_view');
                     <a onclick="return showFancy('<?php echo $webUrl; ?>crm/companyHistoryEdit/<?php echo $value->id; ?>/<?php echo  $value->company_id; ?>'); "
                        href="#">
                         แก้ไข</a> /
-                    <a href="#"
-                       onclick="return deleteClick('<?php echo $webUrl; ?>crm/companyHistoryDelete/<?php echo $value->id; ?>');">ลบ</a>
+                    <a href="<?php echo $webUrl; ?>crm/companyHistoryDelete/<?php echo $value->id; ?>"
+                                      class="deleteCompanyHistory" >ลบ</a>
                 </td>
             </tr>
         <?php
