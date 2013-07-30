@@ -732,6 +732,67 @@ class CRM_model extends CI_Model
         }
     }
 
+
+    //-----------------------------------Company Contact------------------------------------------//
+    function companyContactNew($post)
+    {
+        extract($post);//var_dump($post);exit();
+        $data = array(
+            'name' => trim($name),
+            'position_id' => intval($position_id),
+            'phone' => trim($phone),
+            'email' => trim($email),
+            'company_id' => intval($company_id),
+            'create_time' => date("Y-m-d H:i:s"),
+            "publish" => 1
+        );
+        $this->db->insert('crm_map_company_contact', $data);
+        return $id = $this->db->insert_id('crm_map_company_contact');
+    }
+
+    function companyContactEdit($id, $post)
+    {
+        extract($post);//var_dump($post);exit();
+        $data = array(
+            'name' => trim($name),
+            'position_id' => intval($position_id),
+            'phone' => trim($phone),
+            'email' => trim($email),
+            'company_id' => intval($company_id),
+        );
+        return $this->db->update('crm_map_company_contact', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @param int $company_id
+     * @return object
+     */
+    function companyContactList($company_id, $id = 0)
+    {
+        $strAnd = $id == 0 ? "AND a.company_id = $company_id" : "AND a.company_id = $company_id AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*,
+              b.name AS position_name
+            FROM
+              `crm_map_company_contact` a,
+              `crm_position` b
+            WHERE 1
+              AND a.`publish` = 1
+              AND b.publish = 1
+              AND a.position_id = b.int
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------------------Company Type------------------------------------------//
     /**
      * get รายชื่อประเภทบริษัท

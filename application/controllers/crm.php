@@ -1193,4 +1193,86 @@ class Crm extends CI_Controller
         exit();
     }
 
+    //-----------------------------------Company Contact------------------------------------------//
+
+    function companyContact()
+    {
+        $message = "";
+        $strSelectBar = "companyContact";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/client/company_contact_view", $data);
+    }
+
+    function companyContactList($company_id)
+    {
+        $arrData = $this->CRM_model->companyContactList($company_id);
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => "",
+            'id' => $company_id
+        );
+        $this->load->view('crm/client/company_contact_list_view', $data);
+    }
+
+    function companyContactNew($company_id)
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->companyContactNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => "",
+            'id' => $company_id,
+        );
+        $this->load->view('crm/client/company_contact_new_view', $data);
+    }
+
+    function companyContactEdit($id, $company_id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->companyContactEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->companyContactList($company_id, $id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+            'company_id' => $company_id
+        );
+        $this->load->view('crm/client/company_contact_edit_view', $data);
+    }
+
+    function companyContactDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'map_company_contact');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
 }
