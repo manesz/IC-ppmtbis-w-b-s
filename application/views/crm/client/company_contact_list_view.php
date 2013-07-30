@@ -13,6 +13,16 @@ $this->load->view('header_datatable_view');
 <script>
     $(document).ready(function () {
         $('#tbData').dataTable();
+
+        $(".deleteCompanyContact").click(function(){
+            $.post(this.href, {},
+                function (result) {
+                    alert(result);
+                    innerHtml("#companyContactContent", url_company_contact_list);
+                }
+            );
+            return false;
+        });
     });
 
     function showFancy(url) {
@@ -33,6 +43,7 @@ $this->load->view('header_datatable_view');
         });
         return false;
     }
+
 </script>
 <div class="navbar navbar-inner block-header">
     <div class="muted pull-left">ผู้ติดต่อประสานงานกับ Office</div>
@@ -66,8 +77,8 @@ $this->load->view('header_datatable_view');
                     <a onclick="return showFancy('<?php echo $webUrl; ?>crm/companyContactEdit/<?php echo $value->id; ?>/<?php echo  $value->company_id; ?>'); "
                        href="#">
                         แก้ไข</a> /
-                    <a href="#"
-                       onclick="return deleteClick('<?php echo $webUrl; ?>crm/companyContactDelete/<?php echo $value->id; ?>');">ลบ</a>
+                    <a href="<?php echo $webUrl; ?>crm/companyContactDelete/<?php echo $value->id; ?>"
+                       class="deleteCompanyContact" >ลบ</a>
                 </td>
             </tr>
         <?php

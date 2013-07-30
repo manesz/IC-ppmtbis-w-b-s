@@ -130,6 +130,7 @@ $pathUploadFile = $baseUrl. "upload/files/company/$id/";
     var url_edit_data = "<?php echo $webUrl; ?>crm/clientEdit/<?php echo $id; ?>";
     var url_delete_file = "<?php echo $webUrl; ?>crm/clientDeleteFile";
     var url_company_contact_list = "<?php echo $webUrl; ?>crm/companyContactList/<?php echo $id; ?>";
+    var url_company_history_list = "<?php echo $webUrl; ?>crm/companyHistoryList/<?php echo $id; ?>";
     function saveData(reload, url)
     {
         $.post(url_edit_data, $("#formPost").serialize(),
@@ -189,11 +190,8 @@ $pathUploadFile = $baseUrl. "upload/files/company/$id/";
         });
 
         innerHtml("#companyContactContent", url_company_contact_list);
+        innerHtml("#companyContactHistory", url_company_history_list);
     });
-
-    function testAlert(){
-        alert(55);
-    }
 </script>
 <div class="row-fluid">
     <!--                <div class="alert alert-success">-->
@@ -375,9 +373,8 @@ $pathUploadFile = $baseUrl. "upload/files/company/$id/";
             </form>
         </div>
     </div>
-    <div class="block" id="companyContactContent">
-
-    </div>
+    <div class="block" id="companyContactContent"></div>
+    <div class="block" id="companyContactHistory"></div>
     <!-- /block -->
     <!--content inner-->
 </div>

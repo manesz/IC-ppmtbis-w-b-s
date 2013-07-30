@@ -1266,7 +1266,7 @@ class Crm extends CI_Controller
 
     function companyContactDelete($id)
     {
-        $result = $this->CRM_model->setPublish($id, 'map_company_contact');
+        $result = $this->CRM_model->setPublish($id, 'crm_map_company_contact');
         if ($result) {
             echo "delete success";
         } else {
