@@ -793,6 +793,68 @@ class CRM_model extends CI_Model
         }
     }
 
+    //-----------------------------------Company History------------------------------------------//
+    function companyHistoryNew($post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'priority' => intval($priority),
+            'company_id' => intval($company_id),
+            'key_account_manager_id' => intval($key_account_manager_id),
+            'create_time' => $create_time,
+            'update_time' => "0000-00-00 00:00:00",
+            "publish" => 1
+        );
+        $this->db->insert('crm_company_history', $data);
+        return $id = $this->db->insert_id('crm_company_history');
+    }
+
+    function companyHistoryEdit($id, $post)
+    {
+        extract($post);
+        $data = array(
+            'title' => trim($title),
+            'description' => trim($description),
+            'priority' => intval($priority),
+            'company_id' => intval($company_id),
+            'key_account_manager_id' => intval($key_account_manager_id),
+            'update_time' => date("Y-m-d H:i:s"),
+        );
+        return $this->db->update('crm_company_history', $data, array('id' => $id));
+    }
+
+    /**
+     * @param int $id
+     * @param int $company_id
+     * @return object
+     */
+    function companyHistoryList($company_id, $id = 0)
+    {
+        $strAnd = $id == 0 ? "AND a.company_id = $company_id" : "AND a.company_id = $company_id AND a.id = $id";
+        $sql = "
+            SELECT
+              a.*,
+              b.name AS key_account_manager_name
+            FROM
+              `crm_company_history` a,
+              `crm_employee` b
+            WHERE 1
+              AND a.`publish` = 1
+              AND b.publish = 1
+              AND a.key_account_manager_id = b.id
+              $strAnd
+        ";
+        $query = $this->db->query($sql);
+        if ($query->num_rows()) {
+            $result = $query->result();
+            return $result;
+        } else {
+            return (object)array();
+        }
+    }
+
     //-----------------------------------Company Type------------------------------------------//
     /**
      * get รายชื่อประเภทบริษัท

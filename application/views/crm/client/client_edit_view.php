@@ -190,7 +190,7 @@ $pathUploadFile = $baseUrl. "upload/files/company/$id/";
         });
 
         innerHtml("#companyContactContent", url_company_contact_list);
-        innerHtml("#companyContactHistory", url_company_history_list);
+        innerHtml("#companyHistory", url_company_history_list);
     });
 </script>
 <div class="row-fluid">
@@ -374,7 +374,7 @@ $pathUploadFile = $baseUrl. "upload/files/company/$id/";
         </div>
     </div>
     <div class="block" id="companyContactContent"></div>
-    <div class="block" id="companyContactHistory"></div>
+    <div class="block" id="companyHistory"></div>
     <!-- /block -->
     <!--content inner-->
 </div>

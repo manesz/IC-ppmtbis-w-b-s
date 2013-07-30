@@ -1195,7 +1195,7 @@ class Crm extends CI_Controller
 
     //-----------------------------------Company Contact------------------------------------------//
 
-    function companyContact()
+    /*function companyContact()
     {
         $message = "";
         $strSelectBar = "companyContact";
@@ -1206,7 +1206,7 @@ class Crm extends CI_Controller
             "selectBar" => $strSelectBar
         );
         $this->load->view("crm/client/company_contact_view", $data);
-    }
+    }*/
 
     function companyContactList($company_id)
     {
@@ -1267,6 +1267,88 @@ class Crm extends CI_Controller
     function companyContactDelete($id)
     {
         $result = $this->CRM_model->setPublish($id, 'crm_map_company_contact');
+        if ($result) {
+            echo "delete success";
+        } else {
+            echo "delete fail";
+        }
+        exit();
+    }
+
+    //-----------------------------------Company History------------------------------------------//
+
+    /*function companyHistory()
+    {
+        $message = "";
+        $strSelectBar = "company_history";
+
+        $data = array(
+            "webUrl" => $this->webUrl,
+            "message" => $message,
+            "selectBar" => $strSelectBar
+        );
+        $this->load->view("crm/client/company_history_view", $data);
+    }*/
+
+    function companyHistoryList($company_id)
+    {
+        $arrData = $this->CRM_model->companyHistoryList($company_id);
+
+        $data = array(
+            'arrData' => $arrData,
+            "webUrl" => $this->webUrl,
+            'message' => "",
+            'id' => $company_id
+        );
+        $this->load->view('crm/client/company_history_list_view', $data);
+    }
+
+    function companyHistoryNew($company_id)
+    {
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->companyHistoryNew($post);
+            if ($result){
+                echo $result;
+            } else {
+                echo 'add fail';
+            }
+            exit();
+        }
+        $data = array(
+            "webUrl" => $this->webUrl,
+            'message' => "",
+            'id' => $company_id,
+        );
+        $this->load->view('crm/client/company_history_new_view', $data);
+    }
+
+    function companyHistoryEdit($id, $company_id)
+    {
+        $message = "";
+        $post = $this->input->post();
+        if ($post) {
+            $result = $this->CRM_model->companyHistoryEdit($id, $post);
+            if ($result) {
+                echo "edit success";
+            } else {
+                echo "edit fail";
+            }
+            exit();
+        }
+        $arrData = $this->CRM_model->companyHistoryList($company_id, $id);
+        $data = array(
+            'arrData' => $arrData[0],
+            "webUrl" => $this->webUrl,
+            'message' => $message,
+            'company_id' => $company_id
+        );
+        $this->load->view('crm/client/company_history_edit_view', $data);
+    }
+
+    function companyHistoryDelete($id)
+    {
+        $result = $this->CRM_model->setPublish($id, 'crm_company_history');
         if ($result) {
             echo "delete success";
         } else {

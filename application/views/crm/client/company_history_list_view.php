@@ -12,20 +12,11 @@ $this->load->view('header_datatable_view');
 ?>
 <script>
     $(document).ready(function () {
-        $('#tbData').dataTable();
-
-        $(".deleteCompanyContact").click(function(){
-            $.post(this.href, {},
-                function (result) {
-                    alert(result);
-                    innerHtml("#companyContactContent", url_company_contact_list);
-                }
-            );
-            return false;
-        });
+        $('#tbDataHistory').dataTable();
     });
 
     function showFancy(url) {
+        //alert(url);
         $.fancybox({
             'width'	: '600',
             'height'	: '400',
@@ -38,28 +29,27 @@ $this->load->view('header_datatable_view');
             'hideOnOverlayClick' : false,
             'scrolling'		: 'no',
             'href'			: url
-            //'onClosed'       :function(){innerHtml("#companyContactContent", url_company_contact_list);}
+            //'onClosed'       :function(){innerHtml("#companyHistoryContent", url_company_contact_list);}
         });
         return false;
     }
-
 </script>
 <div class="navbar navbar-inner block-header">
-    <div class="muted pull-left">ผู้ติดต่อประสานงานกับ Office</div>
+    <div class="muted pull-left">History</div>
     <div class="pull-right">
-        <a id="companyContact" onclick="return showFancy('<?php echo $webUrl; ?>crm/companyContactNew/<?php echo $id; ?>')" href="#">
+        <a id="companyHistory" onclick="return showFancy('<?php echo $webUrl; ?>crm/companyHistoryNew/<?php echo $id; ?>')" href="#">
             <span class="badge badge-info">add</span>
         </a>
     </div>
 </div>
 <div class="block-content collapse in">
-    <table cellpadding="0" cellspacing="0" border="0" class="display" id="tbData">
+    <table cellpadding="0" cellspacing="0" border="0" class="display" id="tbDataHistory">
         <thead>
         <tr>
-            <th>ชื่อ</th>
-            <th>ตำแหน่ง</th>
-            <th>เบอร์โทร</th>
-            <th>Email</th>
+            <th>Date</th>
+            <th>title</th>
+            <th>description</th>
+            <th>key account manager</th>
             <th>จัดการข้อมูล</th>
         </tr>
         </thead>
@@ -68,16 +58,16 @@ $this->load->view('header_datatable_view');
         foreach ($arrData as $key => $value):
             ?>
             <tr class="<?php echo "odd_gradeX" ? $key % 2 == 0 : "odd_gradeA"; ?>">
-                <td><?php echo $value->name; ?></td>
-                <td><?php echo $value->position_name; ?></td>
-                <td><?php echo $value->phone; ?></td>
-                <td><?php echo $value->email; ?></td>
+                <td><?php echo $value->create_time; ?></td>
+                <td><?php echo $value->title; ?></td>
+                <td><?php echo $value->description; ?></td>
+                <td><?php echo $value->key_account_manager_name; ?></td>
                 <td class="center">
-                    <a onclick="return showFancy('<?php echo $webUrl; ?>crm/companyContactEdit/<?php echo $value->id; ?>/<?php echo  $value->company_id; ?>'); "
+                    <a onclick="return showFancy('<?php echo $webUrl; ?>crm/companyHistoryEdit/<?php echo $value->id; ?>/<?php echo  $value->company_id; ?>'); "
                        href="#">
                         แก้ไข</a> /
-                    <a href="<?php echo $webUrl; ?>crm/companyContactDelete/<?php echo $value->id; ?>"
-                       class="deleteCompanyContact" >ลบ</a>
+                    <a href="#"
+                       onclick="return deleteClick('<?php echo $webUrl; ?>crm/companyHistoryDelete/<?php echo $value->id; ?>');">ลบ</a>
                 </td>
             </tr>
         <?php
