@@ -98,7 +98,7 @@ class Crm extends CI_Controller
 
     function clientList()
     {
-        $arrClient = $this->CRM_model->getListClient();
+        $arrClient = $this->CRM_model->getListClient(0, $_GET);
 
         $arrCompanyType = $this->CRM_model->getListCompanyType();
 
@@ -113,7 +113,6 @@ class Crm extends CI_Controller
 
     function clientNew()
     {
-        $arrCompanyType = $this->CRM_model->getListCompanyType();
 
         $post = $this->input->post();
         if ($post) {//var_dump($this->session);exit();
@@ -125,6 +124,7 @@ class Crm extends CI_Controller
             }
             exit();
         }
+        $arrCompanyType = $this->CRM_model->getListCompanyType();
         $data = array(
             'company_type' => $arrCompanyType,
             "webUrl" => $this->webUrl,

@@ -10,9 +10,14 @@
 $baseUrl = base_url();
 $urlListData = $webUrl . "crm/clientList";
 $this->load->view("crm/header");
+$queryString = array();
+foreach ($_GET as $key => $value) {
+    $queryString[] = $key . '=' . $value;
+}
+$queryString = implode('&', $queryString);
 ?>
     <script>
-        var url_list_data = "<?php echo $urlListData; ?>";
+        var url_list_data = "<?php echo $urlListData . "?$queryString"; ?>";
         $(document).ready(function () {
 //            $(".subMenuClick").click(function () {
 //                var nameActive = "subMenuClick active";

@@ -36,11 +36,38 @@ class CRM_model extends CI_Model
 
     /**
      * @param string $id
+     * @param array $arrSearch
      * @return object
      */
-    public function getListClient($id = "")
+    function getListClient($id = "", $arrSearch = array())
     {
         $strAnd = $id != "" ? "AND a.id = $id" : "";
+
+        if ($arrSearch) {
+            $strAnd .= "AND (";
+            $arrAnd = array();
+            if ($arrSearch['company_name'] != "") {
+                $arrAnd[] = "b.name LIKE '%" . $arrSearch['company_name'] . "%'";
+            }
+            if ($arrSearch['company_type_id'] != '0') {
+                $arrAnd[] = "b.id = " . $arrSearch['company_type_id'];
+            }
+            if ($arrSearch['company_contact_id'] != "0") {
+                $arrAnd[] = "a.id = (
+                    SELECT
+                      c.`company_id`
+                    FROM `crm_map_company_contact` c
+                    WHERE 1
+                    AND c.`id` =" . $arrSearch['company_contact_id'] . ')';
+            }
+            if ($arrSearch['create_time'] != '') {
+                $arrAnd[] = "a.create_time LIKE '%" . $arrSearch['create_time'] . "%'";
+            }
+            if ($arrSearch['update_time'] != '') {
+                $arrAnd[] = "a.update_time LIKE '%" . $arrSearch['update_time'] . "%'";
+            }
+            $strAnd .= implode(' AND ', $arrAnd) . ")";
+        }
         $sql = "
             SELECT
               a.*,
@@ -104,7 +131,7 @@ class CRM_model extends CI_Model
         extract($post);
         $data = array(
             "company_type_id" => trim($company_type_id),
-            "key_account_manager_id" => trim($key_account_manager_id),
+            "key_account_manager_id" => intval($key_account_manager_id),
             "name_th" => trim($name_th),
             "name_en" => trim($name_en),
             "name_short" => trim($name_short),
@@ -736,7 +763,7 @@ class CRM_model extends CI_Model
     //-----------------------------------Company Contact------------------------------------------//
     function companyContactNew($post)
     {
-        extract($post);//var_dump($post);exit();
+        extract($post); //var_dump($post);exit();
         $data = array(
             'name' => trim($name),
             'position_id' => intval($position_id),
@@ -752,7 +779,7 @@ class CRM_model extends CI_Model
 
     function companyContactEdit($id, $post)
     {
-        extract($post);//var_dump($post);exit();
+        extract($post); //var_dump($post);exit();
         $data = array(
             'name' => trim($name),
             'position_id' => intval($position_id),
@@ -768,9 +795,13 @@ class CRM_model extends CI_Model
      * @param int $company_id
      * @return object
      */
-    function companyContactList($company_id, $id = 0)
+    function companyContactList($company_id = 0, $id = 0)
     {
-        $strAnd = $id == 0 ? "AND a.company_id = $company_id" : "AND a.company_id = $company_id AND a.id = $id";
+        if ($company_id != 0) {
+            $strAnd = $id == 0 ? "AND a.company_id = $company_id" : "AND a.company_id = $company_id AND a.id = $id";
+        } else {
+            $strAnd = "";
+        }
         $sql = "
             SELECT
               a.*,
